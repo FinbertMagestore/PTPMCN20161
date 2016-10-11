@@ -1,0 +1,25 @@
+Đề tài: Xây dựng diễn đàn trao đổi tài liệu học tập, thông tin hữu ích dành cho học sinh từ lớp 1-12 và giáo viên.
+- Giáo viên:
+	+ lưu trữ (upload file) bài giảng theo từng lớp, từng môn (Lớp - Môn)
+		bài giảng gồm nhiều loại file: pdf, word, video.
+		HS-GV có thể bình luận, thích, download, chia sẻ bài giảng cho học sinh bằng email hoặc tới cho học sinh có tài khoản, chia sẻ lên mạng xã hội
+
+- Học sinh và giáo viên:
+	+ tạo, xoá tài khoản
+	+ kết bạn, xoá bạn
+	+ tạo, sửa, xoá bài viết về các chuyên mục chung: tin tức và sự kiện về giáo dục, kinh nghiệm học tập, thông tin sức khoẻ cho thanh thiếu niên
+	  xem, bình luận , thích, chia sẻ cho bạn bè bài viết trong các chủ đề
+	+ xem, đăng lên, tải đề thi giữa kỳ, cuối kỳ, chuyển cấp, thi thử đại học, đề thi THPT, đề thi học sinh giỏi (**) - có hiển thị người đăng
+	+ xem chương trình học, các môn học, khối lượng kiến thức trong các môn.
+
+- Quản trị:
+	+ đăng các thông tin về các trường cho mọi người xem, chia sẻ thông tin tuyển sinh
+	+ đăng khung chương trình học của các môn học(tiết nào học cái gì, các kiến thức cần đạt được)
+	+ đăng lên bài viết trong chuyên mục "Các phương pháp học tập hiệu quả và tích cực" (những cái gì đã được kiểm chứng khoa học cụ thể: vd: sơ đồ tư duy,...)
+
+- Phần mở rộng (bổ sung nếu còn thời gian sẽ làm):
+	+ Học sinh và giáo viên có thể xem danh sách bạn bè đang online
+	+ Học sinh và giáo viên có thể chat với nhau
+	+ Học sinh và giáo viên có thể tạo, tham gia vào nhóm (người tạo nhóm có thể thêm, xóa thành viên)
+		Trong nhóm học sinh và giáo viên có thể tạo các bài viết về bài tập, bình luận trên các bài viết
+	+ Chuyên mục hỏi đáp giữa giáo viên và học sinh. Học sinh và giáo viên có thể xem danh sách các câu hỏi, tạo các câu hỏi, đánh giá câu hỏi, bình luận về câu hỏi

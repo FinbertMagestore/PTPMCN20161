@@ -1,0 +1,4 @@
+- Các vấn đề 11/10/2016
+  + Xóa tài khoản thì file có bị xóa ko? => file ko bị xóa khi xóa tài khoản.
+  + upload bản mới của file => hỗ trợ cơ chế upload phiên bản mới của file, xóa file.
+  + Gợi ý bạn bè => liệt kê ra 10 người trong danh sách để hiển thị ra bạn bè.
