@@ -23,3 +23,6 @@
 	+ Học sinh và giáo viên có thể tạo, tham gia vào nhóm (người tạo nhóm có thể thêm, xóa thành viên)
 		Trong nhóm học sinh và giáo viên có thể tạo các bài viết về bài tập, bình luận trên các bài viết
 	+ Chuyên mục hỏi đáp giữa giáo viên và học sinh. Học sinh và giáo viên có thể xem danh sách các câu hỏi, tạo các câu hỏi, đánh giá câu hỏi, bình luận về câu hỏi
+
+- Ghi chú:
+	+ Khi đăng ký làm giáo viên thì sẽ phải tham gia trả lời 1 số câu hỏi trắc nghiệm. Nếu đạt > 80% thì mới tiếp tục đăng ký.
