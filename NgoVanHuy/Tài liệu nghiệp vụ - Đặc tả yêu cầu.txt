@@ -1,0 +1,44 @@
+1.	Đặc điểm của các người dùng
+  1.1.	Học sinh
+    - Lớp 1-3:
+      + Chưa thể sử dụng máy tính.
+      + Nhu cầu tiếp cận tài liệu học tập còn hạn chế do chưa có ý thức tự tìm kiếm tài liệu
+    - Lớp 3-5:
+      + Đã biết máy tính là gì, 1 số có thể sử dụng được máy tính ở mức cơ bản, thích tìm hiểu máy tính vì muốn chơi điện tử.
+    - Lớp 6-12:
+      + Đã có khả năng sử dụng hoặc học sách sử dụng máy tính thành thạo.
+      + Đã thấy sự cần thiết của việc tìm kiếm tài liệu, tuy nhiên chưa chủ động tìm tài liệu mà đa số tài liệu học tập đều do bạn bè hoặc thầy cô gợi ý. Một số đã biết tự ra hiệu sách tìm sách hay để đọc.
+  1.2.	Giáo viên
+    - Ở thành thị:
+    - Ở nông thôn:
+2.	Hoạt động trong thực tế của các người dùng
+  2.1.	Học sinh
+    2.1.1.	Tra cứu tài liệu học tập
+      -	Câu chuyện trong thực tế:
+    2.1.2.	Tìm bài tập, đề thi của các môn học
+    2.1.3.  Trao đổi bài tập online
+    2.1.4.  Xem khung chương trình chuẩn của các môn học
+    2.1.5.  Tham khảo kinh nghiệm học tập, kinh nghiệm sống của người khác
+    2.1.6.  Hỏi, tìm hiểu các vấn đề liên quan đến định hướng học tập và định hướng nghề nghiệp
+    2.1.7.  Trao đổi trực tiếp với giáo viên
+    2.1.8.	Xem thông tin thời sự liên quan đến giáo dục
+  2.2.	Giáo viên
+    2.2.1.	Lưu trữ tài liệu giảng dạy: bài giảng, đề thi của mình
+    2.2.2.	Giao bài tập cho học sinh
+    2.1.3.  Trao đổi trực tiếp với học sinh
+    2.1.4.	Xem thông tin thời sự liên quan đến giáo dục
+3.	Các nhiệm vụ cần thực hiện với phần mềm
+  3.1.	Học sinh
+  3.2.  Giáo viên
+4.	Các chức năng của hệ thống và đặc tả
+  4.1.	XXX
+    - Mã:
+    - Tên:
+    -	Mô tả tổng quan:
+    - Luồng sự kiện:
+    - Mối quan hệ giữa các UseCase:
+      + Bằng văn bản
+      + Bằng bảng
+      + Bằng biểu đồ hoạt động
+    - Đặc tả đầu vào:
+    - Đặc tả đầu ra:
