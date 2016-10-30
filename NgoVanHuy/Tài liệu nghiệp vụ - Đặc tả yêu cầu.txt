@@ -3,14 +3,36 @@
     - Lớp 1-3:
       + Chưa thể sử dụng máy tính.
       + Nhu cầu tiếp cận tài liệu học tập còn hạn chế do chưa có ý thức tự tìm kiếm tài liệu
+      => Những người thân của học sinh lớp 1-3 chưa biết tìm tài liệu, phương pháp dạy ở đâu cho hợp lý. Chủ yếu là giáo viên dạy dỗ học sinh nên chất lượng giảng dạy phụ thuộc nhiều vào giáo viên => Phụ huynh có thể đăng ký tài khoản thay cho học sinh lớp 1-3 lên tìm kiếm tài liệu, phương pháp dạy, hỏi đáp với giáo viên thay cho học sinh.
+
     - Lớp 3-5:
       + Đã biết máy tính là gì, 1 số có thể sử dụng được máy tính ở mức cơ bản, thích tìm hiểu máy tính vì muốn chơi điện tử.
+      => Có thể tự đăng ký tài khoản hoặc sử dụng tài khoản lớp 1-3 do bố mẹ đăng ký cho để tìm kiếm tài liệu, trao đổi với bạn bè và thầy cô.
+
     - Lớp 6-12:
       + Đã có khả năng sử dụng hoặc học sách sử dụng máy tính thành thạo.
       + Đã thấy sự cần thiết của việc tìm kiếm tài liệu, tuy nhiên chưa chủ động tìm tài liệu mà đa số tài liệu học tập đều do bạn bè hoặc thầy cô gợi ý. Một số đã biết tự ra hiệu sách tìm sách hay để đọc.
+      + Đa số chưa có định hướng cụ thể về tương lai, ngành học, trường đại học, nghề nghiệp sau này.
+      => Cần thiết 1 nơi để tìm kiếm tài liệu, tìm kiếm phương pháp học học, tìm hiểu định hướng tương lai.
+
+    - Nhu cầu chung:
   1.2.	Giáo viên
     - Ở thành thị:
+      + Được tiếp thu với các phương pháp giảng dạy mới, các buổi chia sẻ về giáo dục.
+      => Có nhu cầu chia sẻ thông tin mình biết với mọi người
+      + Một số bài giảng đã được soạn trên slide để trình bày cho học sinh
+      => Cần được lưu trữ online lâu dài.
+
     - Ở nông thôn:
+      + Các phương pháp, tài liệu giảng dạy chủ yếu là tự soạn theo kinh nghiệm cá nhân. Tham khảo sách giáo khoa hoặc 1 số sách nâng cao mình biết.
+      + Ít được tiếp thu với phương pháp giáo dục mới
+      + Các bài kiểm tra cho học sinh, tài liệu giảng dạy thường được viết trên giấy và lưu lại
+      => Gây khó khăn cho việc tìm kiếm và lưu trữ sau này vì tài liệu giấy.
+      
+    - Nhu cầu chung:
+      + Các tài liệu về bài giảng, bài kiểm tra định kỳ cho học sinh, tài liệu học tập gửi cho học sinh cần được lưu trữ online lâu dài ở 1 chỗ, có thể tìm kiếm ở thời gian sau này. Tài liệu có thể được cập nhật định kỳ khi người dùng muốn, các tài liệu cũ sẽ được lưu lại để dễ theo dõi.
+      + Chia sẻ tài liệu cho mọi người hoặc 1 số người mình muốn.
+      + Tham khảo tài liệu của các giáo viên khác để làm phong phú thêm tài liệu của mình.
 2.	Hoạt động trong thực tế của các người dùng
   2.1.	Học sinh
     2.1.1.	Tra cứu tài liệu học tập

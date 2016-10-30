@@ -2,3 +2,18 @@
   + Xóa tài khoản thì file có bị xóa ko? => file ko bị xóa khi xóa tài khoản.
   + upload bản mới của file => hỗ trợ cơ chế upload phiên bản mới của file, xóa file.
   + Gợi ý bạn bè => liệt kê ra 10 người trong danh sách để hiển thị ra bạn bè.
+
+- 20/10/2016
+  + Trang cá nhân là dòng thời gian gồm các bài viết: tự viết, được chia sẻ, lưu từ nguồn khác
+  + Chia sẻ cho nhiều người:
+    . luồng sự kiện:
+      tìm kiếm bạn bè => chọn bạn bè => gửi chia sẻ => hiện thông báo trên trang cá nhân của những người được chia sẻ
+    . Lưu trong CSDL: ID, Bài viết ID, Người chia sẻ ID, Danh sách người được chia sẻ ID (1,2,3)
+  + UC báo cáo bài viết không hợp lệ => Gửi thông báo đến cho quản trị => Quản trị xóa bài
+  => Xây dựng phần giao diện phần admin
+  + Lưu tin nhắn có 2 cách: lưu dưới dạng file hoặc trong CSDL
+  + Upload và download bài giảng:
+    . Upload: nhiều file
+    . download 1 file trong bài giảng / download cả bài giảng (nén thành 1 file -> tải về file nén cho người dùng)
+  + Thêm UC quản lý phiên bản của các file trong bài giảng
+    . Bên cạnh file có nút xem phiên bản. Click vào xuất hiện popup chưa dánh sách các file, có thể thêm file là phiên bản mới, chọn phiên bản được active cho người dùng thấy.
