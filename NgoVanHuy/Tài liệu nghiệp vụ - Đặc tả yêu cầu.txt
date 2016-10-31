@@ -28,7 +28,7 @@
       + Ít được tiếp thu với phương pháp giáo dục mới
       + Các bài kiểm tra cho học sinh, tài liệu giảng dạy thường được viết trên giấy và lưu lại
       => Gây khó khăn cho việc tìm kiếm và lưu trữ sau này vì tài liệu giấy.
-      
+
     - Nhu cầu chung:
       + Các tài liệu về bài giảng, bài kiểm tra định kỳ cho học sinh, tài liệu học tập gửi cho học sinh cần được lưu trữ online lâu dài ở 1 chỗ, có thể tìm kiếm ở thời gian sau này. Tài liệu có thể được cập nhật định kỳ khi người dùng muốn, các tài liệu cũ sẽ được lưu lại để dễ theo dõi.
       + Chia sẻ tài liệu cho mọi người hoặc 1 số người mình muốn.
@@ -45,7 +45,7 @@
     2.1.7.  Trao đổi trực tiếp với giáo viên
     2.1.8.	Xem thông tin thời sự liên quan đến giáo dục
   2.2.	Giáo viên
-    2.2.1.	Lưu trữ tài liệu giảng dạy: bài giảng, đề thi của mình
+    2.2.1.	Upload tài liệu giảng dạy: bài giảng, đề thi của mình
     2.2.2.	Giao bài tập cho học sinh
     2.1.3.  Trao đổi trực tiếp với học sinh
     2.1.4.	Xem thông tin thời sự liên quan đến giáo dục
