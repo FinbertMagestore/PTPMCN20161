@@ -33,6 +33,7 @@ CREATE TABLE `category` (
   `Status` bit(1) DEFAULT NULL,
   `ImageUrl` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   `ForAdminPost` bit(1) DEFAULT NULL,
+  `IsHighLight` bit(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -43,7 +44,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (20,'Tin tức và sự kiện về giáo dục',NULL,0,'tin-tuc-su-kien-giao-duc','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,'\0'),(21,'Kinh nghiệm học tập',NULL,NULL,'kinh-nghiem-hoc-tap','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,'\0'),(22,'Sức khỏe cho thanh thiếu niên',NULL,NULL,'suc-khoe-thanh-thieu-nien','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,'\0'),(23,'Kinh nghiệm thi cử',NULL,NULL,'kinh-nghiem-thi-cu','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,'\0'),(24,'Các phương pháp học tập hiệu quả',NULL,NULL,'cac-phuong-phap-hoc-tap-hieu-qua','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,''),(25,'Khung chương trình các môn học',NULL,NULL,'khung-chuong-trinh-cac-mon-hoc','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,''),(26,'Thông tin tuyển sinh',NULL,NULL,'thong-tin-tuyen-sinh','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,'');
+INSERT INTO `category` VALUES (20,'Tin tức và sự kiện về giáo dục',NULL,0,'tin-tuc-su-kien-giao-duc','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,'\0',NULL),(21,'Kinh nghiệm học tập',NULL,NULL,'kinh-nghiem-hoc-tap','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,'\0',NULL),(22,'Sức khỏe cho thanh thiếu niên',NULL,NULL,'suc-khoe-thanh-thieu-nien','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,'\0',NULL),(23,'Kinh nghiệm thi cử',NULL,NULL,'kinh-nghiem-thi-cu','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,'\0',NULL),(24,'Các phương pháp học tập hiệu quả',NULL,NULL,'cac-phuong-phap-hoc-tap-hieu-qua','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,'',NULL),(25,'Khung chương trình các môn học',NULL,NULL,'khung-chuong-trinh-cac-mon-hoc','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,'',NULL),(26,'Thông tin tuyển sinh',NULL,NULL,'thong-tin-tuyen-sinh','2016-11-22 05:32:35','2016-11-22 05:32:35','',NULL,'',NULL);
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +153,7 @@ CREATE TABLE `district` (
   PRIMARY KEY (`ID`),
   KEY `District_ProvinceID_FK_idx` (`ProvinceID`),
   CONSTRAINT `District_ProvinceID_FK` FOREIGN KEY (`ProvinceID`) REFERENCES `province` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -751,4 +752,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-22 17:36:49
+-- Dump completed on 2016-11-22 23:01:47
