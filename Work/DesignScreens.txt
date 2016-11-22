@@ -1,15 +1,10 @@
 Client:
-  - Chú ý:
-    + danh sách thì tùy hiển thị theo dạng list / grid
-    + UC xem thống kê thời gian theo ngày tạm thời chưa code
   - Đăng ký
   - Đăng nhập
-  - Trang chủ
-    + xem danh sách bạn bè bên phải + tình trạng online, vùng để chat,
   - Trang cá nhân
-    + dòng thời gian chứa các bài viết lọc 4 loại: tất cả, bài viết tự đăng, bài viết được chia sẻ, bài viết tự đánh dấu) (xóa bài viết trên tường, xem chi tiết bài viết)
-    + giới thiệu (thông tin cá nhân) - người khác vào xem trang cá nhân và có thể kết bạn, hủy kết bạn
-    + danh sách bạn bè
+    + giới thiệu (thông tin cá nhân)
+    + xem danh sách bài viết đã đăng + sửa (hiện ra popup chứa thông tin bài viết)
+    + xem danh sách bài giảng đã đăng + sửa (hiện ra popup chứa thông tin bài giảng)
   - Chuyên mục:
     + danh sách bài viết (tìm kiếm theo loại chuyên mục, tên bài viết)
     + chi tiết bài viết (đánh giá, bình luận, thích, chia sẻ bài viết cho bạn bè, đánh dấu vài viết lên trang cá nhân, báo cáo)
@@ -19,16 +14,14 @@ Client:
     + chi tiết bài giảng (thêm file, xóa file, thêm phiên bản cho file, sửa thông tin cho bài giảng, download bài giảng, download file trong bài giảng, chia sẻ bài giảng, đánh giá bài giảng)
     + xem phiên bản của file (popup)
     + xem, tìm kiếm danh sách bạn bè (popup) - (xuất hiện khi chia sẻ bài giảng, chia sẻ bài viết)
-  - Nhóm
-    + danh sách nhóm (tìm kiếm, nhóm tham gia, nhóm làm quản trị)
-    + chi tiết nhóm (danh sách bài viết, thêm thành viên, mô tả thông tin nhóm, quản lý nhóm(danh sách các yêu cầu tham gia))
+
 Admin
   - Chuyên mục:
-    + danh sách bài viết (tìm kiếm theo loại chuyên mục, tên bài viết)
-    + chi tiết bài viết
-    + danh sách chuyên mục
-    + chi tiết chuyên mục
+    + CRUD chuyên mục
+    + CRUD bài viết trong chuyên mục
   - Người dùng
     + danh sách người dùng (tìm kiếm, block tài khoản)
   - Báo cáo từ người dùng
     + xem danh sách các báo cáo theo loại: bài viết, người dùng
+  - Feedback từ người dùng
+    + Xem danh sách feedback
