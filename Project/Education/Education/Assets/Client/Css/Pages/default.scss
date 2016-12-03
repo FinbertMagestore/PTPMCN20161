@@ -1,0 +1,136 @@
+﻿@import "../Module/common";
+@import "../Module/header";
+@import "../Module/footer";
+@import "/Content/themify/css/themify-icons.css";
+@import "/Content/font-awesome/css/font-awesome.css";
+
+$screen-xs-max: 767px;
+$screen-sm-min: 768px;
+$screen-sm-max: 991px;
+$screen-md-min: 992px;
+$screen-md-max: 1199px;
+$screen-lg-min: 1200px;
+
+.banner {
+    background: #797979 url('../../Images/Home/img-education.jpg') center no-repeat;
+    background-size: cover;
+    background-position-y: -290px;
+    position: relative;
+    padding: 88px 0;
+    color: #102644;
+}
+
+.search {
+    padding: 20px 0;
+    .input-registration {
+        border: 1px solid #d8d8d9;
+        border-radius: 45px;
+        outline: none;
+        float: right;
+        width: 80%;
+        height: 60px;
+        padding-left: 20px;
+
+        @media (min-width: 1200px) {
+            font-size: 20px;
+            line-height: 60px;
+        }
+
+        @media (max-width: 1199px) {
+            font-size: 18px;
+            line-height: 56px;
+        }
+    }
+}
+
+.page-1 {
+    .box {
+        width: 100%;
+        background-color: #FFFFFF;
+        color: #182921;
+        border: 1px solid #333333;
+
+        img {
+            width: 60px;
+            padding-left: 10px;
+        }
+
+        .box-content {
+            display: inline-table;
+            padding-left: 10px;
+            .title-2 {
+                margin-bottom: 0;
+            }
+            a {
+                color: #182921;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.page-2{
+    table{
+        width: 100%;
+        td{
+            padding-left: 15px;
+        }
+        tr.lession{
+            background-color: #89c1e9;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 400;
+            height: 50px;
+        }
+
+        tr.sub-lession{
+            border-bottom: 1px solid #444444;
+            &:last-of-type{
+                border-bottom: none;
+            }
+
+            .user-post{
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.page-3 {
+    table {
+        width: 100%;
+        td{
+            padding-left: 15px;
+        }
+        tr.divider {
+            background-color: #89c1e9;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 400;
+            height: 50px;
+
+            i.fa{
+                font-size: 50px;
+            }
+        }
+        tr:not(.divider) {
+            border-bottom: 1px solid #444444;
+        }
+        tr.last-subcategory {
+            border-bottom: none;
+        }
+        tr.hidden-row {
+            display: none;
+        }
+    }
+}
+
+.time{
+
+}
+
+.user-post{
+    color: #f44b00;
+}

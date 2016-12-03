@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Education", "Education\Education.csproj", "{05005171-546A-475E-B48E-C89A8B279F46}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "http://education.dev", "http://education.dev", "{1790A134-F07B-41F6-B5F4-F2B7644B87D8}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "false"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		Debug.AspNetCompiler.VirtualPath = "/education.dev"
+		Debug.AspNetCompiler.PhysicalPath = "Education\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\education.dev\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/education.dev"
+		Release.AspNetCompiler.PhysicalPath = "Education\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\education.dev\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "Education\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05005171-546A-475E-B48E-C89A8B279F46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05005171-546A-475E-B48E-C89A8B279F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05005171-546A-475E-B48E-C89A8B279F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05005171-546A-475E-B48E-C89A8B279F46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1790A134-F07B-41F6-B5F4-F2B7644B87D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1790A134-F07B-41F6-B5F4-F2B7644B87D8}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{1790A134-F07B-41F6-B5F4-F2B7644B87D8}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

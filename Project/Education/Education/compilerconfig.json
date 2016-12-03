@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Assets/Admin/Css/Pages/default.css",
+    "inputFile": "Assets/Admin/Css/Pages/default.scss"
+  },
+  {
+    "outputFile": "Assets/Client/Css/Pages/default.css",
+    "inputFile": "Assets/Client/Css/Pages/default.scss"
+  }
+]

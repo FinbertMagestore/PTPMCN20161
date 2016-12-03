@@ -1,0 +1,55 @@
+﻿.footer {
+  background: url('/Assets/Client/Images/Home/footer-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  h3 {
+    color: #fff;
+  }
+
+  i.fa {
+    font-size: 20px;
+    color: #8d9bad;
+    padding-right: 10px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    li {
+      font-size: 14px;
+      padding-bottom: 10px;
+
+      a {
+        color: #8d9bad;
+        font-weight: 400;
+        text-decoration: none;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.copyright {
+  background: url('/Assets/Client/Images/Home/copyright-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 14px;
+  color: #67677c;
+  width: 100%;
+  height: 62px;
+  padding-top: 20px;
+
+  .copyright-left {
+    float: left;
+  }
+  .copyright-right {
+    float: right;
+  }
+}
