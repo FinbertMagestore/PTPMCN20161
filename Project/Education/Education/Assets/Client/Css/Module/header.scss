@@ -63,7 +63,7 @@
                 width: 250px;
 
                 li.icontop {
-                    right: 100px;
+                    margin-left: 60px;
                 }
             }
 
@@ -81,6 +81,10 @@
                     display: block !important;
                 }
             }
+        }
+
+        li:last-of-type {
+            margin-right: 100px;
         }
 
         li.icontop {

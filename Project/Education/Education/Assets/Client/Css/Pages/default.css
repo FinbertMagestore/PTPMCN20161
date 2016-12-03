@@ -174,7 +174,7 @@ body {
       .header ul.main-menu li ul.sub-menu-1-col {
         width: 250px; }
         .header ul.main-menu li ul.sub-menu-1-col li.icontop {
-          right: 100px; }
+          margin-left: 60px; }
       .header ul.main-menu li ul.sub-menu-2-col {
         width: 500px; }
         .header ul.main-menu li ul.sub-menu-2-col li {
@@ -182,6 +182,8 @@ body {
           float: left; }
       .header ul.main-menu li:hover ul.sub-menu {
         display: block !important; }
+    .header ul.main-menu li:last-of-type {
+      margin-right: 100px; }
     .header ul.main-menu li.icontop {
       background-image: url("../../Images/General/icon-submenu.png");
       background-repeat: no-repeat;

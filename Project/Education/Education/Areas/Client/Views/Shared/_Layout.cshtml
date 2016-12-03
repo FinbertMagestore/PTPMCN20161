@@ -14,6 +14,7 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
 </head>
 <body>
     <div id="container">
@@ -52,38 +53,46 @@
                             <li>
                                 <a href="/Client/Account/Index">Thành viên</a>
                             </li>
-                            <li class="">
-                                <a href="/Client/Authorization/Login">Đăng nhập</a>
-                            </li>
-                            <li class="">
-                                <a href="/Client/Authorization/Register">Đăng ký</a>
-                            </li>
-                            <li class="hide">
-                                <a href="/Client/Account/Edit/1">Nguyễn Thị Xuân<i class="fa fa-caret-down"></i></a>
-                                <ul class="sub-menu sub-menu-1-col">
-                                    <li class="icontop"></li>
-                                    <li class="top-row">
-                                        <a href="/Client/Account/Edit/1">
-                                            Trang cá nhân
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="/">
-                                            Danh sách bài viết đã đăng
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="/">
-                                            Danh sách bài giảng đã đăng
-                                        </a>
-                                    </li>
-                                    <li class="bottom-row has-boder-top">
-                                        <a href="/">
-                                            Đăng xuất
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                            @using Microsoft.AspNet.Identity;
+                            @if (!string.IsNullOrEmpty(User.Identity.GetUserName()))
+                            {
+                                <li class="">
+                                    <a href="/Client/Account/Edit/1">@User.Identity.GetUserName()<i class="fa fa-caret-down"></i></a>
+                                    <ul class="sub-menu sub-menu-1-col">
+                                        <li class="icontop"></li>
+                                        <li class="top-row">
+                                            <a href="/Client/Account/Edit/@Membership.GetUser(User.Identity.GetUserName()).ProviderUserKey">
+                                                Trang cá nhân
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="/">
+                                                Danh sách bài viết đã đăng
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="/">
+                                                Danh sách bài giảng đã đăng
+                                            </a>
+                                        </li>
+                                        <li class="bottom-row has-boder-top">
+                                            <a href="/Admin/Authorization/Logout">
+                                                Đăng xuất
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="">
+                                    <a href="/Admin/Authorization/Login">Đăng nhập</a>
+                                </li>
+                                <li class="">
+                                    <a href="/Client/Authorization/Register">Đăng ký</a>
+                                </li>
+                            }
+
                         </ul>
                     </div>
                 </div>
