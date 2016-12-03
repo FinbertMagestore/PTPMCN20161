@@ -21,18 +21,37 @@ namespace Education.Areas.Admin.Controllers
             ViewBag.ReturnUrl = ReturnUrl;
             try
             {
-                HttpCookie myCookie = Request.Cookies[".ASPXAUTH"];
-
-                if (myCookie != null)
+                HttpCookie cookieAspx = Request.Cookies[".ASPXAUTH"];
+                HttpCookie roleUser = Request.Cookies["_role"];
+                if (cookieAspx != null)
                 {
-                    if (!string.IsNullOrEmpty(ReturnUrl))
+                    if (roleUser != null)
                     {
-                        return Redirect(ReturnUrl);
+                        string roles = roleUser.Values["_roleUser"];
+                        if (!string.IsNullOrEmpty(roles) && roles.Contains("Admin"))
+                        {
+                            if (!string.IsNullOrEmpty(ReturnUrl))
+                            {
+                                return Redirect(ReturnUrl);
+                            }
+                            else
+                            {
+                                return RedirectToAction("Index", "Dashboard");
+                            }
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(ReturnUrl))
+                            {
+                                return Redirect(ReturnUrl);
+                            }
+                            else
+                            {
+                                return RedirectToAction("Index", "Home", new { area = "Client" });
+                            }
+                        }
                     }
-                    else
-                    {
-                        return RedirectToAction("Index", "Dashboard");
-                    }
+
                 }
                 return View();
             }
@@ -58,9 +77,21 @@ namespace Education.Areas.Admin.Controllers
                         {
                             if (Membership.ValidateUser(userName, model.Password))
                             {
+                                String[] roleUsers = Roles.GetRolesForUser(userName);
+                                string roles = GetRolesOfUser(roleUsers);
+                                HttpCookie cookie = Request.Cookies["_role"];
+                                if (cookie == null)
+                                {
+                                    cookie = new HttpCookie("_role");
+                                    cookie.Values["_roleUser"] = roles;
+                                }
+                                else
+                                {
+                                    cookie.Values["_roleUser"] = roles;
+                                }
+                                FormsAuthentication.SetAuthCookie(userName, model.RememberMe);
                                 if (Roles.IsUserInRole(userName, "Admin"))
                                 {
-                                    FormsAuthentication.SetAuthCookie(userName, model.RememberMe);
                                     if (!string.IsNullOrEmpty(ReturnUrl))
                                     {
                                         return Redirect(ReturnUrl);
@@ -70,10 +101,16 @@ namespace Education.Areas.Admin.Controllers
                                         return RedirectToAction("Index", "Dashboard");
                                     }
                                 }
-                                else
+                                else if (Roles.IsUserInRole(userName, "Client"))
                                 {
-                                    ViewBag.Fail = "Tài khoản hoặc mật khẩu không có quyền admin.";
-                                    ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không có quyền admin.");
+                                    if (!string.IsNullOrEmpty(ReturnUrl))
+                                    {
+                                        return Redirect(ReturnUrl);
+                                    }
+                                    else
+                                    {
+                                        return RedirectToAction("Index", "Home", new { area = "Client" });
+                                    }
                                 }
                             }
                             else
@@ -109,6 +146,26 @@ namespace Education.Areas.Admin.Controllers
         public ActionResult Index()
         {
             return RedirectToAction("Login", "Authorization");
+        }
+
+        private static string GetRolesOfUser(string[] roleUsers)
+        {
+            string roles = "";
+            if (roleUsers != null && roleUsers.Length > 0)
+            {
+                for (int i = 0; i < roleUsers.Length; i++)
+                {
+                    if (i != roleUsers.Length - 1)
+                    {
+                        roles += roleUsers[i] + ",";
+                    }
+                    else
+                    {
+                        roles += roleUsers[i];
+                    }
+                }
+            }
+            return roles;
         }
     }
 }
