@@ -1,8 +1,142 @@
-﻿
+﻿@model Education.Areas.Admin.Model.Post
+
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Amin tạo bài viết</h2>
+@using (Html.BeginForm("Create", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="content-header">
+        <table cellspacing="0">
+            <tbody>
+                <tr>
+                    <td style="width:50%;"><h3 class="icon-head head-cms-page">Thêm mới bài viết</h3></td>
+                    <td class="form-buttons">
+                        <button class="scalable Back" name="submit" onclick="setLocation('/Admin/Post/Index')" type="button" value="Back"><span>Quay lại</span></button>
+                        <button class="scalable Reset" name="submit" type="reset" value="Reset"><span>Reset</span></button>
+                        <button class="scalable Save" name="submit" type="submit" value="Save"><span>Lưu trang</span></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><a href="#">Thêm mới bài viết</a></h4>
+            <div class="form-buttons"></div>
+        </div>
+        <div class="fieldset " id="user_base_fieldset">
+            <div class="hor-scroll">
+                <table cellspacing="0" class="form-list">
+                    <tbody>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.CategoryID)
+                                
+                        </td>
+                            <td class="value">
+                                @{
+                                    object htmlAttributeSub = new { @class = "input-text" };
+                                    bool disableSub = false;
+                                    @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "Name", !disableSub ? Model.CategoryID : 0), "-- Danh mục --", htmlAttributeSub)
+                                    <br />@Html.ValidationMessageFor(model => model.CategoryID)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Name)
+                                
+                            </td>
+                            <td class="value">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "input-text" })
+                                <br />@Html.ValidationMessageFor(model => model.Name)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Description)
+                            </td>
+                            <td class="value">
+                                @Html.TextBoxFor(model => model.Description, new { @class = "input-text" })
+                                <br />@Html.ValidationMessageFor(model => model.Description)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Alias)
+                                
+                            </td>
+                            <td class="value">
+                                @Html.TextBoxFor(model => model.Alias, new { @class = "input-text" })
+                                <br />@Html.ValidationMessageFor(model => model.Alias)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Status)
+                            </td>
+                            <td class="value">
+                                @Html.CheckBoxFor(m => m.Status)
+                                <br />@Html.ValidationMessageFor(model => model.Status)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">@Html.LabelFor(model => model.ImageUrl)</td>
+                            <td class="value">
+                                @Html.HiddenFor(model => model.ImageUrl)
+                                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                                {
+                                    <img style="max-width: 200px;" id="img-path" src="@Url.Content(Model.ImageUrl)" alt="" />
+                                }
+                                else
+                                {
+                                    <img style="max-width: 200px;" id="img-path" src="@Url.Content("~/Assets/Admin/Images/default.gif")" alt="" />
+                                }
+
+                                <div>
+                                    <input style="max-width: 200px;" type="file" id="image" name="datafile" accept="image/*" onchange="uploadFileBase64()" />
+                                </div>
+                                <span id="validityMessages" style="color: Red;"></span>
+                                <br />@Html.ValidationMessageFor(model => model.ImageUrl)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        function uploadFileBase64() {
+            var files = document.getElementById("image").files;
+            for (var i = 0; i < files.length; i++) {
+                if (files && files[i]) {
+                    var FR = new FileReader();
+                    var srcData;
+                    FR.onload = function (e) {
+                        srcData = e.target.result;
+                        $('#img-path').attr('src', srcData);
+                    };
+                    FR.readAsDataURL(files[i]);
+                }
+            }
+        }
+        //$("form").submit(function (event) {
+        //    if ($("#image").val()) {
+        //        var iSize = ($("#image")[0].files[0].size / 1024);
+        //        iSize = (Math.round((iSize / 1024) * 100) / 100);
+        //        console.log(iSize)
+        //        if (iSize > 1) {
+        //            $('span#validityMessages').html("kích thước ảnh phải nhỏ hơn 1MB");
+        //            return false;
+        //        }
+        //        else {
+        //            console.log(iSize + "Mb")
+        //            $("form").submit(); // post form
+        //            ;
+        //        }
+        //    }
+        //});
+    </script>
+                                    }

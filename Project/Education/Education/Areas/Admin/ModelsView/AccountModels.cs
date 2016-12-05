@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Education.Areas.Admin.Models
+namespace Education.Areas.Admin.Model
 {
     public class LogOnModel
     {

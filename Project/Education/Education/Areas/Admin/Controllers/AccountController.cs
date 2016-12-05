@@ -1,16 +1,9 @@
-﻿using Education.Areas.Admin.Models;
-using System;
+﻿using Education.Areas.Admin.Model;
+using Education.Areas.Admin.Services;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Dapper;
-using Education.Areas.Admin.Services;
-using Microsoft.AspNet.Identity;
-using Education.Areas.Admin.Utilz;
 
 namespace Education.Areas.Admin.Controllers
 {
@@ -18,48 +11,31 @@ namespace Education.Areas.Admin.Controllers
     // TODO: CRUD người dùng
 
     [Authorize(Roles = "Admin")]
-    public class AccountController : Controller
+    public class AccountController : AdminBaseController
     {
         private AccountService accountService = new AccountService();
-        private IDbConnection connect = new SqlConnection(Common.ConnectString);
 
         // GET: Admin/Account
         public ActionResult Index()
         {
-            return View();
+            ViewData["CurrentMenu"] = "system";
+            List<AppUser> appUsers = accountService.GetAll();
+            return View(appUsers);
         }
 
         // GET: Admin/Account/Create
         public ActionResult Create()
         {
+            ViewData["CurrentMenu"] = "system";
             return View();
         }
 
         // GET: Admin/Account/Detail/1
-        public ActionResult Detail(int id)
-        {
-            return View();
-        }
-
-        // old
-        // GET: Admin/Account/Edit/1
         public ActionResult Edit(int id)
         {
-            try
-            {
-                AppUser user = accountService.GetByPrimaryKey(id);
-                if (user == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(user);
-            }
-            catch (Exception ex)
-            {
-                LogService.WriteException(ex);
-                return RedirectToAction("Index", "Dashboard");
-            }
-
+            ViewData["CurrentMenu"] = "system";
+            AppUser user = accountService.GetByPrimaryKey(id);
+            return View(user);
         }
 
         // GET: Admin/Account/Delete/1

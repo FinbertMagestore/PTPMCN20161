@@ -1,0 +1,49 @@
+﻿@model List<Education.Areas.Admin.Model.AspNetRole>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tbody>
+            <tr>
+                <td style="width:50%;"><h3 class="icon-head head-cms-page">Quản trị danh mục tài khoản </h3></td>
+                <td class="form-buttons">
+                    <button class="scalable Add" name="submit" onclick="setLocation('/Admin/Account/Create')" type="button" value="Add">
+                        <span>Thêm mới</span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="PageList" class="t-widget t-grid">
+    <table id="category" cellspacing="0">
+        <thead class="t-grid-header">
+            <tr>
+                <th scope="col" class="t-header">
+                    <span class="t-link">Tên</span>
+                </th>
+                <th scope="col" class="t-header">
+                    <span class="t-link">Thao tác</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="ui-sortable">
+            @foreach (var item in Model)
+            {
+                <tr displaystate="collapsed">
+                    <td style="vertical-align: middle;">
+                        @*<a href="@Url.Action("Edit", "Role", new { id = item.Id})">@item.Name</a>*@
+                        <span>@item.Name</span>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Người dùng", "ListUsers", new { controller = "Role", id = item.Id }) @*|
+                        @Html.ActionLink("Phân quyền", "EdiPermission", new { controller = "Role", id = item.Id })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

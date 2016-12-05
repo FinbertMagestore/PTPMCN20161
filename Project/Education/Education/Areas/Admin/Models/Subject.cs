@@ -1,34 +1,28 @@
-namespace Education.Areas.Admin
+﻿namespace Education.Areas.Admin.Model
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Subject")]
     public partial class Subject
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Subject()
         {
-            Lessions = new HashSet<Lession>();
-            SubjectClasses = new HashSet<SubjectClass>();
-            Teachers = new HashSet<Teacher>();
+            Lessions = new List<Lession>();
+            SubjectClasses = new List<SubjectClass>();
+            Teachers = new List<Teacher>();
         }
 
         public int ID { get; set; }
 
-        [StringLength(50)]
+        [Display(Name = "Tên môn học")]
         public string SubjectName { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Lession> Lessions { get; set; }
+        public virtual List<Lession> Lessions { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubjectClass> SubjectClasses { get; set; }
+        public virtual List<SubjectClass> SubjectClasses { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Teacher> Teachers { get; set; }
+        public virtual List<Teacher> Teachers { get; set; }
     }
 }

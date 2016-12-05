@@ -1,8 +1,88 @@
-﻿
+﻿@model Education.Areas.Admin.ModelsView.CategoryModel
+
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    Func<bool, string> getState = state => state ? "Hiển thị" : "Ẩn";
 }
 
-<h2>Danh sách danh mục</h2>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
 
+<div class="content-header">
+    <table cellspacing="0">
+        <tbody>
+            <tr>
+                <td style="width:50%;"><h3 class="icon-head head-cms-page">Quản trị danh mục </h3></td>
+                <td class="form-buttons">
+                    <button class="scalable Add" name="submit" onclick="setLocation('/Admin/Category/Create')" type="button" value="Add">
+                        <span>Thêm mới</span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="box_search" style="width: 100%;">
+        <table cellspacing="10" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td>Từ khóa</td>
+                    <td>@Html.TextBox("Keyword", "", new { @class = "input-text", style = "float:left;height:19px;width:200px;" })</td>
+                    <td>Trạng thái:</td>
+                    <td>@Html.DropDownList("Status", Model.ListStatus, "--Trạng thái--", new { style = "height: 23px" })</td>
+                    <td><input type="submit" name="submit" value="Tìm kiếm" class="form-button" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}
+<div id="PageList" class="t-widget t-grid">
+    @if (Model.Categories != null && Model.Categories.Count > 0)
+    {
+        <table id="category" cellspacing="0">
+            <thead class="t-grid-header">
+                <tr>
+                    <th scope="col" class="t-header">
+                        <span class="t-link">Tiêu đề</span>
+                    </th>
+                    <th scope="col" class="t-header">
+                        <span class="t-link">Đường dẫn</span>
+                    </th>
+                    <th scope="col" class="t-header">
+                        <span class="t-link">Trạng thái</span>
+                    </th>
+                    <th scope="col" class="t-header">
+                        <span class="t-link">Thao tác</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="ui-sortable">
+                @foreach (var item in Model.Categories)
+                {
+                    <tr displaystate="collapsed">
+                        <td style="vertical-align: middle;">
+                            <a href="@Url.Action("Edit", "Category", new { id = item.ID })">@item.Name</a>
+                        </td>
+                        <td>
+                            <span>@item.Alias</span>
+                        </td>
+                        <td>
+                            <span id="id_@(item.ID)">@getState(item.Status)</span>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h2>Không có danh mục nào</h2>
+    }
+</div>

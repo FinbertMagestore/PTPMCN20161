@@ -1,10 +1,8 @@
-﻿using Education.Areas.Admin.Models;
+﻿using Education.Areas.Admin.Model;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using System.Web;
 
 namespace Education.Areas.Admin.Services
@@ -13,7 +11,7 @@ namespace Education.Areas.Admin.Services
     {
         private AccountService appUserService = new AccountService();
 
-        private IDbConnection connect = new SqlConnection(Common.ConnectString);
+        private IDbConnection connect = new SqlConnection(Config.ConnectString);
 
         /// <summary>
         /// path to directory of project web

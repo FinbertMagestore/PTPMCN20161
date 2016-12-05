@@ -1,0 +1,67 @@
+﻿@model Education.Areas.Admin.Model.Report
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    <div class="content-header">
+        <table cellspacing="0">
+            <tbody>
+                <tr>
+                    <td style="width:50%;"><h3 class="icon-head head-cms-page">Xem thông tin báo cáo</h3></td>
+                    <td class="form-buttons">
+                        <button class="scalable Back" name="submit" onclick="setLocation('/Admin/Report/Index')" type="button" value="Back"><span>Quay lại</span></button>
+                        @if (!Model.State)
+                        {
+                            <button class="scalable Save" name="submit" type="reset" value="Reset"><span>Đã xử lý</span></button>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><a href="#">Xem thông tin báo cáo</a></h4>
+            <div class="form-buttons"></div>
+        </div>
+        <div class="fieldset " id="user_base_fieldset">
+            <div class="hor-scroll">
+                <table cellspacing="0" class="form-list">
+                    <tbody>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.UserID)
+                            </td>
+                            <td class="value">
+                                <a href="@Url.Action("Edit", "Account", new { id = Model.UserID })">@Model.AppUser.Username</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.ReportTypeID)
+                            </td>
+                            <td class="value">
+                                <span>
+                                    @Model.ReportType.Name
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Content)
+                            </td>
+                            <td class="value">
+                                <span>
+                                    @Model.Content
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
