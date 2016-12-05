@@ -6,5 +6,17 @@
   {
     "outputFile": "Assets/Client/Css/Pages/default.css",
     "inputFile": "Assets/Client/Css/Pages/default.scss"
+  },
+  {
+    "outputFile": "Assets/Client/Css/Pages/login.css",
+    "inputFile": "Assets/Client/Css/Pages/login.scss"
+  },
+  {
+    "outputFile": "Assets/Client/Css/Pages/Register.css",
+    "inputFile": "Assets/Client/Css/Pages/Register.scss"
+  },
+  {
+    "outputFile": "Assets/Client/Css/Pages/DetailRegister.css",
+    "inputFile": "Assets/Client/Css/Pages/DetailRegister.scss"
   }
 ]

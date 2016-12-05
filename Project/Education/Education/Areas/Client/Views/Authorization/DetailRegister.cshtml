@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "DetailRegister";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+}
+<div class="main-container">
+    <div class="main-form">
+        <!--Begin Form-->
+        <div class="title-signup">cập nhật thông tin tài khoản</div>
+        <div class="sub-title-signup">
+            Vui lòng cung cấp đầy đủ và chính xác thông tin cá nhân theo mẩu, để Forum có thể hỗ trợ bạn tốt nhất
+        </div>
+        <div class="row-signup">
+            <label class="lbl">Họ tên:</label>
+            <input id="name" name="name" value="" type="text" />
+        </div>
+        <div class="row-signup">
+            <label class="lbl">Bạn là:</label>
+            <select class="chooseRole" name="banla">
+                <option value="0">Học sinh</option>
+                <option value="1">Giáo viên</option>
+            </select>
+        </div>
+        <div class="row-signup">
+            <label class="lbl">Số điện thoại:</label>
+            <input id="name" name="name" value="" type="text" />
+        </div>
+        <div class="row-signup">
+            <label class="lbl">Tỉnh/Thành phố:</label>
+            <select class="" name="tinhthanh">
+                <option value="0">Hà Nội</option>
+                <option value="1">Quảng Bình</option>
+            </select>
+        </div>
+        <div class="row-signup">
+            <label class="lbl">Quận/Huyện:</label>
+            <select class="" name="quanhuyen">
+                <option value="0">Hai Bà Trưng</option>
+                <option value="1">Hoàng Mai</option>
+            </select>
+        </div>
+        <div class="row-signup">
+            <label class="lbl">Lớp:</label>
+            <select class="chooseRole" name="banla">
+                <option value="0">9</option>
+                <option value="1">8</option>
+            </select>
+        </div>
+        <div class="row-signup">
+            <label class="lbl">Trường:</label>
+            <select class="chooseRole" name="banla">
+                <option value="0">Nguyễn Du</option>
+                <option value="1">Lê Quý Đôn</option>
+            </select>
+        </div>
+        <div class="clear-both">
+        </div>
+        <div class="row-signup">
+            <input class="submit-register-btn" value="hoàn tất" type="submit" />
+        </div>
+    </div>
+</div>
+
