@@ -15,16 +15,27 @@ namespace Education.Areas.Client.Controllers
             return RedirectToAction("Login");
         }
 
+        // GET: Client/Authorization/Login
         public ActionResult Login()
         {
+            ViewData["CSS"] = "login";
             return View();
         }
 
+        // GET: Client/Authorization/Register
         public ActionResult Register()
         {
+            ViewData["CSS"] = "Register";
+            return View();
+        }
+        // GET: Client/Authorization/DetailRegister
+        public ActionResult DetailRegister()
+        {
+            ViewData["CSS"] = "DetailRegister";
             return View();
         }
 
+        // GET: Client/Authorization/Logout
         public ActionResult Logout()
         {
             return View();
