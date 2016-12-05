@@ -1,20 +1,15 @@
-﻿using Education.Areas.Admin.Models;
-using Education.Areas.Admin.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Education.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class DashboardController : Controller
+    public class DashboardController : AdminBaseController
     {
         //
         // GET: /Admin/Dashboard/
         public ActionResult Index()
         {
+            ViewData["CurrentMenu"] = "dashboard";
             return View();
         }
     }

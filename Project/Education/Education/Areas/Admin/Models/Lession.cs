@@ -1,59 +1,70 @@
-namespace Education.Areas.Admin
+﻿namespace Education.Areas.Admin.Model
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Lession")]
     public partial class Lession
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Lession()
         {
-            CommentLessions = new HashSet<CommentLession>();
-            FileUploads = new HashSet<FileUpload>();
-            RateLessions = new HashSet<RateLession>();
+            CommentLessions = new List<CommentLession>();
+            FileUploads = new List<FileUpload>();
+            RateLessions = new List<RateLession>();
+            DownloadCount = 0;
         }
 
         public int ID { get; set; }
 
-        [StringLength(50)]
+        [Display(Name = "Tiêu đề")]
+        [Required(ErrorMessage = "Tiêu đề không được để trống")]
         public string Name { get; set; }
 
-        [StringLength(200)]
+        [Display(Name = "Mô tả")]
         public string Description { get; set; }
 
-        public DateTime? Created { get; set; }
+        [Display(Name = "Ngày tạo")]
+        public DateTime Created { get; set; }
 
-        public DateTime? Modified { get; set; }
+        [Display(Name = "Ngày thay đổi")]
+        public DateTime Modified { get; set; }
 
-        [StringLength(100)]
+        [Display(Name = "Đường dẫn")]
+        [Required(ErrorMessage = "Alias không được để trống")]
         public string Alias { get; set; }
 
-        public bool? Status { get; set; }
+        [Display(Name = "Trạng thái")]
+        public bool Status { get; set; }
 
-        [StringLength(200)]
+        [Display(Name = "Ảnh đại diện")]
         public string ImageUrl { get; set; }
 
-        public int? TeacherID { get; set; }
+        [Display(Name = "Giáo viên đăng")]
+        public int TeacherID { get; set; }
 
-        public double? RateAverage { get; set; }
+        [Display(Name = "Điểm đánh giá trung bình")]
+        public double RateAverage { get; set; }
 
-        public int? SubjectID { get; set; }
+        [Display(Name = "Môn học")]
+        public int SubjectClassID { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CommentLession> CommentLessions { get; set; }
+        [Display(Name = "Số lượng download")]
+        public int DownloadCount { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FileUpload> FileUploads { get; set; }
+        public virtual List<CommentLession> CommentLessions { get; set; }
+
+        public virtual List<FileUpload> FileUploads { get; set; }
+
+        public virtual SubjectClass SubjectClass { get; set; }
 
         public virtual Subject Subject { get; set; }
 
+        public virtual ClassInfo ClassInfo { get; set; }
+
         public virtual Teacher Teacher { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RateLession> RateLessions { get; set; }
+        public virtual List<RateLession> RateLessions { get; set; }
     }
 }

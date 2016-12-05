@@ -1,18 +1,17 @@
-﻿using Education.Areas.Admin.Models;
+﻿using Dapper;
+using Education.Areas.Admin.Model;
+using Education.Areas.Admin.Services;
 using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Security;
 
-using Dapper;
-using Education.Areas.Admin.Services;
-
 namespace Education.Areas.Admin.Provider
 {
     public class CustomRoleProvider : RoleProvider
     {
-        private IDbConnection connect = new SqlConnection(Common.ConnectString);
+        private IDbConnection connect = new SqlConnection(Config.ConnectString);
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
         {
             throw new NotImplementedException();

@@ -1,0 +1,90 @@
+﻿@model Education.Areas.Admin.Model.Feedback
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="content-header">
+        <table cellspacing="0">
+            <tbody>
+                <tr>
+                    <td style="width:50%;"><h3 class="icon-head head-cms-page">Xem thông tin phản hồi</h3></td>
+                    <td class="form-buttons">
+                        <button class="scalable Back" name="submit" onclick="setLocation('/Admin/Feedback')" type="button" value="Back"><span>Quay lại</span></button>
+                        @if (!Model.State)
+                        {
+                            <button class="scalable Save" name="submit" type="submit" value="Submit"><span>Đã xử lý</span></button>
+                        }
+                        else
+                        {
+                            <button class="scalable Delete" name="submit" type="submit" value="Delete"><span>Xóa trang</span></button>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><a href="#">Xem thông tin phản hồi</a></h4>
+            <div class="form-buttons"></div>
+        </div>
+        <div class="fieldset " id="user_base_fieldset">
+            @Html.HiddenFor(model => model.ID)
+            <div class="hor-scroll">
+                <table cellspacing="0" class="form-list">
+                    <tbody>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Name)
+                            </td>
+                            <td class="value">
+                                <span>
+                                    @Model.Name
+                                    @Html.HiddenFor(model => model.Name)
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Email)
+                            </td>
+                            <td class="value">
+                                <span>
+                                    @Model.Email
+                                    @Html.HiddenFor(model => model.Email)
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Content)
+                            </td>
+                            <td class="value">
+                                <span>
+                                    @Model.Content
+                                    @Html.HiddenFor(model => model.Content)
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Created)
+                            </td>
+                            <td class="value">
+                                <span>
+                                    @Model.Created
+                                    @Html.HiddenFor(model => model.Created)
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
