@@ -1,8 +1,76 @@
-﻿
+﻿﻿@model Education.Areas.Admin.ModelsView.CategoryModel
+
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Danh sách chuyên mục</h2>
-
+<div class="post page-index">
+    <section class="content-suport">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="box-content">
+                        <div class="heading-box">
+                            <h3 class="title">
+                                <span>Tất cả chuyên mục</span>
+                            </h3>
+                        </div>
+                        <div class="body-box">
+                            <ul class="list-category">
+                                @if (Model.Categories != null && Model.Categories.Count > 0)
+                                {
+                                    for (var i = 0; i < Model.Categories.Count; i++)
+                                    {
+                                        <li class="faa-parent animated-hover">
+                                            <span class="number faa-ring">@(i + 1)</span>
+                                            <div class="posts-box row">
+                                                <div class="col-xs-3">
+                                                    <a href="@Url.Action("Detail", "Category", new { id=@Model.Categories[i].ID})" class="image img-hover-effects-style-1">
+                                                        @if (Model.Categories[i].ImageUrl != null && Model.Categories[i].ImageUrl != "")
+                                                        {
+                                                            <img src="@Url.Content(Model.Categories[i].ImageUrl)" alt="" style="max-height: 120px;">
+                                                        }
+                                                    </a>
+                                                </div>
+                                                <div class="col-xs-9">
+                                                    <h3 class="name-posts">
+                                                        <a class="name" href="@Url.Action("Detail", "Category", new { id=@Model.Categories[i].ID})">@Model.Categories[i].Name</a>
+                                                    </h3>
+                                                    <p class="summary hidden-xs">
+                                                        @Html.Raw(@Model.Categories[i].Description)
+                                                        <a href="@Url.Action("Detail", new { id = Model.Categories[i].ID})">Xem thêm</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="right-content">
+                        <div class="box-content">
+                            <div class="heading-box">
+                                <h3 class="title">
+                                    <span>Đọc nhiều nhất</span>
+                                </h3>
+                            </div>
+                            <div class="body-box">
+                                <ul class="list-link-news">
+                                    <li class="faa-parent animated-hover">
+                                        <span class="number faa-ring">1</span>
+                                        <a href="@Url.Action("Detail", "Post", new { id = 4})" class="link-news">
+                                            Hướng dẫn sử dụng diễn đàn
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/Assets/Client/Js/post.min.js"></script>

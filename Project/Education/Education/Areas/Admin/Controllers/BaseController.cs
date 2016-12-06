@@ -28,6 +28,19 @@ namespace Education.Areas.Admin.Controllers
                 ViewBag.Title = value;
             }
         }
+
+        public string CSS
+        {
+            get
+            {
+                return ViewBag.CSS;
+            }
+            set
+            {
+                ViewBag.CSS = value;
+            }
+        }
+
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             // only process for main action, not for Child Action
@@ -41,7 +54,7 @@ namespace Education.Areas.Admin.Controllers
                         string controller = filterContext.RouteData.Values["controller"].ToString(); ;
                         string action = filterContext.RouteData.Values["action"].ToString();
                         //Set default Title for page
-                        Title = action + " | " + controller;
+                        Title = controller + " | " + action ;
                     }
                 }
             }
