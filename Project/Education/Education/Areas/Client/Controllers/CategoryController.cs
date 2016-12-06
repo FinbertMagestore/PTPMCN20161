@@ -24,15 +24,37 @@ namespace Education.Areas.Client.Controllers
         }
 
         // GET: Client/Category/Detail
-        public ActionResult Detail(int id)
+        public ActionResult Detail(int id, int page = 1)
         {
             CSS = "post";
             CategoryModel model = new CategoryModel();
+            //Page
+            int pageSize = 2;
+            if (page <= 0)
+            {
+                model.Page = 1;
+            }
+            else
+            {
+                model.Page = page;
+            }
             model.Category = categoryService.GetByPrimaryKey(id);
             model.Posts = postService.GetByCategoryID(id);
 
             if (model.Posts != null && model.Posts.Count > 0)
             {
+                int totalRecord = model.Posts.Count;
+                var totalPage = (totalRecord - 1) / pageSize + 1;
+                model.PagerModel = new PaginationModels
+                {
+                    PageNumber = model.Page,
+                    PageSize = pageSize,
+                    TotalRecords = totalRecord,
+                    TotalPages = totalPage
+                };
+                if (totalRecord > 0) ViewData["PagerModels"] = model.PagerModel;
+                model.Posts = model.Posts.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
+
                 foreach (var item in model.Posts)
                 {
                     item.Description = Substring(item.Description, 26);

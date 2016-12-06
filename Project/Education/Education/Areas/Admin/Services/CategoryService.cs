@@ -55,7 +55,7 @@ namespace Education.Areas.Admin.Services
                 string query = "";
                 if (!string.IsNullOrEmpty(where))
                 {
-                    query = string.Format("select * from Category where Status = {0} and {1} order by Created desc", (int)Config.Status.Active, where);
+                    query = string.Format("select * from Category where {1} order by Created desc", (int)Config.Status.Active, where);
                 }
                 else
                 {

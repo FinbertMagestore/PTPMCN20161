@@ -74,8 +74,13 @@
                                 @getState(item.Status)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) 
+                                @if (item.Status)
+                                {
+                                    <span> | </span>
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                }
+                                
                             </td>
                         </tr>
                     }

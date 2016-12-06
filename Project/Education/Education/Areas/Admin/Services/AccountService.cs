@@ -115,7 +115,7 @@ namespace Education.Areas.Admin.Services
                     + " DateCreated = @DateCreated, LastActivityDate = @LastActivityDate, SecurityStamp = @SecurityStamp, "
                     + " FullName = @FullName, Birthday = @Birthday, Sex = @Sex, "
                     + " ImageUrl = @ImageUrl, Description = @Description, Modified = @Modified, "
-                    + " IsActive = @IsActive, Address = @Address "
+                    + " IsActive = @IsActive, Address = @Address, PhoneNumber = @PhoneNumber "
                     + " where Id = @Id";
                 connect.Execute(query, new
                 {
@@ -133,6 +133,7 @@ namespace Education.Areas.Admin.Services
                     appUser.Modified,
                     appUser.IsActive,
                     appUser.Address,
+                    appUser.PhoneNumber,
                     appUser.Id
                 });
             }
@@ -147,9 +148,9 @@ namespace Education.Areas.Admin.Services
             {
                 string query = "insert into AppUsers("
                         + " Username,Password,Email,DateCreated,LastActivityDate,SecurityStamp,FullName,"
-                        + " Birthday,Sex,ImageUrl,Description,Modified,IsActive,Address)"
+                        + " Birthday,Sex,ImageUrl,Description,Modified,IsActive,Address,PhoneNumber)"
                         + " values (@Username,@Password,@Email,@DateCreated,@LastActivityDate,@SecurityStamp,@FullName,"
-                        + " @Birthday,@Sex,@ImageUrl,@Description,@Modified,@IsActive,@Address)"
+                        + " @Birthday,@Sex,@ImageUrl,@Description,@Modified,@IsActive,@Address,@PhoneNumber)"
                         + " SELECT @@IDENTITY";
                 return connect.Query<int>(query, new
                 {
@@ -166,7 +167,8 @@ namespace Education.Areas.Admin.Services
                     appUser.Description,
                     appUser.Modified,
                     appUser.IsActive,
-                    appUser.Address
+                    appUser.Address,
+                    appUser.PhoneNumber
                 }).Single();
             }
             catch (Exception ex)

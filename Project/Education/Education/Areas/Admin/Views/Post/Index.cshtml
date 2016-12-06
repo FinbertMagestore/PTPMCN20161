@@ -80,7 +80,7 @@
                                 <td>
                                     @if (item.Category != null)
                                     {
-                                        <span>@item.Category.Name</span>
+                                        <a href="@Url.Action("Edit", "Category", new { id = item.CategoryID })">@item.Category.Name</a>
                                     }
                                 </td>
                                 <td>

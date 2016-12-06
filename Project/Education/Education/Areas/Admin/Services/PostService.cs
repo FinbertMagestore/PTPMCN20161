@@ -75,7 +75,7 @@ namespace Education.Areas.Admin.Services
         {
             try
             {
-                string query = string.Format("select * from Post where CategoryID = {0} order by Created desc", categoryID);
+                string query = string.Format("select * from Post where CategoryID = {0} and Status = {1} order by Created desc", categoryID, (int)Config.Status.Active);
                 List<Post> posts = connect.Query<Post>(query).ToList<Post>();
                 return posts;
             }
