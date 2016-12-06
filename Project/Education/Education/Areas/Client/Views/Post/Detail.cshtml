@@ -1,8 +1,134 @@
-﻿
+﻿@model Education.Areas.Admin.Model.Post
+
 @{
-    ViewBag.Title = "Index";
-    //Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Người dùng xem chi tiết bài viết ở đây</h2>
-
+    ﻿
+<div class="post page-article" style="margin-top:-20px;">
+    <section class="sildebar-top-search">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 hidden-xs">
+                    Danh sách chuyên mục
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="box-content">
+                        <form class="navbar-form navbar-left navbar-sw-suport">
+                            <div class="form-group">
+                                <input type="text" class="txtSearch form-control" placeholder="Tìm trợ giúp..">
+                            </div>
+                            <button type="button" class="btn btn-default btn-search" onclick="quicksearch();"><span class="ti-search"></span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="wrap-breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index", "Category")">Danh sách chuyên mục</a></li>
+                <li><a href="@Url.Action("Detail", "Category", new { id = Model.Category.ID})">@Model.Category.Name </a></li>
+                <li class="active">@Model.Name</li>
+            </ol>
+        </div>
+    </div>
+    <section class="content-suport">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+                    <div class="left-content">
+                        <div class="detail-post">
+                            <h1 class="title">
+                                @Model.Name
+                            </h1>
+                            <p class="summary">
+                                @Html.Raw(Model.Content)
+                            </p>
+                        </div>
+                        <div class="social-button">
+                            <div class="fb-like" data-href="@(Education.Areas.Admin.Model.Config.UrlHost + Url.Action("Detail", "Post", new { id = Model.ID }))" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                            <script src="https://apis.google.com/js/platform.js" async defer>
+                                { lang: 'vi' }
+                            </script>
+                            <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+                        </div>
+                        
+                        <div class="div hidden-lg">
+                            <ul class="list-link-news">
+                                @if (Model.PostsSameCategory != null && Model.PostsSameCategory.Count > 0)
+                                {
+                                    foreach (var item in Model.PostsSameCategory)
+                                    {
+                                        if (item.Category != null && !String.IsNullOrEmpty(item.Category.Alias) && !String.IsNullOrEmpty(item.Alias))
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Detail", "Post", new { id = item.ID})" style="margin-left: 25px;">@item.Name</a>
+                                            </li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <div class="div visible-lg">
+                            <div class="heading-box">
+                                <h3 class="title">
+                                    <span>Bài liên quan</span>
+                                    <a class="text-muted" href="@Url.Action("Detail", "Category", new { id = Model.Category.ID})">Xem tất cả <i class="fa fa-angle-right"></i></a>
+                                </h3>
+                            </div>
+                            <ul class="list-link-news-relation">
+                                @if (Model.PostsSameCategory != null && Model.PostsSameCategory.Count > 0)
+                                {
+                                    foreach (var item in Model.PostsSameCategory)
+                                    {
+                                        if (item.Category != null && !String.IsNullOrEmpty(item.Category.Alias) && !String.IsNullOrEmpty(item.Alias))
+                                        {
+                                            <li>
+                                                @if (!String.IsNullOrEmpty(item.ImageUrl))
+                                                {
+                                                    <a href="@Url.Action("Detail", "Post", new { id = item.ID})">
+                                                        <img src="@Url.Content(item.ImageUrl)" alt="" width="166" height="121" />
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <img src="file://null" alt="" width="166" height="121" />
+                                                }
+                                                <a class="has-link" href="@Url.Action("Detail", "Post", new { id = item.ID})">@item.Name</a>
+                                            </li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <div class="wrap-comments">
+                            <div class="fb-comments" data-href="@(Education.Areas.Admin.Model.Config.UrlHost + Url.Action("Detail", "Post", new { id = Model.ID}))" data-numposts="3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 hidden-md hidden-sm hidden-xs">
+                    <div class="right-content">
+                        <div class="box-content">
+                            <div class="heading-box">
+                                <h3 class="title">
+                                    <span>Đọc nhiều nhất</span>
+                                </h3>
+                            </div>
+                            <div class="body-box">
+                                <ul class="list-link-news">
+                                    <li class="faa-parent animated-hover">
+                                        <span class="number faa-ring">1</span>
+                                        <a href="@Url.Action("Detail", "Post", new { id = Model.ID})" class="link-news">
+                                            Hướng dẫn sử dụng diễn đàn
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

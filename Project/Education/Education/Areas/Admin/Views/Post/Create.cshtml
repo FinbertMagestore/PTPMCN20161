@@ -4,7 +4,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("Create", "Post", FormMethod.Post, new { id="postForm", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Post", FormMethod.Post, new { id = "postForm", enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true)
     @Html.AntiForgeryToken()
@@ -35,8 +35,7 @@
                         <tr>
                             <td class="label">
                                 @Html.LabelFor(model => model.CategoryID)
-                                
-                        </td>
+                            </td>
                             <td class="value">
                                 @{
                                     object htmlAttributeSub = new { @class = "input-text" };
@@ -49,7 +48,6 @@
                         <tr>
                             <td class="label">
                                 @Html.LabelFor(model => model.Name)
-                                
                             </td>
                             <td class="value">
                                 @Html.TextBoxFor(model => model.Name, new { @class = "input-text" })
@@ -68,7 +66,6 @@
                         <tr>
                             <td class="label">
                                 @Html.LabelFor(model => model.Alias)
-                                
                             </td>
                             <td class="value">
                                 @Html.TextBoxFor(model => model.Alias, new { @class = "input-text" })
@@ -96,7 +93,6 @@
                                 {
                                     <img style="max-width: 200px;" id="img-path" src="@Url.Content("~/Assets/Admin/Images/default.gif")" alt="" />
                                 }
-
                                 <div>
                                     <input style="max-width: 200px;" type="file" id="image" name="datafile" accept="image/*" onchange="uploadFileBase64()" />
                                 </div>

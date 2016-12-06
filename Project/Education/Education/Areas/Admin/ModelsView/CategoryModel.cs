@@ -13,5 +13,8 @@ namespace Education.Areas.Admin.ModelsView
         public SelectList ListStatus { get; set; }
         public List<Category> Categories { get; set; }
         public string Status { get; set; }
+        public PaginationModels PagerModel { get; set; }
+        public Category Category { get; set; }
+        public List<Post> Posts { get; set; }
     }
 }

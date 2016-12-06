@@ -1,8 +1,144 @@
-﻿
+﻿﻿@model Education.Areas.Admin.ModelsView.PostModel
+
 @{
-    ViewBag.Title = "Index";
-    //Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Danh sách bài viết</h2>
-
+<div class="post page-index">
+    <section class="content-suport">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="box-content">
+                        <div class="heading-box">
+                            <h3 class="title">
+                                <span>Chuyên mục nổi bật</span>
+                            </h3>
+                        </div>
+                        <div class="body-box">
+                            <ul class="list-category">
+                                @if (Model.Categories != null && Model.Categories.Count > 0)
+                                {
+                                    for (var i = 0; i < Model.Categories.Count; i++)
+                                    {
+                                        <li class="faa-parent animated-hover">
+                                            <span class="number faa-ring">@(i + 1)</span>
+                                            <a class="name" href="@Url.Action("Detail", "Category", new { id=@Model.Categories[i].ID})">@Model.Categories[i].Name</a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="right-content">
+                        <div class="box-content hidden-xs">
+                            <form class="navbar-form navbar-left navbar-sw-suport">
+                                <div class="form-group">
+                                    <input type="text" class="form-control txtSearch" value="@Model.Keyword" placeholder="Tìm trợ giúp...">
+                                </div>
+                                <button type="button" class="btn btn-default btn-search" onclick="quicksearchRight();"><span class="ti-search"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-9">
+                    <div class="left-content">
+                        @if (Model.Posts != null && Model.Posts.Count > 0)
+                        {
+                            <div class="row">
+                                <ul class="list-posts" style="margin-top: 56px;">
+                                    @foreach (var item in Model.Posts)
+                                {
+                                    <li class="col-xs-12">
+                                        <div class="posts-box row">
+                                            <div class="col-xs-5">
+                                                <a href="@Url.Action("Detail", "Post", new { id = item.ID })" class="image img-hover-effects-style-1">
+                                                    @if (item.ImageUrl != null && item.ImageUrl != "")
+                                                {
+                                                <img src="@Url.Content(item.ImageUrl)" alt="">
+                                                }
+                                                </a>
+                                            </div>
+                                            <div class="col-xs-7">
+                                                <h3 class="name-posts"><a href="@Url.Action("Detail", new { id=item.ID})"> @Html.Raw(item.Name) </a></h3>
+                                                <div class="social-network">
+                                                    <div class="fb-like" data-href="@(Education.Areas.Admin.Model.Config.UrlHost + Url.Action("Detail", new { id = item.ID}))" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                                                    <script src="https://apis.google.com/js/platform.js" async defer>
+                                                        { lang: 'vi' }
+                                                    </script>
+                                                    <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+                                                </div>
+                                                <p class="summary hidden-xs" style="font-size: 20px;">
+                                                    @Html.Raw(@item.Description)
+                                                    <a href="@Url.Action("Detail", new { id = item.ID})">Xem thêm</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                                </ul>
+                            </div>
+                            if (Model.PagerModel != null)
+                            {
+                                <nav aria-label="Page navigation" class="text-center wrap-pagination">
+                                    <ul class="pagination">
+                                        @if (Model.PagerModel.PageNumber == 1)
+                                        {
+                                            <li class="hide">
+                                                <a href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a href="?page=@(Model.PagerModel.PageNumber - 1)&Keyword=@Model.Keyword" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @for (int i = 0; i < Model.PagerModel.TotalPages; i++)
+                                        {
+                                            if (i == Model.PagerModel.PageNumber || i == Model.PagerModel.PageNumber + 1 || i == Model.PagerModel.PageNumber - 1)
+                                            {
+                                                if (i == Model.PagerModel.PageNumber - 1)
+                                                {
+                                                    <li class="active"><a href="?page=@(i + 1)&Keyword=@Model.Keyword">@(i + 1)</a></li>
+                                                }
+                                                else
+                                                {
+                                                    <li><a href="?page=@(i + 1)&Keyword=@Model.Keyword">@(i + 1)</a></li>
+                                                }
+                                            }
+                                        }
+                                        @if (Model.PagerModel.PageNumber == Model.PagerModel.TotalPages)
+                                        {
+                                            <li class="hide">
+                                                <a href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a href="?page=@(Model.PagerModel.PageNumber + 1)&Keyword=@Model.Keyword" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </nav>
+                            }
+                        }
+                        else
+                        {
+                            <h2>Không có bài viết nào</h2>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/Assets/Client/Js/post.min.js"></script>

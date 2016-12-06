@@ -65,5 +65,7 @@
         //Add
         public List<Category> Categories { get; set; }
 
+        public List<Post> PostsSameCategory { get; set; }
+
     }
 }
