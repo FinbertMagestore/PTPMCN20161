@@ -25,11 +25,19 @@ namespace Education.Areas.Admin.Services
                 return null;
             }
         }
-        public List<Category> GetAllActive()
+        public List<Category> GetAllActive(bool forClientUp = false)
         {
             try
             {
-                string query = string.Format("select * from Category where Status = {0} order by Created desc", (int)Config.Status.Active);
+                string query = "";
+                if (forClientUp)
+                {
+                    query = string.Format("select * from Category where Status = {0} and ForAdminPost <> {1} order by Created desc", (int)Config.Status.Active, (int)Config.Status.Active);
+                }
+                else
+                {
+                    query = string.Format("select * from Category where Status = {0} order by Created desc", (int)Config.Status.Active);
+                }
                 List<Category> categories = connect.Query<Category>(query).ToList<Category>();
                 return categories;
             }
@@ -47,7 +55,7 @@ namespace Education.Areas.Admin.Services
                 string query = "";
                 if (!string.IsNullOrEmpty(where))
                 {
-                    query = string.Format("select * from Category where " + where + " order by Created desc");
+                    query = string.Format("select * from Category where Status = {0} and {1} order by Created desc", (int)Config.Status.Active, where);
                 }
                 else
                 {

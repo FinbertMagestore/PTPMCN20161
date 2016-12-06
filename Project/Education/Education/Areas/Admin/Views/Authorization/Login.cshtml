@@ -36,7 +36,7 @@
                     @Html.ValidationSummary(true)
                     @Html.AntiForgeryToken()
                     <div class="form-group text-center">
-                        <img src="~/Assets/Client/Images/General/logo-notext.jpg" />
+                        <a href="/"><img src="~/Assets/Client/Images/General/logo-notext.jpg" /></a>
                     </div>
                     <div class="form-group">
                         @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @type = "text", @placeholder = "Nhập email" })

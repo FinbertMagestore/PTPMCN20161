@@ -1,8 +1,115 @@
-﻿
+﻿@model Education.Areas.Admin.Model.Post
+
 @{
-    ViewBag.Title = "Index";
-    //Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Người dùng đăng bài viết ở đây</h2>
+@using (Html.BeginForm("Create", "Post", FormMethod.Post, new { id = "postForm", enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    <div class="create-post-client">
+        <div class="container">
+            <h2>Tạo bài viết</h2>
+            <div class="row">
+                <div class="col-xs-2">
+                    @Html.LabelFor(model => model.CategoryID)
+                </div>
+                <div class="col-xs-4">
+                    @{
+                        object htmlAttributeSub = new { @class = "form-control" };
+                        bool disableSub = false;
+                        @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "Name", !disableSub ? Model.CategoryID : 0), "-- Danh mục --", htmlAttributeSub)
+                        <br />@Html.ValidationMessageFor(model => model.CategoryID)
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    @Html.LabelFor(model => model.Name)
+                </div>
+                <div class="col-xs-4">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    <br />@Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    @Html.LabelFor(model => model.Description)
+                </div>
+                <div class="col-xs-4">
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                    <br />@Html.ValidationMessageFor(model => model.Description)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    @Html.LabelFor(model => model.Alias)
+                </div>
+                <div class="col-xs-4">
+                    @Html.TextBoxFor(model => model.Alias, new { @class = "form-control" })
+                    <br />@Html.ValidationMessageFor(model => model.Alias)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    @Html.LabelFor(model => model.ImageUrl)
+                </div>
+                <div class="col-xs-4">
+                    @Html.HiddenFor(model => model.ImageUrl)
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                        <img style="max-width: 200px;" id="img-path" src="@Url.Content(Model.ImageUrl)" alt="" />
+                    }
+                    else
+                    {
+                        <img style="max-width: 200px;" id="img-path" src="@Url.Content("~/Assets/Admin/Images/default.gif")" alt="" />
+                    }
 
+                    <div>
+                        <input style="max-width: 200px;" type="file" id="image" name="datafile" accept="image/*" onchange="uploadFileBase64()" />
+                    </div>
+                    <span id="validityMessages" style="color: Red;"></span>
+                    <br />@Html.ValidationMessageFor(model => model.ImageUrl)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    @Html.LabelFor(model => model.Content)
+                </div>
+                <div class="col-xs-10">
+                    @Html.TextAreaFor(model => model.Content, new { @class = "form-control" })
+                    <br />@Html.ValidationMessageFor(model => model.Content)
+                    <script>CKEDITOR.replace('Content');</script>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-button-colors col-lg-offset-2">
+                    <input class="btn btn-default" type="submit" name="Submit" value="Tạo bài viết" style="background-color: #5AB4A8" />
+                    <input class="btn btn-default" type="reset" name="Reset" value="Làm mới" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function uploadFileBase64() {
+            var files = document.getElementById("image").files;
+            for (var i = 0; i < files.length; i++) {
+                if (files && files[i]) {
+                    var FR = new FileReader();
+                    var srcData;
+                    FR.onload = function (e) {
+                        srcData = e.target.result;
+                        $('#img-path').attr('src', srcData);
+                    };
+                    FR.readAsDataURL(files[i]);
+                }
+            }
+        }
+        $("form").submit(function (event) {
+            for (instance in CKEDITOR.instances)
+                CKEDITOR.instances[instance].updateElement();
+            $("form").submit(); // post form
+        });
+    </script>
+                        }

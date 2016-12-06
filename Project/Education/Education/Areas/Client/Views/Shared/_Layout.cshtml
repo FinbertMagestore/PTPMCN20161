@@ -22,7 +22,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-2 col-sm-3">
-                        <img src="~/Assets/Client/Images/General/logo.jpg" />
+                        <a href="/"><img src="~/Assets/Client/Images/General/logo.jpg" /></a>
                     </div>
                     <div class="col-xs-10 col-sm-9">
                         <ul class="main-menu">
@@ -44,37 +44,35 @@
                             </li>
                             <li>
                                 <a href="/Client/Category">Chuyên mục<i class="fa fa-angle-down"></i></a>
-                                <ul class="sub-menu sub-menu-2-col">
+                                <ul class="sub-menu sub-menu-1-col">
                                     <li class="icontop"></li>
                                     <li class="top-row">
-                                        <a href="/Client/Category/Detail/1">
-                                            Tin tức sự kiện về giáo dục
+                                        <a href="/Client/Category">
+                                            Danh sách chuyên mục
                                         </a>
                                     </li>
-                                    <li class="">
-                                        <a href="/Client/Category/Detail/1">
-                                            Kinh nghiệm học tập
-                                        </a>
+                                    <li>
+                                        <a href="/Client/Post">Danh sách bài viết</a>
                                     </li>
                                     <li class="bottom-row">
-                                        <a href="/Client/Category/Detail/1">
-                                            Kinh nghiệm thi cử
+                                        <a href="/Client/Post/Create">
+                                            Tạo bài viết
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="/Client/Account/Index">Thành viên</a>
+                                <a href="/Client/Account">Thành viên</a>
                             </li>
                             @using Microsoft.AspNet.Identity;
                             @if (!string.IsNullOrEmpty(User.Identity.GetUserName()))
                             {
                                 <li class="">
-                                    <a href="/Client/Account/Edit/1">@User.Identity.GetUserName()<i class="fa fa-caret-down"></i></a>
+                                    <a href="@Url.Action("Edit", "Account", new { id = Membership.GetUser(User.Identity.GetUserName()).ProviderUserKey })">@User.Identity.GetUserName()<i class="fa fa-caret-down"></i></a>
                                     <ul class="sub-menu sub-menu-1-col">
                                         <li class="icontop"></li>
                                         <li class="top-row">
-                                            <a href="/Client/Account/Edit/@Membership.GetUser(User.Identity.GetUserName()).ProviderUserKey">
+                                            <a href="@Url.Action("Edit", "Account", new { id = Membership.GetUser(User.Identity.GetUserName()).ProviderUserKey })">
                                                 Trang cá nhân
                                             </a>
                                         </li>
@@ -111,9 +109,7 @@
                 </div>
             </div>
         </div>
-        <div id="wrapper">
-            @RenderBody()
-        </div>
+        @RenderBody()
         <div class="footer">
             <div class="container">
                 <div class="row">
@@ -158,6 +154,15 @@
             </div>
         </div>
         <div class="copyright">
+            <div id="fb-root"></div>
+            <script>
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
@@ -176,6 +181,5 @@
             </div>
         </div>
     </div>
-    <script src="js/owl.carousel.js"></script>
 </body>
 </html>

@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Education.Areas.Admin.Utilz;
 
 namespace Education.Areas.Admin.Controllers
 {
@@ -91,15 +90,14 @@ namespace Education.Areas.Admin.Controllers
         {
             ViewData["CurrentMenu"] = "category";
             Post post = new Post();
-            post.Categories = categoryService.GetAll();
+            post.Categories = categoryService.GetAllActive();
             return View(post);
         }
         [HttpPost]
         public ActionResult Create(Post post, HttpPostedFileBase datafile)
         {
             ViewData["CurrentMenu"] = "category";
-            post.Categories = categoryService.GetAll();
-            ViewData["CurrentMenu"] = "category";
+            post.Categories = categoryService.GetAllActive();
             var alias = Util.GetSEOAlias(post.Alias);
             Post postByAlias = postService.GetByAlias(post.Alias, post.CategoryID);
             bool errorFlag = false;
@@ -113,12 +111,9 @@ namespace Education.Areas.Admin.Controllers
                 ModelState.AddModelError("Alias", "Alias đã được sử dụng");
                 errorFlag = true;
             }
-            else
-            {
-                post.Alias = alias;
-            }
             if (!errorFlag)
             {
+                post.Alias = alias;
                 post.Created = DateTime.Now;
                 post.Modified = DateTime.Now;
                 post.UserID = accountService.GetUserByUsername(User.Identity.GetUserName()).Id;
@@ -155,7 +150,7 @@ namespace Education.Areas.Admin.Controllers
         {
             ViewData["CurrentMenu"] = "category";
             Post post = postService.GetByPrimaryKey(id);
-            post.Categories = categoryService.GetAll();
+            post.Categories = categoryService.GetAllActive();
             if (post != null)
             {
                 return View(post);
@@ -169,7 +164,7 @@ namespace Education.Areas.Admin.Controllers
         public int Edit(Post post, HttpPostedFileBase datafile)
         {
             ViewData["CurrentMenu"] = "category";
-            post.Categories = categoryService.GetAll();
+            post.Categories = categoryService.GetAllActive();
             string alias = Util.GetSEOAlias(post.Alias);
             Post postByAlias = postService.GetByAlias(alias, post.CategoryID);
             bool errorFlag = false;
@@ -185,6 +180,7 @@ namespace Education.Areas.Admin.Controllers
             }
             if (!errorFlag)
             {
+                post.Alias = alias;
                 post.Modified = DateTime.Now;
                 if (datafile != null)
                 {

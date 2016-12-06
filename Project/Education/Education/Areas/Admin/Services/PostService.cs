@@ -39,6 +39,52 @@ namespace Education.Areas.Admin.Services
                 return null;
             }
         }
+
+
+
+        public List<Post> GetPostsInSameCategory(int id, int numberPost)
+        {
+            try
+            {
+                Post post = GetByPrimaryKey(id);
+                if (post != null)
+                {
+                    string query = string.Format("select * from Post where CategoryID = {0} and ID <> {1} order by Created desc", post.CategoryID, post.ID);
+                    List<Post> posts = connect.Query<Post>(query).ToList<Post>();
+                    if (posts != null && posts.Count > numberPost)
+                    {
+                        List<Post> result = new List<Post>();
+                        for (int i = 0; i < numberPost; i++)
+                        {
+                            result.Add(posts[i]);
+                        }
+                        return result;
+                    }
+                    return posts;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
+
+        public List<Post> GetByCategoryID(int categoryID)
+        {
+            try
+            {
+                string query = string.Format("select * from Post where CategoryID = {0} order by Created desc", categoryID);
+                List<Post> posts = connect.Query<Post>(query).ToList<Post>();
+                return posts;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
         public List<Post> GetByWhere(string where)
         {
             try
@@ -79,7 +125,7 @@ namespace Education.Areas.Admin.Services
         {
             try
             {
-                string query = string.Format("select * from Post where Alias like N'%{0}%' and CategoryID = {1} ", alias, categoryID);
+                string query = string.Format("select * from Post where Alias like N'{0}' and CategoryID = {1} ", alias, categoryID);
                 Post post = connect.Query<Post>(query).FirstOrDefault();
                 return post;
             }
