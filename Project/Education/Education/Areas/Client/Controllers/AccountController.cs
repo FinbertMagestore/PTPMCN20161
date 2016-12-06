@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Education.Areas.Client.Controllers
 {
-    [Authorize(Roles = "Client")]
+     //[Authorize(Roles = "Client")]
     public class AccountController : Controller
     {
         // User: Huy
@@ -21,13 +21,25 @@ namespace Education.Areas.Client.Controllers
         // GET: Client/Account/Detail/1
         public ActionResult Detail(int id)
         {
-            ViewData["CSS"] = "default";
+            ViewData["CSS"] = "detail";
             return View();
         }
         // GET: Client/Account/Edit/1
         public ActionResult Edit(int id)
         {
             ViewData["CSS"] = "default";
+            return View();
+        }
+        // GET: Client/Account/Posts/1
+        public ActionResult Posts(int id)
+        {
+            ViewData["CSS"] = "posts";
+            return View();
+        }
+        // GET: Client/Account/Lesson/1
+        public ActionResult Lesson(int id)
+        {
+            ViewData["CSS"] = "lesson";
             return View();
         }
     }

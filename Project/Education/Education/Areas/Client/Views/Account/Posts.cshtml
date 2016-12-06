@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Posts";
     Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
 }
 
@@ -28,39 +28,31 @@
         </ul>
     </div>
     <div class="main-form">
+        <p>Danh sách bài viết đã đăng</p>
         <table>
-            <tr>
-                <td>Địa chỉ:</td>
-                <td>Quảng Bình</td>
+            <tr >
+                <th class="tb-image">Ảnh</th>
+                <th class="tb-post">Tên bài viết</th>
+                <th class="tb-cm">Tên chuyên mục</th>
+                <th class="tb-time">Thời gian đăng</th>
             </tr>
             <tr>
-                <td>Điện thoại:</td>
-                <td> 01697764014</td>
+                <td >
+                    <img src="~/Assets/Client/Images/Account/limbo.png" width="50" height="50" alt="" />
+                </td>
+                <td >Bài viết 1</td>
+                <td >Chuyên mục 1</td>
+                <td >05/12/2016 11: 10 AM</td>
             </tr>
             <tr>
-                <td>Địa chỉ Email:</td>
-                <td>tranloc9795@gmail.com</td>
+                <td >
+                    <img src="~/Assets/Client/Images/Account/limbo.png" width="50" height="50" alt="" />
+                </td>
+                <td >Bài viết 1</td>
+                <td >Chuyên mục 1</td>
+                <td >05/12/2016 11: 10 AM</td>
             </tr>
-            <tr>
-                <td>Tên trường:</td>
-                <td>THPT Hoàng Hoa Thám</td>
-            </tr>
-            <tr>
-                <td>Lớp:</td>
-                <td>8</td>
-            </tr>
-
         </table>
-        <div class="btn">
-            <div class="btnchangepassword">
-                <input type="submit" value="Thay đổi mật khẩu" />
-            </div>
-            <div class="btnmessage">
-                <input type="submit" value="Các tin nhắn" />
-            </div>
-        </div>
-        
-     </div>
-    
     </div>
+</div>
 

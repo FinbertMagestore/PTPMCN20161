@@ -5,45 +5,44 @@
 @import "/Content/font-awesome/css/font-awesome.css";
 
 $wihte-form: 535px;
-
-.main-container {
-    background-color: #f9f9f9;
+body{
+       background-color: #f9f9f9;
+}
+.container {
+ 
     width: 100%;
     height: 100%;
 
     .main-form {
         width: 535px;
         height: 600px;
-        margin: auto;
-        background-color: white;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 20px;
 
-        .title-signup {
-            font-size: 30px;
+       h2{
+            /*margin-left:10px;*/
             color: #5fb2a8;
-            text-transform: uppercase;
-            font-weight: bold;
+            text-align:center;
+        
         }
 
-        .sub-title-signup {
+        p{
             font-size: 17px;
             margin-bottom: 30px;
         }
-
-        .row-signup, .title-signup, .sub-title-signup {
-            margin-left: 10px;
-        }
-
         .row-signup {
             margin-bottom: 20px;
 
 
             input {
-                width: 97%;
+                width: 100%;
                 height: 36px;
                 border-radius: 4px;
                 border: 1px;
                 border-color: #9f978e;
                 border-style: solid;
+                padding-left:10px;
             }
 
             .submit-register-btn {
@@ -57,13 +56,13 @@ $wihte-form: 535px;
             }
 
             .password-left {
-                width: 45%;
+                width: 46%;
                 float: left;
             }
 
             .password-right {
-                width: 45%;
-                margin-right: 10px;
+                width: 46%;
+                margin-right: 0px;
                 float: right;
             }
 
@@ -90,15 +89,18 @@ $wihte-form: 535px;
                 text-align: center;
             }
 
-            .other-login-btn {
+            .other-login-btn-facebook-btn{
                 float: left;
+                margin-right: 2px;
+                margin-left:6px;
             }
 
-            .other-login-btn google-plus-btn {
+            .other-login-btn-google-plus-btn {
                 float: right;
+                margin-right:6px;
             }
 
-            .other-login-btn yahoo-btn {
+            .other-login-btn-yahoo-btn {
                 float: left;
             }
         }
