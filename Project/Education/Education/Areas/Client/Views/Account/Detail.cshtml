@@ -1,4 +1,5 @@
-﻿
+﻿@model Education.Areas.Admin.Model.AppUser
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
@@ -8,27 +9,39 @@
     <div class="side-bar">
         <div class="img">
             <img src="~/Assets/Client/Images/Account/limbo.png" width="200" height="200" alt="" />
+            <h3>Le Duy Tung</h3>
         </div>
-        <p>Le Duy Tung</p>
-        <ul>
+        <ul class="list-page">
             <li>
-                <div>
+                <div class="page">
                     <img src="~/Assets/Client/Images/Account/personinformation.png" alt="">
                     <a href="">Thông tin cá nhân</a>
                 </div>
             </li>
             <li>
-                <span class="ti-pencil-alt"></span>
-                <a href="">Danh sách bài viết</a>
+                <div class="page">
+                    <span class="ti-pencil-alt"></span>
+                    <a href="">Danh sách bài viết</a>
+                </div>
             </li>
             <li>
-                <img src="~/Assets/Client/Images/Home/lession.png" alt="">
-                <a href="">Danh sách bài giảng</a>
+                <div class="page">
+                    <img src="~/Assets/Client/Images/Home/lession.png" alt="" style="margin-left: 20px;">
+                    <a href="">Danh sách bài giảng</a>
+                </div>
             </li>
         </ul>
     </div>
     <div class="main-form">
         <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Username)
+                </td>
+                <td>
+                    <span>@Model.Username</span>
+                </td>
+            </tr>
             <tr>
                 <td>Địa chỉ:</td>
                 <td>Quảng Bình</td>
@@ -49,18 +62,12 @@
                 <td>Lớp:</td>
                 <td>8</td>
             </tr>
-
         </table>
-        <div class="btn">
-            <div class="btnchangepassword">
-                <input type="submit" value="Thay đổi mật khẩu" />
-            </div>
-            <div class="btnmessage">
-                <input type="submit" value="Các tin nhắn" />
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="@Url.Action("Edit", "Account", new { id = Model.Id})" class="btn btn-default">Cập nhật thông tin</a>
             </div>
         </div>
-        
-     </div>
-    
     </div>
+</div>
 

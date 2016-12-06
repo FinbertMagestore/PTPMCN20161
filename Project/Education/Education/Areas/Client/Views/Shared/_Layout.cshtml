@@ -68,21 +68,21 @@
                             @if (!string.IsNullOrEmpty(User.Identity.GetUserName()))
                             {
                                 <li class="">
-                                    <a href="@Url.Action("Edit", "Account", new { id = Membership.GetUser(User.Identity.GetUserName()).ProviderUserKey })">@User.Identity.GetUserName()<i class="fa fa-caret-down"></i></a>
+                                    <a href="@Url.Action("Detail", "Account", new { id = Membership.GetUser(User.Identity.GetUserName()).ProviderUserKey })">@User.Identity.GetUserName()<i class="fa fa-caret-down"></i></a>
                                     <ul class="sub-menu sub-menu-1-col">
                                         <li class="icontop"></li>
                                         <li class="top-row">
-                                            <a href="@Url.Action("Edit", "Account", new { id = Membership.GetUser(User.Identity.GetUserName()).ProviderUserKey })">
+                                            <a href="@Url.Action("Detail", "Account", new { id = Membership.GetUser(User.Identity.GetUserName()).ProviderUserKey })">
                                                 Trang cá nhân
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="/">
+                                            <a href="@Url.Action("Posts", "Account", new { id = Membership.GetUser(User.Identity.GetUserName()).ProviderUserKey })">
                                                 Danh sách bài viết đã đăng
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="/">
+                                            <a href="@Url.Action("Lession", "Account", new { id = Membership.GetUser(User.Identity.GetUserName()).ProviderUserKey })">
                                                 Danh sách bài giảng đã đăng
                                             </a>
                                         </li>

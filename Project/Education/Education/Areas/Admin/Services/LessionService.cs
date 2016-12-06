@@ -82,7 +82,7 @@ namespace Education.Areas.Admin.Services
         {
             try
             {
-                string query = "select * from Lession where TeacherID = " + teacherID;
+                string query = string.Format("select * from Lession where TeacherID = {0} and Status = {1} ", teacherID, (int)Config.Status.Active);
                 List<Lession> lessions = connect.Query<Lession>(query).ToList();
                 return lessions;
             }

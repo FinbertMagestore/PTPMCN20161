@@ -16,5 +16,6 @@ namespace Education.Areas.Admin.ModelsView
         public PaginationModels PagerModel { get; set; }
         public Category Category { get; set; }
         public List<Post> Posts { get; set; }
+        public int Page { get; set; }
     }
 }

@@ -128,6 +128,19 @@ body {
 .has-boder-top {
   border-top: 1px solid #444; }
 
+span.field-validation-error {
+  color: red; }
+
+.field-validation-error {
+  clear: both;
+  min-height: 15px;
+  margin-top: 3px;
+  background: url(/Assets/Admin/Images/validation_advice_bg.gif) no-repeat 2px 1px;
+  padding-left: 16px;
+  font-size: .95em;
+  font-weight: bold;
+  line-height: 1.25em; }
+
 .header {
   background: #fff;
   padding: 20px 0; }
@@ -247,29 +260,43 @@ body {
     body .container .side-bar {
       float: left;
       width: 20%;
-      background-color: white;
       border-radius: 8px; }
       body .container .side-bar .img {
-        margin-top: 10px;
-        margin-left: 10px; }
-      body .container .side-bar p {
-        text-align: center; }
-      body .container .side-bar ul {
-        padding-left: 10px; }
-        body .container .side-bar ul li {
+        padding-top: 10px;
+        background-color: #fff;
+        position: relative;
+        width: 100%;
+        height: 250px;
+        border-radius: 5px; }
+        body .container .side-bar .img img {
+          position: absolute;
+          margin-left: auto;
+          margin-right: auto;
+          left: 0;
+          right: 0; }
+        body .container .side-bar .img h3 {
+          text-align: center;
+          margin-top: 210px; }
+      body .container .side-bar ul.list-page {
+        padding-left: 0px;
+        margin-top: 20px; }
+        body .container .side-bar ul.list-page li {
           list-style: none;
           margin-bottom: 10px;
           background-color: #dddfe2;
           border-radius: 3px;
           height: 40px; }
-          body .container .side-bar ul li span {
+          body .container .side-bar ul.list-page li .page {
+            padding-top: 5px;
+            text-align: center; }
+          body .container .side-bar ul.list-page li span {
             font-size: 30px;
             margin-left: 8px; }
-          body .container .side-bar ul li img {
+          body .container .side-bar ul.list-page li img {
             width: 30px;
             height: 30px;
             margin-left: 8px; }
-          body .container .side-bar ul li a {
+          body .container .side-bar ul.list-page li a {
             color: black;
             margin-left: 10px;
             text-decoration: none; }
@@ -288,27 +315,8 @@ body {
           border-bottom: 1px solid; }
           body .container .main-form table tr td {
             width: 230px; }
-      body .container .main-form .btn .btnchangepassword {
-        background-color: white;
-        border-color: #f9f9f9;
-        margin-top: 40px;
-        margin-left: 30px;
-        margin-right: 40px;
-        float: left; }
-        body .container .main-form .btn .btnchangepassword input {
-          border-radius: 4px;
-          height: 40px;
-          border: 1px;
-          border-color: #9f978e;
-          border-style: solid; }
-      body .container .main-form .btn .btnmessage {
-        background-color: white;
-        border-color: #f9f9f9;
-        margin-top: 40px; }
-        body .container .main-form .btn .btnmessage input {
-          border-radius: 4px;
-          height: 40px;
-          border: 1px;
-          border-color: #9f978e;
-          border-style: solid; }
+          body .container .main-form table tr:last-of-type {
+            border-bottom: none; }
+      body .container .main-form a.btn {
+        margin-left: 30px; }
 

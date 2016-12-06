@@ -49,6 +49,8 @@
         public bool IsActive { get; set; }
         [Display(Name = "Địa chỉ")]
         public string Address { get; set; }
+        [Display(Name = "Số điện thoại")]
+        public string PhoneNumber { get; set; }
 
         public DateTime DateCreated { get; set; }
 
