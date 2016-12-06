@@ -3,13 +3,13 @@
     ViewBag.Title = "DetailRegister";
     Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
 }
-<div class="main-container">
+<div class="container">
     <div class="main-form">
         <!--Begin Form-->
-        <div class="title-signup">cập nhật thông tin tài khoản</div>
-        <div class="sub-title-signup">
+        <h2>Cập nhật thông tin tài khoản</h2>
+        <p>
             Vui lòng cung cấp đầy đủ và chính xác thông tin cá nhân theo mẩu, để Forum có thể hỗ trợ bạn tốt nhất
-        </div>
+        </p>
         <div class="row-signup">
             <label class="lbl">Họ tên:</label>
             <input id="name" name="name" value="" type="text" />
@@ -20,6 +20,12 @@
                 <option value="0">Học sinh</option>
                 <option value="1">Giáo viên</option>
             </select>
+        </div>
+        <div class="studen hide">
+            <div class="row-signup">
+                <label class="lbl">Số điện thoại:</label>
+                <input id="name" name="name" value="" type="text" />
+            </div>
         </div>
         <div class="row-signup">
             <label class="lbl">Số điện thoại:</label>

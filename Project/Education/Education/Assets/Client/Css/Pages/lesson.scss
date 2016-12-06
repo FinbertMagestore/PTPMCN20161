@@ -1,0 +1,86 @@
+﻿@import "../Module/common";
+@import "../Module/header";
+@import "../Module/footer";
+@import "/Content/themify/css/themify-icons.css";
+@import "/Content/font-awesome/css/font-awesome.css";
+body {
+    background-color: #f9f9f9;
+
+    .container {
+        .side-bar, .main-form {
+            margin-top: 20px;
+        }
+
+        .side-bar {
+            margin-top: 19px;
+            float: left;
+            width: 20%;
+            background-color: white;
+            border-radius: 6px;
+
+            p {
+                text-align: center;
+            }
+
+            .img {
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+
+            ul {
+                padding-left: 10px;
+
+                li {
+                    list-style: none;
+                    margin-bottom: 10px;
+                    background-color: #dddfe2;
+                    border-radius: 3px;
+                    height: 40px;
+
+                    span {
+                        font-size: 30px;
+                        margin-left: 8px;
+
+                    }
+
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        margin-left: 8px;
+                    }
+
+                    a {
+                        color: black;
+                        margin-left: 10px;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+
+        .main-form {
+            float: right;
+            width: 77%;
+            height: 400px;
+            background-color:white;
+            border-radius: 6px;
+            p{
+                margin-left: 10px;
+            }
+            table {
+                margin-left: 10px;
+                tr {
+                    border-bottom: 1px solid;
+
+                    th, td {
+                        width: 180px;
+                    }
+
+                    td {
+                        height: 80px;
+                    }
+                }
+            }
+        }
+    }
+}
