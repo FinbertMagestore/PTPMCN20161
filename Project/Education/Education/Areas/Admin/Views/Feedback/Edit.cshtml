@@ -7,6 +7,7 @@
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
     <div class="content-header">
         <table cellspacing="0">
             <tbody>
@@ -16,7 +17,7 @@
                         <button class="scalable Back" name="submit" onclick="setLocation('/Admin/Feedback')" type="button" value="Back"><span>Quay lại</span></button>
                         @if (!Model.State)
                         {
-                            <button class="scalable Save" name="submit" type="submit" value="Submit"><span>Đã xử lý</span></button>
+                            <button class="scalable Save" name="submit" type="submit" value="Save"><span>Đã xử lý</span></button>
                         }
                         else
                         {
@@ -27,14 +28,16 @@
             </tbody>
         </table>
     </div>
-    
+
     <div class="entry-edit">
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.Created)
+        @Html.HiddenFor(model => model.State)
         <div class="entry-edit-head">
             <h4 class="icon-head head-edit-form fieldset-legend"><a href="#">Xem thông tin phản hồi</a></h4>
             <div class="form-buttons"></div>
         </div>
         <div class="fieldset " id="user_base_fieldset">
-            @Html.HiddenFor(model => model.ID)
             <div class="hor-scroll">
                 <table cellspacing="0" class="form-list">
                     <tbody>
@@ -82,6 +85,15 @@
                                 </span>
                             </td>
                         </tr>
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        {
+                            <tr>
+                                <td class="label">@Html.LabelFor(model => model.ImageUrl)</td>
+                                <td class="value">
+                                    <img style="max-width: 200px;" id="img-path" src="@Url.Content(Model.ImageUrl)" alt="" />
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

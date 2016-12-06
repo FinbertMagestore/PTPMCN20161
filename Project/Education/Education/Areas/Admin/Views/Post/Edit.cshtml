@@ -3,8 +3,10 @@
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-@using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { id = "postForm", enctype = "multipart/form-data" }))
 {
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
     <div class="content-header">
         <table cellspacing="0">
             <tbody>
@@ -13,8 +15,8 @@
                     <td class="form-buttons">
                         <button class="scalable Back" name="submit" onclick="setLocation('/Admin/Post')" type="button" value="Back"><span>Quay lại</span></button>
                         <button class="scalable Reset" name="submit" type="reset" value="Reset"><span>Reset</span></button>
-                        <button class="scalable Delete" name="submit" onclick="setLocation('/Admin/Post/Delete/@Model.ID')" type="submit" value="Delete"><span>Xóa trang</span></button>
-                        <button class="scalable Save" name="submit" type="submit" value="Save"><span>Lưu trang</span></button>
+                        <button class="scalable Delete" name="submit" onclick="setLocation('/Admin/Post/Delete/@Model.ID')" type="button" value="Delete"><span>Xóa trang</span></button>
+                        <button class="scalable Save" name="submit" type="button" value="submit" onclick="submitForm()"><span>Lưu trang</span></button>
                     </td>
                 </tr>
             </tbody>
@@ -37,7 +39,7 @@
                         <tr>
                             <td class="label">
                                 @Html.LabelFor(model => model.CategoryID)
-                                
+
                             </td>
                             <td class="value">
                                 @{
@@ -51,7 +53,7 @@
                         <tr>
                             <td class="label">
                                 @Html.LabelFor(model => model.Name)
-                                
+
                             </td>
                             <td class="value">
                                 @Html.TextBoxFor(model => model.Name, new { @class = "input-text" })
@@ -71,14 +73,14 @@
                                 @Html.LabelFor(model => model.Description)
                             </td>
                             <td class="value">
-                                @Html.TextBoxFor(model => model.Description, new { @class = "input-text" })
+                                @Html.TextAreaFor(model => model.Description, new { @class = "input-text" })
                                 <br />@Html.ValidationMessageFor(model => model.Description)
                             </td>
                         </tr>
                         <tr>
                             <td class="label">
                                 @Html.LabelFor(model => model.Alias)
-                                
+
                             </td>
                             <td class="value">
                                 @Html.TextBoxFor(model => model.Alias, new { @class = "input-text" })
@@ -114,41 +116,69 @@
                                 <br />@Html.ValidationMessageFor(model => model.ImageUrl)
                             </td>
                         </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Content)
+                            </td>
+                            <td class="value">
+                                @Html.TextAreaFor(model => model.Content, new { @class = "input-text" })
+                                <br />@Html.ValidationMessageFor(model => model.Content)
+                                <script>CKEDITOR.replace('Content');</script>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
     <script>
-        function uploadFileBase64() {
-            var files = document.getElementById("image").files;
-            for (var i = 0; i < files.length; i++) {
-                if (files && files[i]) {
-                    var FR = new FileReader();
-                    var srcData;
-                    FR.onload = function (e) {
-                        srcData = e.target.result;
-                        $('#img-path').attr('src', srcData);
-                    };
-                    FR.readAsDataURL(files[i]);
+            var image = [];
+            function uploadFileBase64() {
+                var files = document.getElementById("image").files;
+                for (var i = 0; i < files.length; i++) {
+                    if (files && files[i]) {
+                        image.push(files[i]);
+                        var FR = new FileReader();
+                        var srcData;
+                        FR.onload = function (e) {
+                            srcData = e.target.result;
+                            $('#img-path').attr('src', srcData);
+                        };
+                        FR.readAsDataURL(files[i]);
+                    }
                 }
             }
-        }
-        //$("form").submit(function (event) {
-        //    if ($("#image").val()) {
-        //        var iSize = ($("#image")[0].files[0].size / 1024);
-        //        iSize = (Math.round((iSize / 1024) * 100) / 100);
-        //        console.log(iSize)
-        //        if (iSize > 1) {
-        //            $('span#validityMessages').html("kích thước ảnh phải nhỏ hơn 1MB");
-        //            return false;
-        //        }
-        //        else {
-        //            console.log(iSize + "Mb")
-        //            $("form").submit(); // post form
-        //            ;
-        //        }
-        //    }
-        //});
+
+            function submitForm() {
+                var formData = new FormData();
+                for (instance in CKEDITOR.instances)
+                    CKEDITOR.instances[instance].updateElement();
+               
+                var postForm = $("#postForm");
+                if (!postForm.valid()) return;
+                var u = postForm.serializeArray();
+                for (var r = 0; r < u.length; ++r) {
+                    formData.append(u[r].name, u[r].value);
+                }
+                for (var i = 0; i < image.length; i++) {
+                    var s = image[i];
+                    formData.append("datafile", s);
+                }
+                return $.ajax({
+                    url: "/Admin/Post/Edit",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if (data == 1) {
+                            $("ul.messages").html("<li class='success-msg'><ul><li>Cập nhật thông tin thành công</li></ul></li>")
+                            window.open('/Admin/Post', '_self', false)
+                        } else {
+                            $("ul.messages").html("<li class='error-msg'><ul><li>Cập nhật thông tin thất bại</li></ul></li>")
+                        }
+                    }
+                });
+            }
     </script>
                                     }

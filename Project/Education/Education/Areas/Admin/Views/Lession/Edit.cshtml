@@ -127,21 +127,15 @@
                                 @Model.Subject.SubjectName @Model.ClassInfo.ClassName
                             </td>
                         </tr>
-                        <tr>
-                            <td class="label">@Html.LabelFor(model => model.ImageUrl)</td>
-                            <td class="value">
-                                @if (!string.IsNullOrEmpty(Model.ImageUrl))
-                                {
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        {
+                            <tr>
+                                <td class="label">@Html.LabelFor(model => model.ImageUrl)</td>
+                                <td class="value">
                                     <img style="max-width: 200px;" id="img-path" src="@Url.Content(Model.ImageUrl)" alt="" />
-                                }
-                                else
-                                {
-                                    <img style="max-width: 200px;" id="img-path" src="@Url.Content("~/Assets/Admin/Images/default.gif")" alt="" />
-                                }
-
-                                <span id="validityMessages" style="color: Red;"></span>
-                                <br />@Html.ValidationMessageFor(model => model.ImageUrl)
-                            </td>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

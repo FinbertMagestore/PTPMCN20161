@@ -25,6 +25,20 @@ namespace Education.Areas.Admin.Services
                 return null;
             }
         }
+        public List<Category> GetAllActive()
+        {
+            try
+            {
+                string query = string.Format("select * from Category where Status = {0} order by Created desc", (int)Config.Status.Active);
+                List<Category> categories = connect.Query<Category>(query).ToList<Category>();
+                return categories;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
 
         public List<Category> GetByWhere(string where)
         {

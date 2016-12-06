@@ -12,6 +12,7 @@
             this.Lessions = new List<Lession>();
             this.AppUser = new AppUser();
             this.Subject = new Subject();
+            this.School = new School();
         }
 
         public int ID { get; set; }
@@ -23,6 +24,13 @@
 
         [Display(Name = "Môn dạy chính")]
         public int MainSubjectID { get; set; }
+
+        [Display(Name = "Tên trường học")]
+        public string SchoolName { get; set; }
+
+        [Display(Name = "Tên trường học")]
+        public int? SchoolID { get; set; }
+        public School School { get; set; }
 
         public virtual AppUser AppUser { get; set; }
 

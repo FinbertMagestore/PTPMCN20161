@@ -90,7 +90,7 @@ namespace Education.Areas.Admin.Services
             try
             {
                 string query = "update Feedback set Created = @Created, Content = @Content, Name = @Name, " +
-                    " Email=@Email,Email=@Email, " +
+                    " Email=@Email, " +
                     " State=@State,ImageUrl=@ImageUrl " +
                         " where ID = @ID ";
                 return 0 < connect.Execute(query, new

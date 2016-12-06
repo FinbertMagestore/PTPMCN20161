@@ -58,19 +58,34 @@ namespace Education.Areas.Admin.Services
                 return null;
             }
         }
+        public Teacher GetByUserID(int userID)
+        {
+            try
+            {
+                string query = "select * from Teacher where UserID = " + userID;
+                return connect.Query<Teacher>(query).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
         public int Insert(Teacher teacher)
         {
             try
             {
                 string query = "insert into Teacher(" +
-                        " UserID,ExperienceYear,MainSubjectID)" +
-                        " values (@UserID,@ExperienceYear,@MainSubjectID)" +
+                        " UserID,ExperienceYear,MainSubjectID,SchoolID,SchoolName)" +
+                        " values (@UserID,@ExperienceYear,@MainSubjectID,@SchoolID,@SchoolName)" +
                         " SELECT @@IDENTITY";
                 int id = connect.Query<int>(query, new
                 {
                     teacher.UserID,
                     teacher.ExperienceYear,
-                    teacher.MainSubjectID
+                    teacher.MainSubjectID,
+                    teacher.SchoolID,
+                    teacher.SchoolName
                 }).Single();
                 return id;
             }
@@ -84,8 +99,9 @@ namespace Education.Areas.Admin.Services
         {
             try
             {
-                string query = "update Teacher set UserID = @UserID, ExperienceYear = @ExperienceYear, MainSubjectID = @MainSubjectID " +
-                        " where ID = @ID ";
+                string query = "update Teacher set UserID = @UserID, ExperienceYear = @ExperienceYear, MainSubjectID = @MainSubjectID, "
+                    + " SchoolID=@SchoolID,SchoolName=@SchoolName"
+                    + " where ID = @ID ";
                 return 0 < connect.Execute(query, new
                 {
                     teacher.UserID,
@@ -107,6 +123,32 @@ namespace Education.Areas.Admin.Services
             try
             {
                 string query = "delete from Teacher where ID = " + id;
+                connect.Execute(query);
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+            }
+        }
+
+        public void DeleteByUserID(int userID)
+        {
+            try
+            {
+                string query = "delete from Teacher where UserID = " + userID;
+                connect.Execute(query);
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+            }
+        }
+
+        public void DeleteByMainSubjectID(int mainSubjectID)
+        {
+            try
+            {
+                string query = "delete from Student where MainSubjectID = " + mainSubjectID;
                 connect.Execute(query);
             }
             catch (Exception ex)
@@ -155,8 +197,21 @@ namespace Education.Areas.Admin.Services
             try
             {
                 string query = "select * from Student left join AppUsers on Student.UserID = AppUsers.Id where Student.ID = " + id;
-                Student student = connect.Query<Student>(query).FirstOrDefault<Student>();
+                Student student = connect.Query<Student>(query).FirstOrDefault();
                 return student;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
+        public Student GetByUserID(int userID)
+        {
+            try
+            {
+                string query = "select * from Student where UserID = " + userID;
+                return connect.Query<Student>(query).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -169,14 +224,16 @@ namespace Education.Areas.Admin.Services
             try
             {
                 string query = "insert into Student(" +
-                        " UserID,CurrentClass,ClassName)" +
-                        " values (@UserID,@CurrentClass,@ClassName)" +
+                        " UserID,ClassInfoID,ClassName,SchoolID,SchoolName)" +
+                        " values (@UserID,@ClassInfoID,@ClassName,@SchoolID,@SchoolName)" +
                         " SELECT @@IDENTITY";
                 int id = connect.Query<int>(query, new
                 {
                     student.UserID,
-                    student.CurrentClass,
-                    student.ClassName
+                    student.ClassInfoID,
+                    student.ClassName,
+                    student.SchoolID,
+                    student.SchoolName
                 }).Single();
                 return id;
             }
@@ -190,13 +247,16 @@ namespace Education.Areas.Admin.Services
         {
             try
             {
-                string query = "update Student set UserID = @UserID, CurrentClass = @CurrentClass, ClassName = @ClassName " +
-                        " where ID = @ID ";
+                string query = "update Student set UserID = @UserID, ClassInfoID = @ClassInfoID, ClassName = @ClassName, "
+                    + " SchoolID = @SchoolID, SchoolName = @SchoolName "
+                    + " where ID = @ID ";
                 return 0 < connect.Execute(query, new
                 {
                     student.UserID,
-                    student.CurrentClass,
+                    student.ClassInfoID,
                     student.ClassName,
+                    student.SchoolID,
+                    student.SchoolName,
                     student.ID
                 });
 
@@ -213,6 +273,32 @@ namespace Education.Areas.Admin.Services
             try
             {
                 string query = "delete from Student where ID = " + id;
+                connect.Execute(query);
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+            }
+        }
+
+        public void DeleteByUserID(int userID)
+        {
+            try
+            {
+                string query = "delete from Student where UserID = " + userID;
+                connect.Execute(query);
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+            }
+        }
+
+        public void DeleteByClassInfoID(int classInfoID)
+        {
+            try
+            {
+                string query = "delete from Student where ClassInfoID = " + classInfoID;
                 connect.Execute(query);
             }
             catch (Exception ex)

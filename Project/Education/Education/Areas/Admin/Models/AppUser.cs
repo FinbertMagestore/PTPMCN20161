@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class AppUser
     {
@@ -22,22 +23,37 @@
 
         public int Id { get; set; }
 
-        [Required]
-        [Display(Name = "Họ tên")]
+        [Required(ErrorMessage = "Username không được để trống")]
         public string Username { get; set; }
 
         [Display(Name = "Mật khẩu")]
+        //[Required(ErrorMessage = "Mật khẩu không được để trống")]
         public string Password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Địa chỉ Email không được để trống")]
         [EmailAddress(ErrorMessage = "Địa chỉ email không đúng")]
         public string Email { get; set; }
+
+        [Display(Name = "Họ tên")]
+        public string FullName { get; set; }
+        [Display(Name = "Ngày sinh")]
+        public DateTime? Birthday { get; set; }
+        [Display(Name = "Giới tính")]
+        public bool? Sex { get; set; }
+        [Display(Name = "Ảnh đại diện")]
+        public string ImageUrl { get; set; }
+        [Display(Name = "Mô tả")]
+        public string Description { get; set; }
+        public DateTime Modified { get; set; }
+        [Display(Name = "Trạng thái")]
+        public bool IsActive { get; set; }
+        [Display(Name = "Địa chỉ")]
+        public string Address { get; set; }
 
         public DateTime DateCreated { get; set; }
 
         public DateTime? LastActivityDate { get; set; }
 
-        [Required]
         public string SecurityStamp { get; set; }
 
         public virtual List<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -58,11 +74,18 @@
 
         public virtual List<Teacher> Teachers { get; set; }
 
-        public virtual List<AspNetRole> Roles { get; set; }
+        [Display(Name = "Vai trò")]
+        [Required(ErrorMessage = "Vai trò chưa được chọn")]
+        public int RoleID { get; set; }
+        public string Role { get; set; }
+        public List<AspNetRole> Roles { get; set; }
 
         //Add
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Mật khẩu và xác nhận mật khẩu không trùng khớp.")]
+        [Display(Name = "Xác nhận mật khẩu")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Mật khẩu và xác nhận mật khẩu không trùng khớp.")]
         public string ValidatePassword { get; set; }
+
+        public bool CanDelete { get; set; }
     }
 }

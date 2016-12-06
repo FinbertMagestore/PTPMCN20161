@@ -36,8 +36,8 @@ namespace Education.Areas.Admin.Controllers
             string where = "";
             if (!string.IsNullOrEmpty(model.Keyword))
             {
-                where += string.Format(" and (Name like N'%{0}%' or Email like N'%{1}%' or Content like N'%{2}%') ",
-                    model.Keyword, model.Keyword, model.Keyword);
+                where += string.Format(" and (Name like N'%{0}%' or Email like N'%{1}%') ",
+                    model.Keyword, model.Keyword);
             }
             if (!string.IsNullOrEmpty(model.Status))
             {

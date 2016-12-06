@@ -13,6 +13,13 @@
     <link href="~/Assets/Admin/Css/menu.css?v=1.0" media="screen, projection" rel="stylesheet" type="text/css" />
     <link href="~/Assets/Admin/Css/asset.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Assets/Admin/Js/default.min.js"></script>
 </head>
 <body>
     <div id="container">
@@ -35,6 +42,14 @@
                 <ul id="nav">
                     <li id="nav-li-dashboard" class="level0 nav-li active">
                         <a href="/Admin/Dashboard"><span>Trang chủ</span></a>
+                    </li>
+                    <li id="nav-li-education" class="level0 nav-li" onmouseout="$(this).removeClass('over')" onmouseover="$(this).addClass('over')">
+                        <a href="#" onclick="return false;"><span>Giáo dục</span></a>
+                        <ul>
+                            <li class="level1"><a href="/Admin/Teacher"><span>Danh sách giáo viên</span></a></li>
+                            <li class="level1"><a href="/Admin/Student"><span>Danh sách học sinh</span></a></li>
+                            <li class="level1"><a href="/Admin/School"><span>Danh sách trường học</span></a></li>
+                        </ul>
                     </li>
                     <li id="nav-li-category" class="level0 nav-li" onmouseout="$(this).removeClass('over')" onmouseover="$(this).addClass('over')">
                         <a href="#" onclick="return false;"><span>Chuyên mục</span></a>
@@ -72,14 +87,9 @@
         </div>
         <div id="anchor-content" class="middle">
             <div id="page:main-container">
-                @if (!string.IsNullOrEmpty(ViewBag.Notification))
-                {
-                    <div id="messages">
-                        <ul class="messages">
-                            <li class="notice-msg">@ViewBag.Notification</li>
-                        </ul>
-                    </div>
-                }
+                <div id="messages">
+                    <ul class="messages"></ul>
+                </div>
                 <div>
                     @RenderBody()
                 </div>
@@ -125,12 +135,5 @@
             }
         </style>
     </div>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Content/ckeditor/ckeditor.js"></script>
-    <script src="~/Scripts/respond.min.js"></script>
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <script src="~/Assets/Admin/Js/default.min.js"></script>
 </body>
 </html>

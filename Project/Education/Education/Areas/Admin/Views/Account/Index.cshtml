@@ -47,7 +47,7 @@
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
                     <td>
-                        <span>@Education.Areas.Admin.Services.AccountService.GetRolesOfUser(item)</span>
+                        <span>@item.Role</span>
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

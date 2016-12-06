@@ -4,8 +4,10 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("Create", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Post", FormMethod.Post, new { id="postForm", enctype = "multipart/form-data" }))
 {
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
     <div class="content-header">
         <table cellspacing="0">
             <tbody>
@@ -59,7 +61,7 @@
                                 @Html.LabelFor(model => model.Description)
                             </td>
                             <td class="value">
-                                @Html.TextBoxFor(model => model.Description, new { @class = "input-text" })
+                                @Html.TextAreaFor(model => model.Description, new { @class = "input-text" })
                                 <br />@Html.ValidationMessageFor(model => model.Description)
                             </td>
                         </tr>
@@ -102,6 +104,16 @@
                                 <br />@Html.ValidationMessageFor(model => model.ImageUrl)
                             </td>
                         </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Content)
+                            </td>
+                            <td class="value">
+                                @Html.TextAreaFor(model => model.Content, new { @class = "input-text" })
+                                <br />@Html.ValidationMessageFor(model => model.Content)
+                                <script>CKEDITOR.replace('Content');</script>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -122,21 +134,10 @@
                 }
             }
         }
-        //$("form").submit(function (event) {
-        //    if ($("#image").val()) {
-        //        var iSize = ($("#image")[0].files[0].size / 1024);
-        //        iSize = (Math.round((iSize / 1024) * 100) / 100);
-        //        console.log(iSize)
-        //        if (iSize > 1) {
-        //            $('span#validityMessages').html("kích thước ảnh phải nhỏ hơn 1MB");
-        //            return false;
-        //        }
-        //        else {
-        //            console.log(iSize + "Mb")
-        //            $("form").submit(); // post form
-        //            ;
-        //        }
-        //    }
-        //});
+        $("form").submit(function (event) {
+            for (instance in CKEDITOR.instances)
+                CKEDITOR.instances[instance].updateElement();
+            $("form").submit(); // post form
+        });
     </script>
                                     }

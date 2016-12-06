@@ -1,4 +1,6 @@
-﻿namespace Education.Areas.Admin.Model
+﻿using System.ComponentModel;
+
+namespace Education.Areas.Admin.Model
 {
     public class Config
     {
@@ -16,6 +18,25 @@
             Warning,
             Error,
             Success
+        }
+
+        public enum Roles
+        {
+            [Description("Admin")]
+            Admin = 1,
+            [Description("Student")]
+            Student = 2,
+            [Description("Teacher")]
+            Teacher = 3,
+            [Description("Client")]
+            Client = 4,
+        }
+        public enum Status
+        {
+            [Description("Hiển thị")]
+            Active = 1,
+            [Description("Ẩn")]
+            InActive = 0
         }
     }
 }

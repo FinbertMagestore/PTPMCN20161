@@ -36,6 +36,8 @@ namespace Education.Areas.Admin.Controllers
                     item.Category = categoryService.GetByPrimaryKey(item.CategoryID);
                 }
             }
+            model.Categories = categoryService.GetAllActive();
+            model.Categories.Insert(0, new Category { ID = 0, Name = "-- Chọn chuyên mục --" });
             model.ListStatus = new SelectList(new[]
             {
                 new SelectListItem{ Text = "Hiển thị", Value = "1" },
@@ -48,6 +50,8 @@ namespace Education.Areas.Admin.Controllers
         public ActionResult Index(PostModel model)
         {
             ViewData["CurrentMenu"] = "category";
+            model.Categories = categoryService.GetAllActive();
+            model.Categories.Insert(0, new Category { ID = 0, Name = "-- Chọn chuyên mục --" });
             string where = "";
             if (!string.IsNullOrEmpty(model.Keyword))
             {
@@ -57,6 +61,10 @@ namespace Education.Areas.Admin.Controllers
             if (!string.IsNullOrEmpty(model.Status))
             {
                 where += string.Format(" and Status = {0}", model.Status);
+            }
+            if (model.CategoryID > 0)
+            {
+                where += string.Format(" and CategoryID = {0}", model.CategoryID);
             }
             if (!string.IsNullOrEmpty(where))
             {
@@ -113,7 +121,7 @@ namespace Education.Areas.Admin.Controllers
             {
                 post.Created = DateTime.Now;
                 post.Modified = DateTime.Now;
-                post.UserID = accountService.GetUserId(User.Identity.GetUserName());
+                post.UserID = accountService.GetUserByUsername(User.Identity.GetUserName()).Id;
                 int id = postService.Insert(post);
                 if (id > 0)
                 {

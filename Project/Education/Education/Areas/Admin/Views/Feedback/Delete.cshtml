@@ -7,14 +7,15 @@
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
     <div class="content-header">
         <table cellspacing="0">
             <tbody>
                 <tr>
-                    <td style="width:50%;"><h3 class="icon-head head-cms-page">Xóa thông tin phản hồi: @Model.Name</h3></td>
+                    <td style="width:50%;"><h3 class="icon-head head-cms-page">Xóa phản hồi: @Model.Name</h3></td>
                     <td class="form-buttons">
                         <button class="scalable Back" name="submit" onclick="setLocation('/Admin/Feedback')" type="button" value="Back"><span>Quay lại</span></button>
-                            <button class="scalable Delete" name="submit" type="submit" value="Delete"><span>Xóa trang</span></button>
+                        <button class="scalable Delete" name="submit" type="submit" value="Delete"><span>Xóa trang</span></button>
                     </td>
                 </tr>
             </tbody>
@@ -23,7 +24,7 @@
 
     <div class="entry-edit">
         <div class="entry-edit-head">
-            <h4 class="icon-head head-edit-form fieldset-legend"><a href="#">Xóa thông tin phản hồi: @Model.Name</a></h4>
+            <h4 class="icon-head head-edit-form fieldset-legend">Xóa phản hồi: @Model.Name</h4>
             <div class="form-buttons"></div>
         </div>
         <div class="fieldset " id="user_base_fieldset">
@@ -55,6 +56,15 @@
                                 </span>
                             </td>
                         </tr>
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        {
+                            <tr>
+                                <td class="label">@Html.LabelFor(model => model.ImageUrl)</td>
+                                <td class="value">
+                                    <img style="max-width: 200px;" id="img-path" src="@Url.Content(Model.ImageUrl)" alt="" />
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

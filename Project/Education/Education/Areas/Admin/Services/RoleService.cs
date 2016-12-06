@@ -26,6 +26,7 @@ namespace Education.Areas.Admin.Services
                 return null;
             }
         }
+
         public AspNetRole GetRoleByPrimaryKey(int id)
         {
             try
@@ -40,6 +41,39 @@ namespace Education.Areas.Admin.Services
                 return null;
             }
         }
+
+        public AspNetRole GetRoleOfUser(int userID)
+        {
+            try
+            {
+                string query = string.Format("select * from AspNetUserRoles where UserId = {0} ", userID);
+                List<AspNetUserRole> roles = connect.Query<AspNetUserRole>(query).ToList();
+                if (roles != null)
+                {
+                    if (roles.Count > 1)
+                    {
+                        foreach (var item in roles)
+                        {
+                            if (item.RoleId != (int)Config.Roles.Client)
+                            {
+                                return GetRoleByPrimaryKey(item.RoleId);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return GetRoleByPrimaryKey(roles[0].RoleId);
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
+
         public bool UpdateRole(AspNetRole role)
         {
             try
@@ -61,6 +95,7 @@ namespace Education.Areas.Admin.Services
             }
             return false;
         }
+
         public List<AppUser> GetAllUserInRole(int roleID)
         {
             try
@@ -73,6 +108,101 @@ namespace Education.Areas.Admin.Services
             {
                 LogService.WriteException(ex);
                 return null;
+            }
+        }
+        public int InsertRole(AspNetRole role)
+        {
+            try
+            {
+                string query = "insert into AspNetRoles(" +
+                        " Id,Name)" +
+                        " values (@Id,@Name)" +
+                        " SELECT @@IDENTITY";
+                int id = connect.Query<int>(query, new
+                {
+                    role.Id,
+                    role.Name
+                }).Single();
+                return id;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return 0;
+            }
+        }
+
+        public int InsertUserRole(AspNetUserRole userRole)
+        {
+            try
+            {
+                string query = "insert into AspNetUserRoles(" +
+                        " UserId,RoleId)" +
+                        " values (@UserId,@RoleId)" +
+                        " SELECT @@IDENTITY";
+                int id = connect.Query<int>(query, new
+                {
+                    userRole.UserId,
+                    userRole.RoleId
+                }).Single();
+                return id;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return 0;
+            }
+        }
+
+        public void DeleteUserRole(int userID, int roleID)
+        {
+            try
+            {
+                string query = string.Format("delete from AspNetUserRoles where UserId = {0} and RoleId = {1}", userID, roleID);
+                connect.Execute(query);
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+            }
+        }
+
+        public void DeleteRole(int roleID)
+        {
+            try
+            {
+                string query = "delete from AspNetRoles where Id = " + roleID;
+                connect.Execute(query);
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+            }
+        }
+
+        public void DeleteAllRoleOfUser(int userID)
+        {
+            try
+            {
+                string query = "delete from AspNetUserRoles where UserId = " + userID;
+                connect.Execute(query);
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+            }
+        }
+
+        public void DeleteAllUserInRole(int roleID)
+        {
+            try
+            {
+                string query = string.Format("delete from AspNetUserRoles where RoleId = {1}", roleID);
+                connect.Execute(query);
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
             }
         }
     }

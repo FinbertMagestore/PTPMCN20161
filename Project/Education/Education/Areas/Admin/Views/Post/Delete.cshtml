@@ -5,6 +5,8 @@
 }
 @using (Html.BeginForm())
 {
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
     <div class="content-header">
         <table cellspacing="0">
             <tbody>
