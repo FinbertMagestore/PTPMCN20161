@@ -25,6 +25,20 @@ namespace Education.Areas.Admin.Services
                 return null;
             }
         }
+        public List<Post> GetAllActive()
+        {
+            try
+            {
+                string query = string.Format("select * from Post where Status = {0} order by Created desc", (int)Config.Status.Active);
+                List<Post> posts = connect.Query<Post>(query).ToList<Post>();
+                return posts;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
         public List<Post> GetByWhere(string where)
         {
             try
@@ -75,13 +89,28 @@ namespace Education.Areas.Admin.Services
                 return null;
             }
         }
+        public List<Post> GetByUserID(int userID)
+        {
+            try
+            {
+                string query = string.Format("select * from Post where UserID = {0} ", userID);
+                List<Post> posts = connect.Query<Post>(query).ToList();
+                return posts;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
+
         public int Insert(Post post)
         {
             try
             {
                 string query = "insert into Post(" +
-                        " Name,Alias,CategoryID,Created,Modified,Status,Description,ImageUrl,UserID)" +
-                        " values (@Name,@Alias,@CategoryID,@Created,@Modified,@Status,@Description,@ImageUrl,@UserID)" +
+                        " Name,Alias,CategoryID,Created,Modified,Status,Description,ImageUrl,UserID,Content)" +
+                        " values (@Name,@Alias,@CategoryID,@Created,@Modified,@Status,@Description,@ImageUrl,@UserID,@Content)" +
                         " SELECT @@IDENTITY";
                 int id = connect.Query<int>(query, new
                 {
@@ -93,7 +122,8 @@ namespace Education.Areas.Admin.Services
                     post.Status,
                     post.Description,
                     post.ImageUrl,
-                    post.UserID
+                    post.UserID,
+                    post.Content
                 }).Single();
                 return id;
             }
@@ -110,7 +140,7 @@ namespace Education.Areas.Admin.Services
                 string query = "update Post set Name = @Name, Alias = @Alias, CategoryID = @CategoryID, " +
                     " Created=@Created,Modified=@Modified, " +
                     " Status=@Status,Description=@Description, " +
-                    " ImageUrl=@ImageUrl,UserID=@UserID " +
+                    " ImageUrl=@ImageUrl,UserID=@UserID,Content=@Content " +
                         " where ID = @ID ";
                 return 0 < connect.Execute(query, new
                 {
@@ -123,6 +153,7 @@ namespace Education.Areas.Admin.Services
                     post.Description,
                     post.ImageUrl,
                     post.UserID,
+                    post.Content,
                     post.ID
                 });
 

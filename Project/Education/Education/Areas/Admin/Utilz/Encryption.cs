@@ -7,14 +7,25 @@ namespace Education.Areas.Admin.Utilz
     {
         public static string GetMD5Hash(string value)
         {
-            MD5 md5Hasher = MD5.Create();
-            byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(value));
-            StringBuilder sBuilder = new StringBuilder();
-            for (int i = 0; i < data.Length; i++)
+            try
             {
-                sBuilder.Append(data[i].ToString("x2"));
+                if (!string.IsNullOrEmpty(value))
+                {
+                    MD5 md5Hasher = MD5.Create();
+                    byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(value));
+                    StringBuilder sBuilder = new StringBuilder();
+                    for (int i = 0; i < data.Length; i++)
+                    {
+                        sBuilder.Append(data[i].ToString("x2"));
+                    }
+                    return sBuilder.ToString();
+                }
+                return "";
             }
-            return sBuilder.ToString();
+            catch (System.Exception ex)
+            {
+                return "";
+            }
         }
     }
 }

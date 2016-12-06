@@ -77,60 +77,97 @@ namespace Education.Areas.Admin.Services
             }
         }
 
-        public int GetUserId(string userName)
+        public AppUser GetUserByUsername(string userName)
         {
             try
             {
-                string query = "select Id from AppUsers where Username like N'" + userName + "'";
-                int userID = connect.Query<int>(query).FirstOrDefault<int>();
-                return userID;
+                string query = "select * from AppUsers where Username like N'" + userName + "'";
+                AppUser appUser = connect.Query<AppUser>(query).FirstOrDefault();
+                return appUser;
             }
             catch (Exception ex)
             {
                 LogService.WriteException(ex);
-                return 0;
+                return null;
             }
         }
 
-        public bool Update(AppUser appUser)
+        public AppUser GetUserByemail(string email)
         {
             try
             {
-                string query = "update AppUsers set Username = @Username, Email = @Email, UserPhone = @UserPhone, MainPage = @MainPage, UserDescription = @UserDescription, Password = @Password where Id = @Id";
-                int temp = connect.Execute(query, new
+                string query = "select * from AppUsers where Email like N'" + email + "'";
+                AppUser appUser = connect.Query<AppUser>(query).FirstOrDefault();
+                return appUser;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
+
+        public void Update(AppUser appUser)
+        {
+            try
+            {
+                string query = "update AppUsers set Username = @Username, Password = @Password, Email = @Email,"
+                    + " DateCreated = @DateCreated, LastActivityDate = @LastActivityDate, SecurityStamp = @SecurityStamp, "
+                    + " FullName = @FullName, Birthday = @Birthday, Sex = @Sex, "
+                    + " ImageUrl = @ImageUrl, Description = @Description, Modified = @Modified, "
+                    + " IsActive = @IsActive, Address = @Address "
+                    + " where Id = @Id";
+                connect.Execute(query, new
                 {
                     appUser.Username,
-                    appUser.Email,
                     appUser.Password,
+                    appUser.Email,
+                    appUser.DateCreated,
+                    appUser.LastActivityDate,
+                    appUser.SecurityStamp,
+                    appUser.FullName,
+                    appUser.Birthday,
+                    appUser.Sex,
+                    appUser.ImageUrl,
+                    appUser.Description,
+                    appUser.Modified,
+                    appUser.IsActive,
+                    appUser.Address,
                     appUser.Id
                 });
-                if (temp > 0)
-                {
-                    return true;
-                }
             }
             catch (Exception ex)
             {
                 LogService.WriteException(ex);
             }
-            return false;
         }
         public int Insert(AppUser appUser)
         {
             try
             {
-                string query = "insert into Lession(" +
-                        " Name,Description,Created,Modified,Alias,Status,ImageUrl,TeacherID,RateAverage,SubjectID,DownloadCount)" +
-                        " values (@Name,@Description,@Created,@Modified,@Alias,@Status,@ImageUrl,@TeacherID,@RateAverage,@SubjectID,@DownloadCount)" +
-                        " SELECT @@IDENTITY";
-                int id = connect.Query<int>(query, new
+                string query = "insert into AppUsers("
+                        + " Username,Password,Email,DateCreated,LastActivityDate,SecurityStamp,FullName,"
+                        + " Birthday,Sex,ImageUrl,Description,Modified,IsActive,Address)"
+                        + " values (@Username,@Password,@Email,@DateCreated,@LastActivityDate,@SecurityStamp,@FullName,"
+                        + " @Birthday,@Sex,@ImageUrl,@Description,@Modified,@IsActive,@Address)"
+                        + " SELECT @@IDENTITY";
+                return connect.Query<int>(query, new
                 {
                     appUser.Username,
-                    appUser.Email,
                     appUser.Password,
-                    appUser.Id
+                    appUser.Email,
+                    appUser.DateCreated,
+                    appUser.LastActivityDate,
+                    appUser.SecurityStamp,
+                    appUser.FullName,
+                    appUser.Birthday,
+                    appUser.Sex,
+                    appUser.ImageUrl,
+                    appUser.Description,
+                    appUser.Modified,
+                    appUser.IsActive,
+                    appUser.Address
                 }).Single();
-                return id;
             }
             catch (Exception ex)
             {
@@ -154,11 +191,23 @@ namespace Education.Areas.Admin.Services
             }
         }
 
-        public static string GetRolesOfUser(AppUser user)
+        public string GetRolesOfUser(AppUser user)
         {
-            String[] roleUsers = Roles.GetRolesForUser(user.Username);
-            string roles = Utilz.Util.Conver2String(roleUsers, ',');
-            return roles;
+            try
+            {
+                if (user != null && !string.IsNullOrEmpty(user.Username))
+                {
+                    String[] roleUsers = Roles.GetRolesForUser(user.Username);
+                    string roles = Utilz.Util.Conver2String(roleUsers, ',');
+                    return roles;
+                }
+                return "";
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return "";
+            }
         }
 
     }

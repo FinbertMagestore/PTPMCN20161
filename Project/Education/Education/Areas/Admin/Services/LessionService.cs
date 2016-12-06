@@ -26,6 +26,20 @@ namespace Education.Areas.Admin.Services
                 return null;
             }
         }
+        public List<Lession> GetAllActive()
+        {
+            try
+            {
+                string query = string.Format("select * from Lession where Status = {0} order by Created desc", (int)Config.Status.Active);
+                List<Lession> lessions = connect.Query<Lession>(query).ToList<Lession>();
+                return lessions;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
 
         public List<Lession> GetByWhere(string where)
         {
@@ -56,6 +70,21 @@ namespace Education.Areas.Admin.Services
                 string query = "select * from Lession where ID = " + id;
                 Lession lession = connect.Query<Lession>(query).FirstOrDefault<Lession>();
                 return lession;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
+
+        public List<Lession> GetByTeacherID(int teacherID)
+        {
+            try
+            {
+                string query = "select * from Lession where TeacherID = " + teacherID;
+                List<Lession> lessions = connect.Query<Lession>(query).ToList();
+                return lessions;
             }
             catch (Exception ex)
             {

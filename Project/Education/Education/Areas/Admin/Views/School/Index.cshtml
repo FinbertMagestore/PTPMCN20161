@@ -1,4 +1,4 @@
-﻿@model Education.Areas.Admin.ModelsView.PostModel
+﻿@model Education.Areas.Admin.ModelsView.SchoolModel
 @{
     Func<bool, string> getState = state => state ? "Hiển thị" : "Ẩn";
 }
@@ -14,9 +14,9 @@
         <table cellspacing="0">
             <tbody>
                 <tr>
-                    <td style="width:50%;"><h3 class="icon-head head-cms-page">Quản trị danh mục bài viết </h3></td>
+                    <td style="width:50%;"><h3 class="icon-head head-cms-page">Danh sách học sinh </h3></td>
                     <td class="form-buttons">
-                        <button class="scalable Add" name="submit" onclick="setLocation('/Admin/Post/Create')" type="button" value="Add">
+                        <button class="scalable Add" name="submit" onclick="setLocation('/Admin/School/Create')" type="button" value="Add">
                             <span>Thêm mới</span>
                         </button>
                     </td>
@@ -24,44 +24,36 @@
             </tbody>
         </table>
     </div>
-    <div class="box_search" style="width: 100%;">
+    <div class="box_search" style="width: 100%; display: none;">
         <table cellspacing="10" cellpadding="0">
             <tbody>
                 <tr>
                     <td>Từ khóa</td>
                     <td>@Html.TextBox("Keyword", "", new { @class = "input-text", style = "float:left;height:19px;width:200px;" })</td>
-                    <td>Chuyên mục</td>
-                    <td>
-                        @{
-                            object htmlAttributeSub = new { @class = "input-text", style = "height: 25px" };
-                            bool disableSub = false;
-                            @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "Id", "Name", !disableSub ? Model.CategoryID : 0) , htmlAttributeSub)
-                        }
-                    </td>
                     <td>Trạng thái:</td>
-                    <td>@Html.DropDownList("Status", Model.ListStatus, "--Trạng thái--", new { style = "height: 25px" })</td>
+                    <td>@Html.DropDownList("Status", Model.ListStatus, "--Trạng thái--", new { style = "height: 23px" })</td>
                     <td><input type="submit" name="submit" value="Tìm kiếm" class="form-button" /></td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div id="PageList" class="t-widget t-grid">
-        @if (Model.Posts != null && Model.Posts.Count > 0)
+        @if (Model.Schools != null && Model.Schools.Count > 0)
         {
             <table id="category" cellspacing="0">
                 <thead class="t-grid-header">
                     <tr>
                         <th scope="col" class="t-header">
-                            <span class="t-link">Tiêu đề</span>
+                            <span class="t-link">Tên trường</span>
                         </th>
                         <th scope="col" class="t-header">
-                            <span class="t-link">Chuyên mục</span>
+                            <span class="t-link">Loại trường</span>
                         </th>
                         <th scope="col" class="t-header">
-                            <span class="t-link">Đường dẫn</span>
+                            <span class="t-link">Địa chỉ</span>
                         </th>
                         <th scope="col" class="t-header">
-                            <span class="t-link">Trạng thái</span>
+                            <span class="t-link">Cấp học</span>
                         </th>
                         <th scope="col" class="t-header">
                             <span class="t-link">Thao tác</span>
@@ -69,29 +61,27 @@
                     </tr>
                 </thead>
                 <tbody class="ui-sortable">
-                    @foreach (var item in Model.Posts)
+                    @foreach (var item in Model.Schools)
                     {
                         if (item != null && item.ID > 0)
                         {
                             <tr displaystate="collapsed">
                                 <td style="vertical-align: middle;">
-                                    <a href="@Url.Action("Edit", "Post", new { id = item.ID })">@item.Name</a>
+                                    <span>@item.Name</span>
                                 </td>
                                 <td>
-                                    @if (item.Category != null)
-                                    {
-                                        <span>@item.Category.Name</span>
-                                    }
+                                    <span>@item.SchoolType.Name</span>
                                 </td>
                                 <td>
-                                    <span>@item.Alias</span>
+                                    <span>@item.Address</span>
                                 </td>
                                 <td>
-                                    <span id="id_@(item.ID)">@getState(item.Status)</span>
+                                    <span>@item.LevelEducation.Name</span>
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) 
+                                    @*<span> | </span>
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
                                 </td>
                             </tr>
                         }
@@ -101,7 +91,7 @@
         }
         else
         {
-            <h2>Không có bài viết nào</h2>
+            <h2>Không có trường học nào</h2>
         }
     </div>
 }

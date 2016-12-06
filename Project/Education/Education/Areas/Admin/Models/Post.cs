@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
+    using System.Web.Mvc;
 
     [Table("Post")]
     public partial class Post
@@ -25,7 +27,6 @@
         public string Alias { get; set; }
 
         [Display(Name = "Chuyên mục")]
-        [Required(ErrorMessage = "Chuyên mục chưa được chọn")]
         public int CategoryID { get; set; }
 
         [Display(Name = "Ngày tạo")]
@@ -37,7 +38,12 @@
         [Display(Name = "Trạng thái")]
         public bool Status { get; set; }
 
+        [Display(Name = "Nội dung")]
+        [AllowHtml]
+        public string Content { get; set; }
+
         [Display(Name = "Mô tả")]
+        [AllowHtml]
         public string Description { get; set; }
 
         [Display(Name = "Ảnh đại diện")]
@@ -53,6 +59,8 @@
         public virtual List<CommentPost> CommentPosts { get; set; }
 
         public virtual List<LikePost> LikePosts { get; set; }
+
+        public HttpPostedFileBase datafile { get; set; }
 
         //Add
         public List<Category> Categories { get; set; }

@@ -13,7 +13,7 @@ namespace Education.Areas.Admin.Services
     /// <summary>
     /// Class demo use Dapper
     /// </summary>
-    public class ProductService
+    class ProductService
     {
         private IDbConnection connect = new SqlConnection(Config.ConnectString);
 

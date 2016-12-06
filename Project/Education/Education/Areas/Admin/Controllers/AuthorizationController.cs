@@ -114,13 +114,13 @@ namespace Education.Areas.Admin.Controllers
                             else
                             {
                                 ViewBag.Fail = "Tài khoản hoặc mật khẩu không đúng.";
-                                ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng.");
+                                //ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng.");
                             }
                         }
                         else
                         {
                             ViewBag.Fail = "Tài khoản hoặc mật khẩu không tồn tại.";
-                            ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không tồn tại.");
+                            //ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không tồn tại.");
                         }
                     }
                 }

@@ -125,11 +125,19 @@ namespace Education.Areas.Admin.Services
             }
         }
 
-        public string GetReportType(int id)
+        public ReportType GetReportType(int reportTypeID)
         {
-            Report report = GetByPrimaryKey(id);
-            string query = "select Name from ReportType where ID = " +report.ReportTypeID;
-            return connect.Query<string>(query).Single();
+            try
+            {
+                Report report = GetByPrimaryKey(reportTypeID);
+                string query = "select * from ReportType where ID = " + report.ReportTypeID;
+                return connect.Query<ReportType>(query).Single();
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
         }
     }
 }

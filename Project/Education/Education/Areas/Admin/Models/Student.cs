@@ -10,6 +10,7 @@
         {
             this.AppUser = new AppUser();
             this.ClassInfo = new ClassInfo();
+            this.School = new School();
         }
 
         public int ID { get; set; }
@@ -17,10 +18,18 @@
         public int UserID { get; set; }
 
         [Display(Name = "Lớp hiện tại")]
-        public int CurrentClass { get; set; }
+        public int ClassInfoID { get; set; }
 
         [Display(Name = "Tên lớp")]
         public string ClassName { get; set; }
+
+        [Display(Name = "Tên trường học")]
+        public string SchoolName { get; set; }
+
+        [Display(Name = "Tên trường học")]
+        public int? SchoolID { get; set; }
+
+        public School School { get; set; }
 
         public virtual AppUser AppUser { get; set; }
 
