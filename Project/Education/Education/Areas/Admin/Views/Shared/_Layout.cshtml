@@ -1,24 +1,29 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-    <title>Admin</title>
-    <link rel="shortcut icon" href="" type="image/x-icon" />
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="/Assets/Client/Images/General/logo-notext.jpg" type="image/x-icon" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
     <link href="~/Assets/Admin/Css/reset.css?v=1.0" media="all" rel="stylesheet" type="text/css" />
-    <link href="~/Assets/Admin/Css/boxes.css?v=1.0" media="all" rel="stylesheet" type="text/css" />    
+    <link href="~/Assets/Admin/Css/boxes.css?v=1.0" media="all" rel="stylesheet" type="text/css" />
     <link href="~/Assets/Admin/Css/custom.css?v=1.0" media="all" rel="stylesheet" type="text/css" />
     <link href="~/Assets/Admin/Css/print.css?v=1.0" media="print" rel="stylesheet" type="text/css" />
     <link href="~/Assets/Admin/Css/menu.css?v=1.0" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/Admin/Css/asset.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Assets/Admin/Js/default.min.js"></script>
 </head>
 <body>
     <div id="container">
+        <script src="~/Scripts/respond.js"></script>
         <div class="header">
             <div class="header-top">
                 <h1 style="float:left;padding-left:20px;"><a href="/admin" style="text-decoration:none;">Quản trị hệ thống</a></h1>
@@ -38,17 +43,25 @@
                     <li id="nav-li-dashboard" class="level0 nav-li active">
                         <a href="/Admin/Dashboard"><span>Trang chủ</span></a>
                     </li>
+                    <li id="nav-li-education" class="level0 nav-li" onmouseout="$(this).removeClass('over')" onmouseover="$(this).addClass('over')">
+                        <a href="#" onclick="return false;"><span>Giáo dục</span></a>
+                        <ul>
+                            <li class="level1"><a href="/Admin/Teacher"><span>Danh sách giáo viên</span></a></li>
+                            <li class="level1"><a href="/Admin/Student"><span>Danh sách học sinh</span></a></li>
+                            <li class="level1"><a href="/Admin/School"><span>Danh sách trường học</span></a></li>
+                        </ul>
+                    </li>
                     <li id="nav-li-category" class="level0 nav-li" onmouseout="$(this).removeClass('over')" onmouseover="$(this).addClass('over')">
                         <a href="#" onclick="return false;"><span>Chuyên mục</span></a>
                         <ul>
-                            <li class="level1"><a href="/Admin/Category"><span>Danh sách danh mục</span></a></li>
+                            <li class="level1"><a href="/Admin/Category"><span>Danh sách chuyên mục</span></a></li>
                             <li class="level1"><a href="/Admin/Post"><span>Danh sách bài viết</span></a></li>
                         </ul>
                     </li>
                     <li id="nav-li-lession" class="level0 nav-li" onmouseout="$(this).removeClass('over')" onmouseover="$(this).addClass('over')">
                         <a href="#" onclick="return false;"><span>Bài giảng</span></a>
                         <ul>
-                            <li class="level1"><a href="/Admin/Lessions"><span>Danh sách bài giảng</span></a></li>
+                            <li class="level1"><a href="/Admin/Lession"><span>Danh sách bài giảng</span></a></li>
                         </ul>
                     </li>
                     <li id="nav-li-system" class="level0 nav-li" onmouseout="$(this).removeClass('over')" onmouseover="$(this).addClass('over')">
@@ -58,13 +71,13 @@
                                 <a href="/Admin/Report"><span>Danh sách báo cáo</span></a>
                             </li>
                             <li class="level1">
-                                <a href="/Admin/Feedbacks" target="_blank"><span>Danh sách phản hồi</span></a>
+                                <a href="/Admin/Feedback"><span>Danh sách phản hồi</span></a>
                             </li>
                             <li class="parent level1" onmouseout="$(this).removeClass('over')" onmouseover="$(this).addClass('over')">
                                 <a href="javascript: void(0)"><span>Phân quyền</span></a>
                                 <ul>
                                     <li class="level2"><a href="/Admin/Account"><span>Tài khoản hệ thống</span></a></li>
-                                    <li class="level2"><a href="/Admin/Account/Role"><span>Vai trò</span></a></li>
+                                    <li class="level2"><a href="/Admin/Role"><span>Vai trò</span></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -72,14 +85,55 @@
                 </ul>
             </div>
         </div>
-        <div id="wrapper">
-            @RenderBody()
+        <div id="anchor-content" class="middle">
+            <div id="page:main-container">
+                <div id="messages">
+                    <ul class="messages"></ul>
+                </div>
+                <div>
+                    @RenderBody()
+                </div>
+            </div>
         </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var currentMenu = '@ViewBag.CurrentMenu';
+                $(".nav-li").removeClass("active");
+                $("#nav-li-" + currentMenu).addClass("active");
+            });
+        </script>
         <div class="footer">
             <br />Education
             <br />&copy; PTPMCN-20161.
         </div>
+        <div id="ajaxLoading" style="display:none">
+            <img src="/Assets/Admin/Images/loading.gif" alt="loading" /> Đang tải dữ liệu...
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#ajaxLoading')
+                    .hide()
+                    .ajaxStart(function () {
+                        $(this).show();
+                    })
+                    .ajaxStop(function () {
+                        $(this).hide();
+                    })
+                ;
+            });
+        </script>
+        <style type="text/css">
+            #ajaxLoading {
+                position: fixed;
+                top: 0;
+                right: 0;
+                padding: 5px;
+                font-size: 12px;
+                background-color: #CCCCCC;
+                color: yellow;
+                z-index: 10000;
+            }
+        </style>
     </div>
-    <script src="js/owl.carousel.js"></script>
 </body>
 </html>

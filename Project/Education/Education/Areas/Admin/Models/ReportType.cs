@@ -1,34 +1,31 @@
-namespace Education.Areas.Admin
+﻿namespace Education.Areas.Admin.Model
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("ReportType")]
     public partial class ReportType
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ReportType()
         {
-            Reports = new HashSet<Report>();
+            Reports = new List<Report>();
         }
 
         public int ID { get; set; }
 
-        [StringLength(50)]
+        [Display(Name = "Mã")]
         public string Code { get; set; }
 
-        [StringLength(50)]
+        [Display(Name = "Tên loại báo cáo")]
         public string Name { get; set; }
 
-        [StringLength(200)]
+        [Display(Name = "Mô tả")]
         public string Description { get; set; }
 
-        public bool? Status { get; set; }
+        [Display(Name = "Trạng thái")]
+        public bool Status { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Report> Reports { get; set; }
+        public virtual List<Report> Reports { get; set; }
     }
 }

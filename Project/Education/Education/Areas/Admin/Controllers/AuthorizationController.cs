@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
-using Education.Areas.Admin.Models;
+using Education.Areas.Admin.Model;
 using Education.Areas.Admin.Services;
 using System;
 using System.Collections.Generic;
@@ -12,9 +12,9 @@ using System.Web.Security;
 
 namespace Education.Areas.Admin.Controllers
 {
-    public class AuthorizationController : Controller
+    public class AuthorizationController : AdminBaseController
     {
-        private IDbConnection connect = new SqlConnection(Common.ConnectString);
+        private IDbConnection connect = new SqlConnection(Config.ConnectString);
         [AllowAnonymous]
         public ActionResult Login(string ReturnUrl)
         {
@@ -83,12 +83,10 @@ namespace Education.Areas.Admin.Controllers
                                 if (cookie == null)
                                 {
                                     cookie = new HttpCookie("_role");
-                                    cookie.Values["_roleUser"] = roles;
                                 }
-                                else
-                                {
-                                    cookie.Values["_roleUser"] = roles;
-                                }
+                                cookie.Values.Add("_roleUser", roles);
+                                cookie.Expires = DateTime.Now.AddMinutes(960);
+                                Response.Cookies.Add(cookie);
                                 FormsAuthentication.SetAuthCookie(userName, model.RememberMe);
                                 if (Roles.IsUserInRole(userName, "Admin"))
                                 {
@@ -116,13 +114,13 @@ namespace Education.Areas.Admin.Controllers
                             else
                             {
                                 ViewBag.Fail = "Tài khoản hoặc mật khẩu không đúng.";
-                                ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng.");
+                                //ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng.");
                             }
                         }
                         else
                         {
                             ViewBag.Fail = "Tài khoản hoặc mật khẩu không tồn tại.";
-                            ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không tồn tại.");
+                            //ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không tồn tại.");
                         }
                     }
                 }

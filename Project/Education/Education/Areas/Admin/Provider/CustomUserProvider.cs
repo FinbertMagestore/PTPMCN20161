@@ -1,23 +1,20 @@
-﻿using Education.Areas.Admin.Models;
+﻿using Dapper;
+using Education.Areas.Admin.Model;
+using Education.Areas.Admin.Services;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 using System.Web.Security;
-
-using Dapper;
-using Education.Areas.Admin.Services;
 
 namespace Education.Areas.Admin.Provider
 {
     public class CustomUserProvider : MembershipProvider
     {
-        private IDbConnection connect = new SqlConnection(Common.ConnectString);
+        private IDbConnection connect = new SqlConnection(Config.ConnectString);
         public override string ApplicationName
         {
             get

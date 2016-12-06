@@ -1,53 +1,69 @@
-namespace Education.Areas.Admin
+﻿namespace Education.Areas.Admin.Model
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+    using System.Web;
+    using System.Web.Mvc;
 
     [Table("Post")]
     public partial class Post
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Post()
         {
-            CommentPosts = new HashSet<CommentPost>();
-            LikePosts = new HashSet<LikePost>();
+            CommentPosts = new List<CommentPost>();
+            LikePosts = new List<LikePost>();
         }
 
         public int ID { get; set; }
 
-        [StringLength(100)]
-        public string Title { get; set; }
+        [Display(Name = "Tiêu đề")]
+        [Required(ErrorMessage = "Tiêu đề không được để trống")]
+        public string Name { get; set; }
 
-        [StringLength(50)]
+        [Display(Name = "Đường dẫn")]
+        [Required(ErrorMessage = "Alias không được để trống")]
         public string Alias { get; set; }
 
-        public int? CategoryID { get; set; }
+        [Display(Name = "Chuyên mục")]
+        public int CategoryID { get; set; }
 
-        public DateTime? Created { get; set; }
+        [Display(Name = "Ngày tạo")]
+        public DateTime Created { get; set; }
 
-        public DateTime? Modified { get; set; }
+        [Display(Name = "Ngày thay đổi")]
+        public DateTime Modified { get; set; }
 
-        public bool? Status { get; set; }
+        [Display(Name = "Trạng thái")]
+        public bool Status { get; set; }
 
-        [StringLength(200)]
+        [Display(Name = "Nội dung")]
+        [AllowHtml]
+        public string Content { get; set; }
+
+        [Display(Name = "Mô tả")]
+        [AllowHtml]
         public string Description { get; set; }
 
-        [StringLength(100)]
+        [Display(Name = "Ảnh đại diện")]
         public string ImageUrl { get; set; }
 
-        public int? UserID { get; set; }
+        [Display(Name = "Người đăng")]
+        public int UserID { get; set; }
 
         public virtual AppUser AppUser { get; set; }
 
         public virtual Category Category { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CommentPost> CommentPosts { get; set; }
+        public virtual List<CommentPost> CommentPosts { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LikePost> LikePosts { get; set; }
+        public virtual List<LikePost> LikePosts { get; set; }
+
+        public HttpPostedFileBase datafile { get; set; }
+
+        //Add
+        public List<Category> Categories { get; set; }
+
     }
 }

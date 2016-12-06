@@ -1,32 +1,40 @@
-namespace Education.Areas.Admin
+﻿namespace Education.Areas.Admin.Model
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Teacher")]
     public partial class Teacher
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Teacher()
         {
-            Lessions = new HashSet<Lession>();
+            this.Lessions = new List<Lession>();
+            this.AppUser = new AppUser();
+            this.Subject = new Subject();
+            this.School = new School();
         }
 
         public int ID { get; set; }
 
-        public int? UserID { get; set; }
+        public int UserID { get; set; }
 
-        public int? ExperienceYear { get; set; }
+        [Display(Name = "Số năm kinh nghiệm")]
+        public int ExperienceYear { get; set; }
 
-        public int? MainSubjectID { get; set; }
+        [Display(Name = "Môn dạy chính")]
+        public int MainSubjectID { get; set; }
+
+        [Display(Name = "Tên trường học")]
+        public string SchoolName { get; set; }
+
+        [Display(Name = "Tên trường học")]
+        public int? SchoolID { get; set; }
+        public School School { get; set; }
 
         public virtual AppUser AppUser { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Lession> Lessions { get; set; }
+        public virtual List<Lession> Lessions { get; set; }
 
         public virtual Subject Subject { get; set; }
     }

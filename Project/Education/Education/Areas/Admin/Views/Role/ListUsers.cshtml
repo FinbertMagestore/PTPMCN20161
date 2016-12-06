@@ -1,0 +1,52 @@
+﻿@model List<Education.Areas.Admin.Model.AppUser>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    <div class="content-header">
+        <table cellspacing="0">
+            <tbody>
+                <tr>
+                    <td style="width:50%;"><h3 class="icon-head head-cms-page">Danh sách tài khoản có quyền <b>@ViewBag.RoleName</b> </h3></td>
+                    <td class="form-buttons">
+                        <button class="scalable Back" name="submit" onclick="setLocation('/Admin/Role')" type="button" value="Add">
+                            <span>Quay lại</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="PageList" class="t-widget t-grid">
+        <table id="category" cellspacing="0">
+            <thead class="t-grid-header">
+                <tr>
+                    <th scope="col" class="t-header">
+                        <span class="t-link">Tài khoản</span>
+                    </th>
+                    <th scope="col" class="t-header">
+                        <span class="t-link">Email</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="ui-sortable">
+                @foreach (var item in Model)
+                {
+                    <tr displaystate="collapsed">
+                        <td style="vertical-align: middle;">
+                            <a href="@Url.Action("Edit", "Account", new { id = item.Id })">@item.Username</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

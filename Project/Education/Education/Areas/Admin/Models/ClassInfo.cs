@@ -1,32 +1,30 @@
-namespace Education.Areas.Admin
+﻿namespace Education.Areas.Admin.Model
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("ClassInfo")]
     public partial class ClassInfo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ClassInfo()
         {
-            SubjectClasses = new HashSet<SubjectClass>();
+            SubjectClasses = new List<SubjectClass>();
         }
 
         public int ID { get; set; }
 
-        [StringLength(50)]
+        [Display(Name = "Tên lớp")]
         public string ClassName { get; set; }
 
-        public int? LevelID { get; set; }
+        [Display(Name = "Cấp học")]
+        public int LevelID { get; set; }
 
-        public bool? Status { get; set; }
+        [Display(Name = "Trạng thái")]
+        public bool Status { get; set; }
 
         public virtual LevelEducation LevelEducation { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubjectClass> SubjectClasses { get; set; }
+        public virtual List<SubjectClass> SubjectClasses { get; set; }
     }
 }

@@ -1,52 +1,57 @@
-namespace Education.Areas.Admin
+﻿namespace Education.Areas.Admin.Model
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("FileUpload")]
     public partial class FileUpload
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FileUpload()
         {
-            FileUpload1 = new HashSet<FileUpload>();
+            FileUploads = new List<FileUpload>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
-        [StringLength(50)]
+        [Display(Name = "Tên file")]
         public string FileName { get; set; }
 
-        [StringLength(10)]
+        [Display(Name = "Đuôi file")]
         public string FileExtension { get; set; }
 
-        public DateTime? Created { get; set; }
+        [Display(Name = "Ngày tạo")]
+        public DateTime Created { get; set; }
 
-        public DateTime? Modified { get; set; }
+        [Display(Name = "Ngày thay đổi")]
+        public DateTime Modified { get; set; }
 
-        public bool? Status { get; set; }
+        [Display(Name = "")]
+        public bool Status { get; set; }
 
-        [StringLength(200)]
+        [Display(Name = "Trạng thái")]
         public string FileUrl { get; set; }
 
-        public int? FileSize { get; set; }
+        [Display(Name = "Kích thước")]
+        public int FileSize { get; set; }
 
-        public int? DownloadCount { get; set; }
+        [Display(Name = "Số lượng download")]
+        public int DownloadCount { get; set; }
 
-        public bool? IsDownload { get; set; }
+        [Display(Name = "Được download")]
+        public bool IsDownload { get; set; }
 
-        public int? OldVersion { get; set; }
+        [Display(Name = "Phiên bản cũ")]
+        public int OldVersionID { get; set; }
 
-        public int? LessionID { get; set; }
+        [Display(Name = "Bài giảng")]
+        public int LessionID { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FileUpload> FileUpload1 { get; set; }
+        public virtual List<FileUpload> FileUploads { get; set; }
 
-        public virtual FileUpload FileUpload2 { get; set; }
+        public virtual FileUpload OldVersion { get; set; }
 
         public virtual Lession Lession { get; set; }
     }

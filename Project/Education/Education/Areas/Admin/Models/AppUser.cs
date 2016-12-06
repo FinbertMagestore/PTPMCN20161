@@ -1,74 +1,91 @@
-﻿namespace Education.Areas.Admin
+﻿namespace Education.Areas.Admin.Model
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     public partial class AppUser
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AppUser()
         {
-            AspNetUserClaims = new HashSet<AspNetUserClaim>();
-            CommentLessions = new HashSet<CommentLession>();
-            CommentPosts = new HashSet<CommentPost>();
-            LikePosts = new HashSet<LikePost>();
-            Posts = new HashSet<Post>();
-            RateLessions = new HashSet<RateLession>();
-            Reports = new HashSet<Report>();
-            Students = new HashSet<Student>();
-            Teachers = new HashSet<Teacher>();
+            AspNetUserClaims = new List<AspNetUserClaim>();
+            CommentLessions = new List<CommentLession>();
+            CommentPosts = new List<CommentPost>();
+            LikePosts = new List<LikePost>();
+            Posts = new List<Post>();
+            RateLessions = new List<RateLession>();
+            Reports = new List<Report>();
+            Students = new List<Student>();
+            Teachers = new List<Teacher>();
+            Roles = new List<AspNetRole>();
         }
 
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage = "Username không được để trống")]
         public string Username { get; set; }
 
-        [Required]
-        [StringLength(200)]
+        [Display(Name = "Mật khẩu")]
+        //[Required(ErrorMessage = "Mật khẩu không được để trống")]
         public string Password { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage = "Địa chỉ Email không được để trống")]
+        [EmailAddress(ErrorMessage = "Địa chỉ email không đúng")]
         public string Email { get; set; }
+
+        [Display(Name = "Họ tên")]
+        public string FullName { get; set; }
+        [Display(Name = "Ngày sinh")]
+        public DateTime? Birthday { get; set; }
+        [Display(Name = "Giới tính")]
+        public bool? Sex { get; set; }
+        [Display(Name = "Ảnh đại diện")]
+        public string ImageUrl { get; set; }
+        [Display(Name = "Mô tả")]
+        public string Description { get; set; }
+        public DateTime Modified { get; set; }
+        [Display(Name = "Trạng thái")]
+        public bool IsActive { get; set; }
+        [Display(Name = "Địa chỉ")]
+        public string Address { get; set; }
 
         public DateTime DateCreated { get; set; }
 
         public DateTime? LastActivityDate { get; set; }
 
-        [Required]
-        [StringLength(50)]
         public string SecurityStamp { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual List<AspNetUserClaim> AspNetUserClaims { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CommentLession> CommentLessions { get; set; }
+        public virtual List<CommentLession> CommentLessions { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CommentPost> CommentPosts { get; set; }
+        public virtual List<CommentPost> CommentPosts { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LikePost> LikePosts { get; set; }
+        public virtual List<LikePost> LikePosts { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Post> Posts { get; set; }
+        public virtual List<Post> Posts { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RateLession> RateLessions { get; set; }
+        public virtual List<RateLession> RateLessions { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Report> Reports { get; set; }
+        public virtual List<Report> Reports { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Student> Students { get; set; }
+        public virtual List<Student> Students { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Teacher> Teachers { get; set; }
+        public virtual List<Teacher> Teachers { get; set; }
+
+        [Display(Name = "Vai trò")]
+        [Required(ErrorMessage = "Vai trò chưa được chọn")]
+        public int RoleID { get; set; }
+        public string Role { get; set; }
+        public List<AspNetRole> Roles { get; set; }
+
+        //Add
+        [DataType(DataType.Password)]
+        [Display(Name = "Xác nhận mật khẩu")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Mật khẩu và xác nhận mật khẩu không trùng khớp.")]
+        public string ValidatePassword { get; set; }
+
+        public bool CanDelete { get; set; }
     }
 }

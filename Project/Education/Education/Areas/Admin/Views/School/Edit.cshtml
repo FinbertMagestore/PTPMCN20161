@@ -1,0 +1,97 @@
+﻿@model Education.Areas.Admin.Model.School
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    <div class="content-header">
+        <table cellspacing="0">
+            <tbody>
+                <tr>
+                    <td style="width:50%;"><h3 class="icon-head head-cms-page">Sửa thông tin trường học</h3></td>
+                    <td class="form-buttons">
+                        <button class="scalable Back" name="submit" onclick="setLocation('/Admin/School')" type="button" value="Back"><span>Quay lại</span></button>
+                        <button class="scalable Reset" name="submit" type="reset" value="Reset"><span>Reset</span></button>
+                        <button class="scalable Save" name="submit" type="submit" value="Save"><span>Lưu trang</span></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="entry-edit">
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.TownID)
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><a href="#">Sửa thông tin trường học</a></h4>
+            <div class="form-buttons"></div>
+        </div>
+        <div class="fieldset " id="user_base_fieldset">
+            <div class="hor-scroll">
+                <table cellspacing="0" class="form-list">
+                    <tbody>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Name)
+
+                            </td>
+                            <td class="value">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "input-text" })
+                                <br />@Html.ValidationMessageFor(model => model.Name)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Address)
+
+                            </td>
+                            <td class="value">
+                                @Html.TextBoxFor(model => model.Address, new { @class = "input-text" })
+                                <br />@Html.ValidationMessageFor(model => model.Address)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.LevelID)
+
+                            </td>
+                            <td class="value">
+                                @{
+                                    object htmlAttributeSub = new { @class = "input-text" };
+                                    bool disableSub = false;
+                                    @Html.DropDownListFor(model => model.LevelID, new SelectList(Model.LevelEducations, "ID", "Name", !disableSub ? Model.LevelID : 0), "-- Chọn cấp học --", htmlAttributeSub)
+                                    <br />@Html.ValidationMessageFor(model => model.LevelID)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.Status)
+
+                            </td>
+                            <td class="value">
+                                @Html.CheckBoxFor(model => model.Status)
+                                <br />@Html.ValidationMessageFor(model => model.Status)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                @Html.LabelFor(model => model.SchoolTypeID)
+
+                            </td>
+                            <td class="value">
+                                @{
+                                    @Html.DropDownListFor(model => model.SchoolTypeID, new SelectList(Model.SchoolTypes, "ID", "Name", !disableSub ? Model.SchoolTypeID : 0), "-- Chọn loại trường --", htmlAttributeSub)
+                                    <br />@Html.ValidationMessageFor(model => model.SchoolTypeID)
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+                                    }

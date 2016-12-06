@@ -1,4 +1,4 @@
-﻿@model Education.Areas.Admin.Models.LogOnModel
+﻿@model Education.Areas.Admin.Model.LogOnModel
 @{
     Layout = null;
 }
@@ -9,7 +9,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@Common.StoreName Đăng nhập</title>
+    <link rel="shortcut icon" href="/Assets/Client/Images/General/logo-notext.jpg" type="image/x-icon" />
+    <title>@ViewBag.Title</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/veneto-admin.min.css" rel="stylesheet" />
@@ -28,11 +29,12 @@
     <div class="container">
         <div class="panel panel-default form-container">
             <div class="panel-body">
-                @using Education.Areas.Admin.Models;
+                @using Education.Areas.Admin.Model;
                 @using (Html.BeginForm(System.Web.Mvc.FormMethod.Post))
                 {
                     <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
-                    @Html.AntiForgeryToken();
+                    @Html.ValidationSummary(true)
+                    @Html.AntiForgeryToken()
                     <div class="form-group text-center">
                         <img src="~/Assets/Client/Images/General/logo-notext.jpg" />
                     </div>
