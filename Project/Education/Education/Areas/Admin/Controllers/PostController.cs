@@ -166,7 +166,7 @@ namespace Education.Areas.Admin.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Edit(Post post, HttpPostedFileBase datafile)
+        public int Edit(Post post, HttpPostedFileBase datafile)
         {
             ViewData["CurrentMenu"] = "category";
             post.Categories = categoryService.GetAll();
@@ -212,9 +212,9 @@ namespace Education.Areas.Admin.Controllers
                     }
                 }
                 postService.Update(post);
-                return RedirectToAction("Index");
+                return 1;
             }
-            return View(post);
+            return 0;
         }
 
         // GET: Admin/Post/Delete/1
