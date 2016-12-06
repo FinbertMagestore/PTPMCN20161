@@ -1,8 +1,169 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-    //Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Giáo viên tạo bài viết thì sửa bài viết ở đây</h2>
 
+<h1>Sửa bài giảng</h1>
+<div class="container">
+    <div class="row">
+        @using (Html.BeginForm("Create", "Lession", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <h4>Nhập thông tin bài giảng</h4>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label class="control-label">Đổi môn học: </label>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-control">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="control-label">Đổi lớp học: </label>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-control">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label class="control-label">Tiêu đề bài giảng: </label>
+                </div>
+                <div class="col-md-10">
+                    <textarea class="form-control" rows="3" placeholder="Nhập tiêu đề bài giảng"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label class="control-label">Mô tả bài giảng: </label>
+                </div>
+                <div class="col-md-10">
+                    <textarea class="form-control" rows="6" placeholder="Nhập mô tả bài giảng"></textarea>
+                </div>
+            </div>
+            <h4>Thêm nội dung tải lên:</h4>
+            <hr />
+            <div class="form-group form-choose-file">
+                <!-- add new input file here-->
+            </div>
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-2">
+                    <span class="btn btn-default add-inputfile"><i class="glyphicon glyphicon-plus"></i> Thêm chọn file</span>
+                </div>
+            </div>
+            <h4>Các file đã tải lên:</h4>
+            <hr />
+            <table class="table table-responsive table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <td>Tên file</td>
+                        <td>Mô tả</td>
+                        <td>Hành động</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Toán</td>
+                        <td>Môn toán lớp 1</td>
+                        <td>
+                            <a class="btn btn-default">Tải về</a>
+                            <a class="btn btn-default" data-toggle="modal" data-target="#versionControlModal">Quản lí phiên bản</a>
+                            <a class="btn btn-default">Xóa files</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4>Xác nhận:</h4>
+            <hr />
+            <div class="col-md-4 col-md-offset-5">
+                <button class="btn btn-info" style="margin-bottom:10px" type="submit">Cập nhật bài giảng</button>
+            </div>
+
+        }
+    </div>
+</div>
+
+
+<!-- Version Control Modal -->
+<div id="versionControlModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Quản lí phiên bản</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-responsive table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <td>Ngày tải lên</td>
+                            <td>Hành động</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>20-12-2018</td>
+                            <td>
+                                <a class="btn btn-default">Xóa phiên bản</a>
+                                <a class="btn btn-default">Kích hoạt phiên bản</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script>
+
+    var inputFile = "";
+    inputFile += '<div class="col-md-10 col-md-offset-2 upload-file">';
+    inputFile += '<div class="input-group">';
+    inputFile += '<input type="text" disabled class="form-control filename">';
+    inputFile += '<div class="input-group-btn">';
+    inputFile += '<div class="btn btn-danger btn-remove-file">';
+    inputFile += '<span class="glyphicon glyphicon-remove"></span>';
+    inputFile += '<span class="input-title">Xóa file này</span></div>';
+    inputFile += '<div class="btn btn-default btn-input">';
+    inputFile += '<span class="glyphicon glyphicon-folder-open"></span>';
+    inputFile += '<span class="input-title"> Chọn một file</span>';
+    inputFile += '<input class="input-content" type="file" accept="image/png, image/jpeg, image/gif" name="input-file" />';
+    inputFile += '</div></div></div></div>';
+
+
+    $('.add-inputfile').click(function () {
+        //alert(inputFile);
+        $('.form-choose-file').append(inputFile);
+    });
+
+    // trigger for future add input file
+    $('.form-choose-file').on('change', 'div.btn-input .input-content', function () {
+        var file = this.files[0];
+        $(this).parent('div').parent('div').siblings('input.filename').val(file.name);
+    });
+
+    // trigger for future add input file
+    $('.form-choose-file').on('click', '.btn-remove-file', function () {
+        $(this).parent('div').parent('div').parent('div').remove();
+    });
+
+</script>

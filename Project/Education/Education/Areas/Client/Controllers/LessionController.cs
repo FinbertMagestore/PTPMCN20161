@@ -14,7 +14,7 @@ namespace Education.Areas.Client.Controllers
         // GET: Client/Lession
         public ActionResult Index()
         {
-            ViewData["CSS"] = "default";
+            ViewData["CSS"] = "lession";
             return View();
         }
 
@@ -22,14 +22,15 @@ namespace Education.Areas.Client.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult Create()
         {
-            ViewData["CSS"] = "default";
+            ViewBag.Title = "Tạo bài giảng";
+            ViewData["CSS"] = "create_lession";
             return View();
         }
 
         // GET: Client/Lession/Detail/1
         public ActionResult Detail(int id)
         {
-            ViewData["CSS"] = "default";
+            ViewData["CSS"] = "detail_lession";
             return View();
         }
 
@@ -37,7 +38,7 @@ namespace Education.Areas.Client.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult Edit(int id)
         {
-            ViewData["CSS"] = "default";
+            ViewData["CSS"] = "create_lession";
             return View();
         }
 

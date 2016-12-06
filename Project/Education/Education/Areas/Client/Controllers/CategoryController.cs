@@ -11,7 +11,7 @@ namespace Education.Areas.Client.Controllers
         // GET: Client/Category
         public ActionResult Index()
         {
-            ViewData["CSS"] = "default";
+            ViewData["CSS"] = "category";
             return View();
         }
 

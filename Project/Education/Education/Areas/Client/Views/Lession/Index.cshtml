@@ -1,8 +1,118 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    //Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <div class="row">
+        <div class="lessions">
+            <!-- Begin list subject -->
+            <div class="col-md-2">
+                <div class="list-subjects">
+                    <div class="row">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h1 class="title">Danh mục môn học</h1>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <a class="subject active"><span class="icon-subject fa fa-amazon"></span>Toán</a>
+                                    <a class="subject"><span class="icon-subject fa fa-amazon"></span>Toán</a>
+                                    <a class="subject"><span class="icon-subject fa fa-amazon"></span>Toán</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End list subject -->
+            <!-- Begin content -->
+            <div class="col-md-10">
+                <div class="create-lession">
+                    <a class="btn btn-default" href="@Url.Action("Create")">Tạo bài giảng</a>
+                </div>
+                <div class="create-lession">
+                    <a class="btn btn-default" href="@Url.Action("Edit",new { id = 1})">Sửa bài giảng</a>
+                </div>
+                <nav class="navbar navbar-default" style="margin:0;padding:0">
+                    <div class="container-fluid">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#lop1">Lớp 1</a></li>
+                            <li><a href="#lop2">Lớp 2</a></li>
+                            <li><a href="#lop3">Lớp 3</a></li>
+                            <li><a href="#">Lớp 4</a></li>
+                            <li><a href="#">Lớp 5</a></li>
+                            <li><a href="#">Lớp 6</a></li>
+                            <li><a href="#">Lớp 7</a></li>
+                            <li><a href="#">Lớp 8</a></li>
+                            <li><a href="#">Lớp 9</a></li>
+                            <li><a href="#">Lớp 10</a></li>
+                            <li><a href="#">Lớp 11</a></li>
+                            <li><a href="#">Lớp 12</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- Begin class with lession -->
+                <div id="list-classes" class="thumbnail">
+                    <div id="content-lession">
+                        <div id="description-subject">
+                            <h2 class="title-subject">Giới thiệu môn học: Toán lớp 1</h2>
+                            <p>
+                                This example is a quick exercise to illustrate how the default,
+                                static navbar and fixed to top navbar work. It includes the
+                                responsive CSS and HTML, so it also adapts to your viewport and device.
+                            </p>
+                        </div>
+                        <div id="list-lessions">
+                            <div class="lession thumbnail">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="profile-lession">
+                                            <img src="https://placehold.it/350x150"
+                                                 class="img img-thumbnail" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <a class="link-lession" href="@Url.Action("Detail",new {id = 1 })">
+                                            Bài giảng Toán 1 chương 2 bài 4: Phép trừ trong phạm vi 4
+                                        </a>
+                                        <p class="desctiption-lession">
+                                            Để có những tiết học thú vị và đạt hiệu quả cao, mời quý
+                                            thầy cô giáo tham khảo bộ sưu tập Bài giảng điện tử Toán 1
+                                            chương 2 bài 4: Phép trừ trong phạm vi 4. Với những Bài giảng
+                                            điện tử lớp 1 môn Toán được tuyển chọn, có nội dung sát với chương
+                                            trình học, hình thức trình bày lôi cuốn, hấp dẫn sẽ giúp quý thầy
+                                            cô giáo cung cấp những kiến thức chính của bài cho học sinh, giúp học
+                                            sinh biết được khái niệm ban đầu về phép trừ về mối quan hệ hệ giữa
+                                            phép trừ và phép cộng, tính trừ trong phạm vi 4, các bài toán trong
+                                            thực tế có liên quan đến phép trừ trong phạm vi 4. Cùng tham khảo bộ
+                                            sưu tập Bài giảng điện tử môn Toán lớp 1 để phục vụ cho quá trình học
+                                            và dạy được tốt hơn nhé!
+                                        </p>
+                                        <div class="info-lession">
+                                            <span><i class="glyphicon glyphicon-share"></i>Nguoi dang</span>
+                                            <span><i class="glyphicon glyphicon-time"></i>Thoi gian</span>
+                                            <span><i class="glyphicon glyphicon-hd-video"></i>Xem</span>
+                                            <span><i class="glyphicon glyphicon-heart"></i>Like</span>
+                                            <span><i class="fa fa-download"></i>Tai ve</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-<h2>Danh sách bài giảng</h2>
+                        </div>
+                        <div id="add-lessions">
+                            <a href="#">Xem thêm(5 bài giảng)</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End class with lession -->
+            </div>
+            <!-- End content -->
+        </div>
+    </div>
+</div>
 
+<script>
+
+</script>

@@ -1,8 +1,204 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    //Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Người dùng xem chi tiết bài giảng ở đây</h2>
+<div class="container">
+    <div class="row">
+        <!-- Begin page detail lession -->
+        <div class="content-lession">
+            <div class="col-md-9">
+                <div class="row">
+                    <!-- Begin content detail lession -->
+                    <div class="detail-lession thumbnail">
+                        <h1 class="title-lession"><a href="#">Bài giảng môn Toán lớp 1</a></h1>
+                        <div class="social-lession">
+                            <div class="author-lession">
+                                <span>Tác giả  : </span><a href="#">Lê Văn A | </a>
+                                <span>Ngày đăng: </span><a href="#">22-12-2019 | </a>
+                                <span>Số file  : </span><a href="#">1000</a>
+                                <p><span>Lượt xem: <i class="badge">1000</i></span> <span>Lượt tải: <i class="badge">2000</i></span><span>Số điểm: <i class="badge">200</i></span></p>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead style="text-align:center">
+                                    <tr>
+                                        <td colspan="2">Hoạt động tương tác</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mạng xã hội</td>
+                                        <td>Diễn đàn Education</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="fb-save" data-uri="http://education.dev/" data-size="large"></div>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-danger"><i class="fa fa-save"></i> Lưu bài viết vào trang cá nhân</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="fb-like" data-href="http://education.dev/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                                        </td>
+                                        <td>
+                                            Đánh giá bài viết: <div class="rw-ui-container" style="padding-bottom:10px"></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!--<div class="col-md-12">
+                                <div class="facebook-lession col-md-8">
+                                    <div class="fb-like" data-href="http://education.dev/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                                    <div class="fb-save" data-uri="http://education.dev/" data-size="large"></div>
+                                </div>
+                                <div class="customer-lession col-md-4">
+                                    <a href="#" class="btn btn-danger"><i class="fa fa-save"></i>Lưu bài viết vào trang cá nhân</a>
+                                    <div>Đánh giá bài viết: <span class="rw-ui-container" style="padding-bottom:10px"></span></div>
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="line"></div>
+                        <div class="description-lession">
+                            <h3 class="title">Mô tả chi tiết về bài giảng</h3>
+                            <p>
+                                Để có những tiết học thú vị và đạt hiệu quả cao, mời quý thầy
+                                cô giáo tham khảo bộ sưu tập Bài giảng điện tử Toán 1 chương 2 bài 4:
+                                Phép trừ trong phạm vi 4. Với những Bài giảng điện tử lớp 1 môn Toán được
+                                tuyển chọn, có nội dung sát với chương trình học, hình thức trình bày lôi
+                                cuốn, hấp dẫn sẽ giúp quý thầy cô giáo cung cấp những kiến thức chính của
+                                bài cho học sinh, giúp học sinh biết được khái niệm ban đầu về phép trừ về
+                                mối quan hệ hệ giữa phép trừ và phép cộng, tính trừ trong phạm vi 4, các bài toán trong thực tế có liên quan đến phép trừ trong phạm vi 4. Cùng tham khảo bộ sưu tập Bài giảng điện tử môn Toán lớp 1 để phục vụ cho quá trình học và dạy được tốt hơn nhé!
+                            </p>
+                        </div>
+                        <div class="files-lession">
+                            <h3 class="title">Tài liệu của bài giảng</h3>
+                            <table class="table table-responsive table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>Tên file</td>
+                                        <td>Mô tả</td>
+                                        <td>Hành động</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Toán</td>
+                                        <td>Môn toán lớp 1</td>
+                                        <td>
+                                            <a class="btn btn-default">Tải về</a>
+                                            <a class="btn btn-default">Quản lí phiên bản</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td><a class="btn btn-default">Tải tất cả bài giảng</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- End content detail lession -->
+                    <!-- Begin discussion lession -->
+                    <div class="discuss-lession thumbnail">
+                        <h2>Thảo luận bài giảng (Sử dụng tài khoản Facebook)</h2>
+                        <div class="fb-comments" data-href="http://education.dev/"  data-with="5000px" data-numposts="5"></div>
+                    </div>
+                    <!-- End discussion lession -->
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <!-- Begin suggest lessions-->
+                    <div class="suggest-lessions">
+                        <!-- Begin description author -->
+                        <div class="author panel panel-default">
+                            <div class="panel panel-heading">
+                                <h2>Thông tin giáo viên</h2>
+                            </div>
+                            <div class="panel panel-body">
+                                <p class="info-author">Họ tên: <span class="badge">Nguyễn Văn A</span></p>
+                                <p class="info-author">Ngày Sinh: <span class="badge">22-22-2012</span></p>
+                                <p class="info-author">Số bài giảng: <span class="badge">1000</span></p>
+                                <p class="info-author">Số điểm: <span class="badge">200</span></p>
+                                <p class="info-author">Số lượt tải: <span class="badge">1200</span></p>
+                            </div>
+                        </div>
+                        <!-- End description author -->
+                        <!-- Begin suggest same author -->
+                        <div class="same-author panel panel-default">
+                            <div class="panel panel-heading">
+                                <p>Bài giảng cùng giáo viên</p>
+                                <a href="#"><span class="badge">Nguyễn Văn A</span></a>
+                            </div>
+                            <div class="panel panel-body">
+                                <div class="row">
+                                    <a href="#" class="item-lession">
+                                        <div class="col-md-3">
+                                            <img src="https://placehold.it/350x150"
+                                                 class="img img-thumbnail" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p>Bài giảng Toán 1 chương 2 bài 4: Phép trừ trong phạm vi 4</p>
+                                        </div>
+                                        <span class="info-lession">Lượt tải: <i class="badge">100</i></span>
+                                        <span class="info-lession">Lượt xem: <i class="badge">100</i></span>
+                                        <span class="info-lession">Số điểm: <i class="badge">100</i></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End suggest same author -->
+                        <!-- Begin suggest same lession -->
+                        <div class="same-lession panel panel-default">
+                            <div class="panel panel-heading">
+                                <p>Bài giảng cùng môn học</p>
+                                <a href="#"><span class="badge">Toán-Lớp 1</span></a>
+                            </div>
+                            <div class="panel panel-body">
+                                <div class="row">
+                                    <a href="#" class="item-lession">
+                                        <div class="col-md-3">
+                                            <img src="https://placehold.it/350x350"
+                                                 class="img img-thumbnail" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p>Bài giảng Toán 1 chương 2 bài 4: Phép trừ trong phạm vi 4</p>
+                                        </div>
+                                        <p><span>- đăng bởi <i class="badge">Nguyễn Văn A</i></span></p>
+                                        <span class="info-lession">Lượt tải: <i class="badge">100</i></span>
+                                        <span class="info-lession">Lượt xem: <i class="badge">100</i></span>
+                                        <span class="info-lession">Số điểm: <i class="badge">100</i></span>
+                                    </a>
+
+                                    <a href="#" class="item-lession">
+                                        <div class="col-md-3">
+                                            <img src="https://placehold.it/350x150"
+                                                 class="img img-thumbnail" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p>Bài giảng Toán 1 chương 2 bài 4: Phép trừ trong phạm vi 4</p>
+                                        </div>
+                                        <p><span>- đăng bởi <i class="badge">Nguyễn Văn A</i></span></p>
+                                        <span class="info-lession">Lượt tải: <i class="badge">100</i></span>
+                                        <span class="info-lession">Lượt xem: <i class="badge">100</i></span>
+                                        <span class="info-lession">Số điểm: <i class="badge">100</i></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Begin suggest same lession -->
+                    </div>
+                    <!-- End suggest lessions-->
+                </div>
+            </div>
+        </div>
+        <!-- End page detail lession -->
+    </div>
+</div>
+
 

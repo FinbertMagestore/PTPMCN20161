@@ -1,0 +1,101 @@
+﻿@import "../Module/common.scss";
+@import "../Module/header.scss";
+@import "../Module/footer.scss";
+@import "/Content/themify/css/themify-icons.css";
+@import "/Content/font-awesome/css/font-awesome.css";
+
+div.lessions {
+    padding: 50px 0 0 0;
+
+    div.list-subjects {
+        div.panel-heading {
+            background-color: #765EC9;
+            h1.title {
+                font-weight: bold;
+                font-size: 25px;
+                color: white;
+            }
+        }
+
+        div.panel-body {
+            background-color: white;
+            padding: 0px 15px;
+
+            a.subject {
+                padding: 5px 0px;
+                display: block;
+                cursor: pointer;
+                height: 30px;
+                text-decoration: none;
+                border-bottom: 1px solid #E8F3FC;
+                vertical-align: middle;
+
+                &:hover {
+                    background: #E8F3FC;
+                }
+
+                span.icon-subject {
+                    margin: 0px 5px;
+                }
+            }
+        }
+    }
+
+    div#list-classes {
+        margin-bottom: 20px;
+
+        div#content-lession {
+            div#description-subject {
+                h2 {
+                    text-align: center;
+                    //font-family: VNI-Viettay;
+                }
+
+                p {
+                }
+            }
+
+            div#list-lessions {
+                div.lession {
+                    margin: 7px 0;
+
+                    div.profile-lession {
+                        img {
+                            height:250px;
+                            width:250px;
+                        }
+                    }
+
+                    a.link-lession {
+                        font-size: 25px;
+                        display: block;
+                        margin: 10px;
+                    }
+
+                    p.desctiption-lession {
+                       
+                    }
+
+                    div.info-lession {
+                        span {
+                            margin-right: 10px;
+
+                            i {
+                                margin-right: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            div#add-lessions {
+                text-align: center;
+
+                a {
+                    font-size: 20px;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

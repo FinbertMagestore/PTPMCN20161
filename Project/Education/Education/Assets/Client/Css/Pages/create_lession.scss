@@ -1,0 +1,34 @@
+﻿
+@import "../Module/common.scss";
+@import "../Module/header.scss";
+@import "../Module/footer.scss";
+@import "/Content/themify/css/themify-icons.css";
+@import "/Content/font-awesome/css/font-awesome.css";
+
+h1{
+    text-align:center;
+}
+div.upload-file {
+    input.filename {
+    }
+
+    div.input-group-btn {
+        margin:3px 0 3px 0 ;
+        div.btn-input {
+            position: relative;
+
+            span.input-title {
+            }
+
+            input.input-content {
+                position: absolute;
+                right: 0;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: inherit;
+                opacity: 0;
+            }
+        }
+    }
+}

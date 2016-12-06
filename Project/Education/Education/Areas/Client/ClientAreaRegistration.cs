@@ -17,7 +17,7 @@ namespace Education.Areas.Client
             context.MapRoute(
                 "Client_default",
                 "Client/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new {controller = "Lession" , action = "Index", id = UrlParameter.Optional }
             );
         }
     }

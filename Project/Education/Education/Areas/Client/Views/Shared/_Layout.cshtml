@@ -17,6 +17,18 @@
     <script src="~/Content/ckeditor/ckeditor.js"></script>
 </head>
 <body>
+    <!-- gegin facebook comment -->
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- end facebook comment -->
     <div id="container">
         <div class="header">
             <div class="container">
@@ -164,5 +176,32 @@
         </div>
     </div>
     <script src="js/owl.carousel.js"></script>
+
+    <!-- add rating star -->
+    <script type="text/javascript">
+        (function (d, t, e, m) {
+
+            // Async Rating-Widget initialization.
+            window.RW_Async_Init = function () {
+
+                RW.init({
+                    huid: "339923",
+                    uid: "58c7ff0bdc635e7256363fe8a1ce08f7",
+                    options: { "style": "oxygen" }
+                });
+                RW.render();
+            };
+            // Append Rating-Widget JavaScript library.
+            var rw, s = d.getElementsByTagName(e)[0], id = "rw-js",
+                l = d.location, ck = "Y" + t.getFullYear() +
+                "M" + t.getMonth() + "D" + t.getDate(), p = l.protocol,
+                f = ((l.search.indexOf("DBG=") > -1) ? "" : ".min"),
+                a = ("https:" == p ? "secure." + m + "js/" : "js." + m);
+            if (d.getElementById(id)) return;
+            rw = d.createElement(e);
+            rw.id = id; rw.async = true; rw.type = "text/javascript";
+            rw.src = p + "//" + a + "external" + f + ".js?ck=" + ck;
+            s.parentNode.insertBefore(rw, s);
+        }(document, new Date(), "script", "rating-widget.com/"));</script>
 </body>
 </html>

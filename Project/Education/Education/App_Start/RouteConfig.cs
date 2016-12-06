@@ -16,7 +16,7 @@ namespace Education
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",
-                defaults: new { controller = "Home", action = "Index" }
+                defaults: new { controller = "Lession", action = "Index" }
             ).DataTokens = new RouteValueDictionary(new { area = "Client" });
         }
     }
