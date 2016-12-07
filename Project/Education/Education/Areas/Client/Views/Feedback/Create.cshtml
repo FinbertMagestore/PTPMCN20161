@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="main-container">
+        <h2>Gửi phản hồi</h2>
+        <div class="chooseProblem">
+            <p>Vấn đề về các chức năng:</p>
+            <select>
+                <option value="login">Đăng nhập</option>
+                <option value="register">Đăng ký</option>
+                <option value="group">Nhóm</option>
+                <option value="personal">Trang cá nhân</option>
+                <option value="search">Tìm kiếm</option>
+                <option value="pushpost">Gửi bài viết</option>
+                <option value="writer">Tải bài viết</option>
+            </select>
+        </div>
+        <div class="describe-problem">
+            <p>Mô tả sự cố hoặc chi sẻ ý tưởng của bạn.</p>
+            <textarea rows="4" cols="48">
+            </textarea><br />
+           
+        </div>
+        <p>
+            Cảm ơn bạn đã dành thời gian để gửi phản hồi vấn đề với chúng tôi.
+            Chúng tôi sẽ khắc phục sự cố nhanh nhất có thể.
+        </p>
+        <input type="submit" value="Gửi vấn đề" />
+    </div>
+</div>
