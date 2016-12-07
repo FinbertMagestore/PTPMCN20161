@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -48,8 +46,8 @@
       <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -174,12 +172,27 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthorizationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\FeedbackController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LessionController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SchoolController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StudentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TeacherController.cs" />
     <Compile Include="Areas\Admin\ModelsView\AccountModels.cs" />
+    <Compile Include="Areas\Admin\ModelsView\CategoryModel.cs" />
+    <Compile Include="Areas\Admin\ModelsView\FeedbackModel.cs" />
+    <Compile Include="Areas\Admin\ModelsView\LessionModel.cs" />
+    <Compile Include="Areas\Admin\ModelsView\PaginationModels.cs" />
+    <Compile Include="Areas\Admin\ModelsView\PostModel.cs" />
+    <Compile Include="Areas\Admin\ModelsView\ReportModel.cs" />
+    <Compile Include="Areas\Admin\ModelsView\SchoolModel.cs" />
+    <Compile Include="Areas\Admin\ModelsView\StudentModel.cs" />
+    <Compile Include="Areas\Admin\ModelsView\TeacherModel.cs" />
     <Compile Include="Areas\Admin\Models\AppUser.cs" />
     <Compile Include="Areas\Admin\Models\AspNetRole.cs" />
     <Compile Include="Areas\Admin\Models\AspNetUserClaim.cs" />
@@ -189,7 +202,7 @@
     <Compile Include="Areas\Admin\Models\ClassInfo.cs" />
     <Compile Include="Areas\Admin\Models\CommentLession.cs" />
     <Compile Include="Areas\Admin\Models\CommentPost.cs" />
-    <Compile Include="Areas\Admin\ModelsView\Common.cs" />
+    <Compile Include="Areas\Admin\Models\Config.cs" />
     <Compile Include="Areas\Admin\Models\District.cs" />
     <Compile Include="Areas\Admin\Models\Feedback.cs" />
     <Compile Include="Areas\Admin\Models\FileUpload.cs" />
@@ -211,10 +224,21 @@
     <Compile Include="Areas\Admin\Provider\CustomRoleProvider.cs" />
     <Compile Include="Areas\Admin\Provider\CustomUserProvider.cs" />
     <Compile Include="Areas\Admin\Services\AccountService.cs" />
-    <Compile Include="Areas\Admin\Services\DistrictService.cs" />
+    <Compile Include="Areas\Admin\Services\CategoryService.cs" />
+    <Compile Include="Areas\Admin\Services\FeedbackService.cs" />
+    <Compile Include="Areas\Admin\Services\LessionService.cs" />
     <Compile Include="Areas\Admin\Services\LogService.cs" />
     <Compile Include="Areas\Admin\Services\NoDirectAccessAttribute.cs" />
+    <Compile Include="Areas\Admin\Services\PostService.cs" />
+    <Compile Include="Areas\Admin\Services\ReportService.cs" />
+    <Compile Include="Areas\Admin\Services\RoleService.cs" />
+    <Compile Include="Areas\Admin\Services\SchoolService.cs" />
+    <Compile Include="Areas\Admin\Services\SubjectService.cs" />
+    <Compile Include="Areas\Admin\Services\UserService.cs" />
     <Compile Include="Areas\Admin\Utilz\Encryption.cs" />
+    <Compile Include="Areas\Admin\Utilz\LabelExtensions.cs" />
+    <Compile Include="Areas\Admin\Utilz\TagBuilderExtensions.cs" />
+    <Compile Include="Areas\Admin\Utilz\Util.cs" />
     <Compile Include="Areas\Client\ClientAreaRegistration.cs" />
     <Compile Include="Areas\Client\Controllers\AccountController.cs" />
     <Compile Include="Areas\Client\Controllers\AuthorizationController.cs" />
@@ -236,6 +260,49 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Authorization\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedback\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedback\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Client\Views\Account\Detail.cshtml" />
+    <Content Include="Areas\Client\Views\Account\Edit.cshtml" />
+    <Content Include="Areas\Client\Views\Account\Index.cshtml" />
+    <Content Include="Areas\Client\Views\Account\Lession.cshtml" />
+    <Content Include="Areas\Client\Views\Account\Posts.cshtml" />
+    <Content Include="Areas\Client\Views\Authorization\DetailRegister.cshtml" />
+    <Content Include="Areas\Client\Views\Authorization\Login.cshtml" />
+    <Content Include="Areas\Client\Views\Authorization\Register.cshtml" />
+    <Content Include="Areas\Client\Views\Category\Detail.cshtml" />
+    <Content Include="Areas\Client\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Client\Views\Feedback\Index.cshtml" />
+    <Content Include="Areas\Client\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Client\Views\Lession\Create.cshtml" />
+    <Content Include="Areas\Client\Views\Lession\Detail.cshtml" />
+    <Content Include="Areas\Client\Views\Lession\Edit.cshtml" />
+    <Content Include="Areas\Client\Views\Lession\Index.cshtml" />
+    <Content Include="Areas\Client\Views\Pages\AboutUs.cshtml" />
+    <Content Include="Areas\Client\Views\Pages\Documentation.cshtml" />
+    <Content Include="Areas\Client\Views\Pages\Policy.cshtml" />
+    <Content Include="Areas\Client\Views\Pages\UserReview.cshtml" />
+    <Content Include="Areas\Client\Views\Post\Create.cshtml" />
+    <Content Include="Areas\Client\Views\Post\Detail.cshtml" />
+    <Content Include="Areas\Client\Views\Post\Edit.cshtml" />
+    <Content Include="Areas\Client\Views\Post\Index.cshtml" />
+    <Content Include="Areas\Client\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Client\Views\web.config" />
     <Content Include="Assets\Admin\Css\Pages\default.css">
       <DependentUpon>default.scss</DependentUpon>
     </Content>
@@ -547,6 +614,8 @@
     <Content Include="Assets\Client\Js\default.min.js">
       <DependentUpon>default.js</DependentUpon>
     </Content>
+    <Content Include="Assets\Client\Js\owl.carousel.min.js" />
+    <Content Include="Assets\Client\Js\post.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome\css\font-awesome.css" />
@@ -581,14 +650,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Client\Views\web.config" />
-    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Authorization\Login.cshtml" />
-    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
-    <Content Include="Areas\Client\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Client\Views\Home\Index.cshtml" />
     <Content Include="Assets\Client\Css\Module\common.scss" />
     <Content Include="Assets\Client\Css\Module\footer.scss" />
     <Content Include="Assets\Client\Css\Module\header.scss" />
@@ -599,42 +660,38 @@
     <Content Include="Assets\Admin\Css\custom.css" />
     <Content Include="Assets\Admin\Css\print.css" />
     <Content Include="Assets\Admin\Css\menu.css" />
-    <Content Include="Areas\Client\Views\Account\Detail.cshtml" />
-    <Content Include="Areas\Client\Views\Post\Create.cshtml" />
-    <Content Include="Areas\Client\Views\Post\Index.cshtml" />
-    <Content Include="Areas\Client\Views\Post\Edit.cshtml" />
-    <Content Include="Areas\Client\Views\Authorization\Register.cshtml" />
-    <Content Include="Areas\Client\Views\Authorization\Login.cshtml" />
-    <Content Include="Areas\Client\Views\Feedback\Index.cshtml" />
-    <Content Include="Areas\Client\Views\Lession\Create.cshtml" />
-    <Content Include="Areas\Client\Views\Lession\Edit.cshtml" />
-    <Content Include="Areas\Client\Views\Lession\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Post\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Post\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Post\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Feedback\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Feedback\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\Report\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Report\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\Post\Detail.cshtml" />
-    <Content Include="Areas\Client\Views\Post\Detail.cshtml" />
-    <Content Include="Areas\Client\Views\Lession\Detail.cshtml" />
-    <Content Include="Areas\Client\Views\Pages\Documentation.cshtml" />
-    <Content Include="Areas\Client\Views\Pages\UserReview.cshtml" />
-    <Content Include="Areas\Client\Views\Pages\AboutUs.cshtml" />
-    <Content Include="Areas\Client\Views\Pages\Policy.cshtml" />
-    <Content Include="Areas\Client\Views\Category\Index.cshtml" />
-    <Content Include="Areas\Client\Views\Category\Detail.cshtml" />
-    <Content Include="Areas\Client\Views\Account\Edit.cshtml" />
-    <Content Include="Areas\Client\Views\Account\Index.cshtml" />
     <Content Include="Assets\Client\Css\Pages\category.scss" />
     <Content Include="Assets\Client\Css\Pages\lession.scss" />
     <Content Include="Assets\Client\Css\Pages\detail_lession.scss" />
     <Content Include="Assets\Client\Css\Pages\create_lession.scss" />
+    <Content Include="Assets\Client\Css\Pages\detail.scss" />
+    <Content Include="Assets\Client\Css\Pages\DetailRegister.scss" />
+    <Content Include="Assets\Client\Css\Pages\lesson.scss" />
+    <Content Include="Assets\Client\Css\Pages\post.scss" />
+    <Content Include="Assets\Client\Css\Pages\posts.scss" />
+    <Content Include="Assets\Client\Css\Pages\Register.scss" />
+    <Content Include="Areas\Admin\Views\Account\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedback\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedback\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Lession\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Lession\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Lession\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\ListUsers.cshtml" />
+    <Content Include="Areas\Admin\Views\School\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\School\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\School\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Student\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Teacher\Index.cshtml" />
+    <Content Include="Areas\Client\Views\Feedback\Create.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
@@ -666,19 +723,27 @@
     <Content Include="Content\themify\fonts\themify.eot" />
     <Content Include="Content\themify\fonts\themify.ttf" />
     <Content Include="Content\themify\fonts\themify.woff" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -721,9 +786,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -757,8 +823,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

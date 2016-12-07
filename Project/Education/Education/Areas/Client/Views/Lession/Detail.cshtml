@@ -1,6 +1,5 @@
-﻿
+﻿@model Education.Areas.Admin.Model.Lession
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,13 +11,17 @@
                 <div class="row">
                     <!-- Begin content detail lession -->
                     <div class="detail-lession thumbnail">
-                        <h1 class="title-lession"><a href="#">Bài giảng môn Toán lớp 1</a></h1>
+                        <h1 class="title-lession"><a href="@Url.Action(" Detail", new { id=Model.ID})">@Model.Name</a></h1>
                         <div class="social-lession">
                             <div class="author-lession">
-                                <span>Tác giả  : </span><a href="#">Lê Văn A | </a>
-                                <span>Ngày đăng: </span><a href="#">22-12-2019 | </a>
-                                <span>Số file  : </span><a href="#">1000</a>
-                                <p><span>Lượt xem: <i class="badge">1000</i></span> <span>Lượt tải: <i class="badge">2000</i></span><span>Số điểm: <i class="badge">200</i></span></p>
+                                <span>Tác giả  : </span><a href="@Url.Action(" Detail", "Account" , new { id=Model.Teacher.ID})">@Model.Teacher.AppUser.Username | </a>
+                                <span>Ngày đăng: </span><a href="#">@Model.Created | </a>
+                                <span>Số file  : </span><a href="#">@Model.FileUploads.Count</a>
+                                <p>
+                                    <span>Lượt xem: <i class="badge">1000</i></span>
+                                    <span>Lượt tải: <i class="badge">@Model.DownloadCount</i></span>
+                                    <span>Số điểm trung bình: <i class="badge">@Model.RateAverage</i></span>
+                                </p>
                             </div>
                             <table class="table table-bordered">
                                 <thead style="text-align:center">
@@ -65,48 +68,53 @@
                         <div class="description-lession">
                             <h3 class="title">Mô tả chi tiết về bài giảng</h3>
                             <p>
-                                Để có những tiết học thú vị và đạt hiệu quả cao, mời quý thầy
-                                cô giáo tham khảo bộ sưu tập Bài giảng điện tử Toán 1 chương 2 bài 4:
-                                Phép trừ trong phạm vi 4. Với những Bài giảng điện tử lớp 1 môn Toán được
-                                tuyển chọn, có nội dung sát với chương trình học, hình thức trình bày lôi
-                                cuốn, hấp dẫn sẽ giúp quý thầy cô giáo cung cấp những kiến thức chính của
-                                bài cho học sinh, giúp học sinh biết được khái niệm ban đầu về phép trừ về
-                                mối quan hệ hệ giữa phép trừ và phép cộng, tính trừ trong phạm vi 4, các bài toán trong thực tế có liên quan đến phép trừ trong phạm vi 4. Cùng tham khảo bộ sưu tập Bài giảng điện tử môn Toán lớp 1 để phục vụ cho quá trình học và dạy được tốt hơn nhé!
+                                @Html.Raw(Model.Description)
                             </p>
                         </div>
                         <div class="files-lession">
                             <h3 class="title">Tài liệu của bài giảng</h3>
-                            <table class="table table-responsive table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <td>Tên file</td>
-                                        <td>Mô tả</td>
-                                        <td>Hành động</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Toán</td>
-                                        <td>Môn toán lớp 1</td>
-                                        <td>
-                                            <a class="btn btn-default">Tải về</a>
-                                            <a class="btn btn-default">Quản lí phiên bản</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td><a class="btn btn-default">Tải tất cả bài giảng</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            @if (Model.FileUploads != null && Model.FileUploads.Count > 0)
+                            {
+                                <table class="table table-responsive table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <td>Tên file</td>
+                                            <td>Mô tả</td>
+                                            <td>Hành động</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.FileUploads)
+                                        {
+    <tr>
+        <td>@item.FileName</td>
+        <td>@Html.Raw(item.Description)</td>
+        <td>
+            <a class="btn btn-default">Tải về</a>
+            <a class="btn btn-default">Quản lí phiên bản</a>
+        </td>
+    </tr>
+                                        }
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td><a class="btn btn-default">Tải tất cả bài giảng</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <h4>Bài giảng không chứa file nào!</h4>
+                            }
+
                         </div>
                     </div>
                     <!-- End content detail lession -->
                     <!-- Begin discussion lession -->
                     <div class="discuss-lession thumbnail">
                         <h2>Thảo luận bài giảng (Sử dụng tài khoản Facebook)</h2>
-                        <div class="fb-comments" data-href="http://education.dev/"  data-with="5000px" data-numposts="5"></div>
+                        <div class="fb-comments" data-href="http://education.dev/" data-with="5000px" data-numposts="5"></div>
                     </div>
                     <!-- End discussion lession -->
                 </div>

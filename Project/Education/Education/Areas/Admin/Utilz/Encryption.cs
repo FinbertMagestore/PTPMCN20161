@@ -22,7 +22,7 @@ namespace Education.Areas.Admin.Utilz
                 }
                 return "";
             }
-            catch (System.Exception ex)
+            catch
             {
                 return "";
             }

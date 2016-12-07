@@ -11,6 +11,8 @@ namespace Education.Areas.Admin.Model
 
         public int ClassInfoID { get; set; }
 
+        public string Description { get; set; }
+
         public virtual ClassInfo ClassInfo { get; set; }
 
         public virtual Subject Subject { get; set; }

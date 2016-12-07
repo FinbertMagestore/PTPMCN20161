@@ -73,6 +73,7 @@ namespace Education.Areas.Client.Controllers
 
         // Note: không được tạo bài viết chỉ dành cho admin: trường ForAdminPost 
         // GET: Client/Post/1
+        [Authorize(Roles = "Client")]
         public ActionResult Create()
         {
             CSS = "post";
@@ -82,6 +83,7 @@ namespace Education.Areas.Client.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Client")]
         public ActionResult Create(Post post, HttpPostedFileBase datafile)
         {
             CSS = "post";
@@ -135,6 +137,7 @@ namespace Education.Areas.Client.Controllers
         }
 
         // GET: Client/Post/Detail/1
+        [Authorize(Roles = "Client")]
         public ActionResult Detail(int id)
         {
             CSS = "post";
@@ -152,6 +155,7 @@ namespace Education.Areas.Client.Controllers
         }
 
         // GET: Client/Post/Edit/1
+        [Authorize(Roles = "Client")]
         public ActionResult Edit(int id)
         {
             CSS = "post";
@@ -167,6 +171,7 @@ namespace Education.Areas.Client.Controllers
             }
         }
         [HttpPost]
+        [Authorize(Roles = "Client")]
         public ActionResult Edit(Post post, HttpPostedFileBase datafile)
         {
             ViewData["CurrentMenu"] = "category";
@@ -219,6 +224,7 @@ namespace Education.Areas.Client.Controllers
             return View(post);
         }
         // GET: Client/Post/Delete/1
+        [Authorize(Roles = "Client")]
         public ActionResult Delete(int id)
         {
             CSS = "default";

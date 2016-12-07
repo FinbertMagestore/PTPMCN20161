@@ -13,5 +13,15 @@ namespace Education.Areas.Admin.ModelsView
         public SelectList ListStatus { get; set; }
         public List<Lession> Lessions { get; set; }
         public string Status { get; set; }
+        public List<ClassInfo> ClassInfos { get; set; }
+        public int ClassInfoID { get; set; }
+        public ClassInfo ClassInfo { get; set; }
+        public List<Subject> Subjects { get; set; }
+        public int SubjectID { get; set; }
+        public Subject Subject { get; set; }
+        public int SubjectClassID { get; set; }
+        public SubjectClass SubjectClass { get; set; }
+        public PaginationModels PagerModel { get; set; }
+        public int Page { get; set; }
     }
 }

@@ -8,15 +8,43 @@
     "inputFile": "Assets/Client/Css/Pages/default.scss"
   },
   {
-    "outputFile": "Assets/Client/Css/Pages/login.css",
-    "inputFile": "Assets/Client/Css/Pages/login.scss"
-  },
-  {
     "outputFile": "Assets/Client/Css/Pages/Register.css",
     "inputFile": "Assets/Client/Css/Pages/Register.scss"
   },
   {
     "outputFile": "Assets/Client/Css/Pages/DetailRegister.css",
     "inputFile": "Assets/Client/Css/Pages/DetailRegister.scss"
+  },
+  {
+    "outputFile": "Assets/Client/Css/Pages/lession.css",
+    "inputFile": "Assets/Client/Css/Pages/lession.scss"
+  },
+  {
+    "outputFile": "Assets/Client/Css/Pages/category.css",
+    "inputFile": "Assets/Client/Css/Pages/category.scss"
+  },
+  {
+    "outputFile": "Assets/Client/Css/Pages/create_lession.css",
+    "inputFile": "Assets/Client/Css/Pages/create_lession.scss"
+  },
+  {
+    "outputFile": "Assets/Client/Css/Pages/detail.css",
+    "inputFile": "Assets/Client/Css/Pages/detail.scss"
+  },
+  {
+    "outputFile": "Assets/Client/Css/Pages/detail_lession.css",
+    "inputFile": "Assets/Client/Css/Pages/detail_lession.scss"
+  },
+  {
+    "outputFile": "Assets/Client/Css/Pages/lesson.css",
+    "inputFile": "Assets/Client/Css/Pages/lesson.scss"
+  },
+  {
+    "outputFile": "Assets/Client/Css/Pages/post.css",
+    "inputFile": "Assets/Client/Css/Pages/post.scss"
+  },
+  {
+    "outputFile": "Assets/Client/Css/Pages/posts.css",
+    "inputFile": "Assets/Client/Css/Pages/posts.scss"
   }
 ]

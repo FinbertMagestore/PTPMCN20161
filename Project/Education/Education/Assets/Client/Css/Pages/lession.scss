@@ -4,8 +4,12 @@
 @import "/Content/themify/css/themify-icons.css";
 @import "/Content/font-awesome/css/font-awesome.css";
 
+.header{
+    border-bottom: 1px solid #555;
+}
+
 div.lessions {
-    padding: 50px 0 0 0;
+    padding: 20px 0 0 0;
 
     div.list-subjects {
         div.panel-heading {
@@ -37,6 +41,10 @@ div.lessions {
                 span.icon-subject {
                     margin: 0px 5px;
                 }
+            }
+
+            a.active{
+                background: #E8F3FC !important;
             }
         }
     }
@@ -76,7 +84,8 @@ div.lessions {
                        
                     }
 
-                    div.info-lession {
+                    ul.info-lession {
+                        list-style: none;
                         span {
                             margin-right: 10px;
 

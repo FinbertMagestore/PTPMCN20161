@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Education.Areas.Admin.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,31 +8,32 @@ using System.Web.Mvc;
 namespace Education.Areas.Client.Controllers
 {
     [AllowAnonymous]
-    public class AuthorizationController : Controller
+    public class AuthorizationController : BaseController
     {
         // GET: Client/Authorization
         public ActionResult Index()
         {
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "Authorization", new { area = "Admin"});
         }
 
         // GET: Client/Authorization/Login
         public ActionResult Login()
         {
-            ViewData["CSS"] = "login";
-            return View();
+            CSS = "login";
+            return RedirectToAction("Login", "Authorization", new { area = "Admin"});
+            //return View();
         }
 
         // GET: Client/Authorization/Register
         public ActionResult Register()
         {
-            ViewData["CSS"] = "Register";
+            CSS = "Register";
             return View();
         }
         // GET: Client/Authorization/DetailRegister
         public ActionResult DetailRegister()
         {
-            ViewData["CSS"] = "DetailRegister";
+            CSS = "DetailRegister";
             return View();
         }
 

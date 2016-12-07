@@ -30,25 +30,11 @@ namespace Education.Areas.Admin.Controllers
                         string roles = roleUser.Values["_roleUser"];
                         if (!string.IsNullOrEmpty(roles) && roles.Contains("Admin"))
                         {
-                            if (!string.IsNullOrEmpty(ReturnUrl))
-                            {
-                                return Redirect(ReturnUrl);
-                            }
-                            else
-                            {
-                                return RedirectToAction("Index", "Dashboard");
-                            }
+                            return RedirectToAction("Index", "Dashboard");
                         }
                         else
                         {
-                            if (!string.IsNullOrEmpty(ReturnUrl))
-                            {
-                                return Redirect(ReturnUrl);
-                            }
-                            else
-                            {
-                                return RedirectToAction("Index", "Home", new { area = "Client" });
-                            }
+                            return RedirectToAction("Index", "Home", new { area = "Client" });
                         }
                     }
 
@@ -90,25 +76,11 @@ namespace Education.Areas.Admin.Controllers
                                 FormsAuthentication.SetAuthCookie(userName, model.RememberMe);
                                 if (Roles.IsUserInRole(userName, "Admin"))
                                 {
-                                    if (!string.IsNullOrEmpty(ReturnUrl))
-                                    {
-                                        return Redirect(ReturnUrl);
-                                    }
-                                    else
-                                    {
-                                        return RedirectToAction("Index", "Dashboard");
-                                    }
+                                    return RedirectToAction("Index", "Dashboard");
                                 }
                                 else if (Roles.IsUserInRole(userName, "Client"))
                                 {
-                                    if (!string.IsNullOrEmpty(ReturnUrl))
-                                    {
-                                        return Redirect(ReturnUrl);
-                                    }
-                                    else
-                                    {
-                                        return RedirectToAction("Index", "Home", new { area = "Client" });
-                                    }
+                                    return RedirectToAction("Index", "Home", new { area = "Client" });
                                 }
                             }
                             else

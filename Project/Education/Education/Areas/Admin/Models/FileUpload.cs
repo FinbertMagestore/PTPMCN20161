@@ -49,6 +49,9 @@
         [Display(Name = "Bài giảng")]
         public int LessionID { get; set; }
 
+        [Display(Name = "Mô tả")]
+        public string Description { get; set; }
+
         public virtual List<FileUpload> FileUploads { get; set; }
 
         public virtual FileUpload OldVersion { get; set; }

@@ -98,8 +98,8 @@ namespace Education.Areas.Admin.Services
             try
             {
                 string query = "insert into Lession(" +
-                        " Name,Description,Created,Modified,Alias,Status,ImageUrl,TeacherID,RateAverage,SubjectClassID,DownloadCount)" +
-                        " values (@Name,@Description,@Created,@Modified,@Alias,@Status,@ImageUrl,@TeacherID,@RateAverage,@SubjectClassID,@DownloadCount)" +
+                        " Name,Description,Created,Modified,Alias,Status,ImageUrl,TeacherID,RateAverage,SubjectClassID,DownloadCount,SubjectID,ClassInfoID)" +
+                        " values (@Name,@Description,@Created,@Modified,@Alias,@Status,@ImageUrl,@TeacherID,@RateAverage,@SubjectClassID,@DownloadCount,@SubjectID,@ClassInfoID)" +
                         " SELECT @@IDENTITY";
                 int id = connect.Query<int>(query, new
                 {
@@ -113,6 +113,8 @@ namespace Education.Areas.Admin.Services
                     lession.TeacherID,
                     lession.RateAverage,
                     lession.SubjectClassID,
+                    lession.SubjectID,
+                    lession.ClassInfoID,
                     lession.DownloadCount
                 }).Single();
                 return id;
@@ -132,7 +134,8 @@ namespace Education.Areas.Admin.Services
                     " Modified=@Modified,Alias=@Alias, " +
                     " Status=@Status,ImageUrl=@ImageUrl, " +
                     " TeacherID=@TeacherID,RateAverage=@RateAverage, " +
-                    " SubjectClassID=@SubjectClassID,DownloadCount=@DownloadCount " +
+                    " SubjectClassID=@SubjectClassID,DownloadCount=@DownloadCount, " +
+                    " ClassInfoID=@ClassInfoID,SubjectID=@SubjectID " +
                         " where ID = @ID ";
                 return 0 < connect.Execute(query, new
                 {
@@ -146,6 +149,8 @@ namespace Education.Areas.Admin.Services
                     lession.TeacherID,
                     lession.RateAverage,
                     lession.SubjectClassID,
+                    lession.SubjectID,
+                    lession.ClassInfoID,
                     lession.DownloadCount,
                     lession.ID
                 });
@@ -207,6 +212,21 @@ namespace Education.Areas.Admin.Services
             {
                 string query = "select * from Subject where ID = " + subjectID;
                 Subject subject = connect.Query<Subject>(query).FirstOrDefault();
+                return subject;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
+
+        public List<FileUpload> GetAllFileUpload(int id)
+        {
+            try
+            {
+                string query = "select * from FileUpload where LessionID = " + id;
+                List<FileUpload> subject = connect.Query<FileUpload>(query).ToList();
                 return subject;
             }
             catch (Exception ex)

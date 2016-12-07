@@ -186,7 +186,7 @@ namespace Education.Areas.Admin.Services
         {
             try
             {
-                string query = "update ClassInfo set ClassName = @ClassName,LevelID = @LevelID,Status = @Status, " +
+                string query = "update ClassInfo set ClassName = @ClassName,LevelID = @LevelID,Status = @Status " +
                         " where ID = @ID ";
                 return 0 < connect.Execute(query, new
                 {
@@ -209,6 +209,126 @@ namespace Education.Areas.Admin.Services
             try
             {
                 string query = "delete from ClassInfo where ID = " + id;
+                connect.Execute(query);
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+            }
+        }
+    }
+
+    public class SubjectClassService
+    {
+        private IDbConnection connect = new SqlConnection(Config.ConnectString);
+        public List<SubjectClass> GetAll()
+        {
+            try
+            {
+                string query = string.Format("select * from SubjectClass");
+                List<SubjectClass> subjects = connect.Query<SubjectClass>(query).ToList<SubjectClass>();
+                return subjects;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
+        public List<SubjectClass> GetByWhere(string where)
+        {
+            try
+            {
+                string query = string.Format("select * from SubjectClass");
+                if (!string.IsNullOrEmpty(where))
+                {
+                    query = string.Format("select * from SubjectClass where " + where);
+                }
+                return connect.Query<SubjectClass>(query).ToList();
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
+        public SubjectClass GetBySubjectAndClass(int subjectID, int classInfoID)
+        {
+            try
+            {
+                string query = String.Format("select * from SubjectClass where SubjectID = {0} and ClassInfoID = {1}", subjectID, classInfoID);
+                SubjectClass subject = connect.Query<SubjectClass>(query).FirstOrDefault<SubjectClass>();
+                return subject;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
+        public SubjectClass GetByPrimaryKey(int id)
+        {
+            try
+            {
+                string query = "select * from SubjectClass where ID = " + id;
+                SubjectClass subject = connect.Query<SubjectClass>(query).FirstOrDefault<SubjectClass>();
+                return subject;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return null;
+            }
+        }
+        public int Insert(SubjectClass subject)
+        {
+            try
+            {
+                string query = "insert into SubjectClass(" +
+                        " SubjectID,ClassInfoID,Description)" +
+                        " values (@SubjectID,@ClassInfoID,@Description)" +
+                        " SELECT @@IDENTITY";
+                int id = connect.Query<int>(query, new
+                {
+                    subject.SubjectID,
+                    subject.ClassInfoID,
+                    subject.Description
+                }).Single();
+                return id;
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return 0;
+            }
+        }
+        public bool Update(SubjectClass subject)
+        {
+            try
+            {
+                string query = "update SubjectClass set SubjectID = @SubjectID,ClassInfoID = @ClassInfoID,Description = @Description " +
+                        " where ID = @ID ";
+                return 0 < connect.Execute(query, new
+                {
+                    subject.SubjectID,
+                    subject.ClassInfoID,
+                    subject.Description,
+                    subject.ID
+                });
+
+            }
+            catch (Exception ex)
+            {
+                LogService.WriteException(ex);
+                return false;
+            }
+        }
+
+        public void DeleteByPrimaryKey(int id)
+        {
+            try
+            {
+                string query = "delete from SubjectClass where ID = " + id;
                 connect.Execute(query);
             }
             catch (Exception ex)

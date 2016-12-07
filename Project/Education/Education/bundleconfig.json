@@ -1,2 +1,14 @@
 [
+  {
+    "outputFileName": "Assets/Client/Js/post.min.js",
+    "inputFiles": [
+      "Assets/Client/Js/post.js"
+    ]
+  },
+  {
+    "outputFileName": "Assets/Admin/Js/default.min.js",
+    "inputFiles": [
+      "Assets/Admin/Js/default.js"
+    ]
+  }
 ]

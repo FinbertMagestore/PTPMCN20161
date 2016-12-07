@@ -47,11 +47,15 @@
         [Display(Name = "Điểm đánh giá trung bình")]
         public double RateAverage { get; set; }
 
-        [Display(Name = "Môn học")]
         public int SubjectClassID { get; set; }
 
         [Display(Name = "Số lượng download")]
         public int DownloadCount { get; set; }
+
+        [Display(Name = "Môn học")]
+        public int SubjectID { get; set; }
+        [Display(Name = "Lớp học")]
+        public int ClassInfoID { get; set; }
 
         public virtual List<CommentLession> CommentLessions { get; set; }
 
