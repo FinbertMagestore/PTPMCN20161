@@ -1,5 +1,4 @@
-﻿using Education.Areas.Admin.Controllers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +9,7 @@ namespace Education.Areas.Client.Controllers
     //User: Lộc 
     //TODO: Tạo phản hồi gửi về cho admin xem
 
-    public class FeedbackController : BaseController
+    public class FeedbackController : Controller
     {
         // GET: Client/Feedback
         public ActionResult Index()
@@ -21,7 +20,7 @@ namespace Education.Areas.Client.Controllers
         // GET: Client/Feedback/Create
         public ActionResult Create()
         {
-            CSS = "default";
+            ViewData["CSS"] = "default";
             return View();
         }
     }

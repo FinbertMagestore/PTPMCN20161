@@ -1,0 +1,45 @@
+﻿@import "../Module/common";
+@import "../Module/header";
+@import "../Module/footer";
+@import "/Content/themify/css/themify-icons.css";
+@import "/Content/font-awesome/css/font-awesome.css";
+body {
+    background-color:#f9f9f9;
+}
+.container{
+    .main-container{
+        width:40%;
+        height: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        h2{
+            color:#5fb2a8;
+        }
+        .chooseProblem{
+           select{
+               margin-bottom: 10px;
+               margin-top: 10px;
+               option{
+                   width: 200px;
+               }
+           }
+        }
+        .describe-problem{
+            p{
+                margin-bottom: 20px;
+               
+            }
+            textarea{
+                 border: 1px solid;
+                 margin-bottom: 10px;
+            }
+        }
+        input{
+            width: 100px;
+            height: 30px;
+            border: 1px solid;
+            background-color:#5fb2a8;
+            color:white;
+        }
+    }
+}
